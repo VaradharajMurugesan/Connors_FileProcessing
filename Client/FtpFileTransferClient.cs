@@ -97,24 +97,18 @@ namespace ProcessFiles_Demo.Client
 
         public async Task<IEnumerable<string>> ListFilesAsync(string path)
         {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(_host + path);
-            request.Method = WebRequestMethods.Ftp.ListDirectory;
-            request.Credentials = new NetworkCredential(_username, _password);
-
-            using (FtpWebResponse response = (FtpWebResponse)await request.GetResponseAsync())
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            using (var sftp = new SftpClient(_host, _port, _username, _password))
             {
-                List<string> files = new List<string>();
-                string line = null;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    files.Add(line);
-                }
+                sftp.Connect();
 
-                return files;
+                // List all the files in the specified directory
+                var files = sftp.ListDirectory(path).Select(file => file.Name).ToList();
+
+                sftp.Disconnect();
+
+                return await Task.FromResult(files);
             }
         }
-
 
         public async Task<string> DownloadAsync(string remoteFilePath)
         {
