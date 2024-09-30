@@ -19,15 +19,20 @@ namespace ProcessFiles_Demo.Logging
             LogToFile($"ERROR: File failed: {filePath}");
         }
 
+
+        private static readonly object logLock = new object();
         // Private method to handle actual file logging
         private static void LogToFile(string message)
         {
             try
             {
-                // Append log message to the file
-                using (var writer = new StreamWriter(LogFilePath, append: true))
+                lock (logLock) // Ensures only one thread can access the file at a time
                 {
-                    writer.WriteLine($"{DateTime.Now}: {message}");
+                    // Append log message to the file
+                    using (var writer = new StreamWriter(LogFilePath, append: true))
+                    {
+                        writer.WriteLine($"{DateTime.Now}: {message}");
+                    }
                 }
             }
             catch (Exception ex)
