@@ -31,35 +31,68 @@ namespace ProcessFiles_Demo.FileProcessing
 
             const int batchSize = 1000;
             string destinationFileName = Path.GetFileName(filePath);
-            var lines = await File.ReadAllLinesAsync(filePath).ConfigureAwait(false); // Read lines asynchronously
             var destinationFilePath = Path.Combine(destinationPath, $"Processed_{destinationFileName}");
 
             var lineBuffer = new List<string>(batchSize);
 
+            // Dictionary to hold grouped lines by time zone
+            var groupedLines = new Dictionary<string, List<string>>();
+
+            // Asynchronously read lines and group them by Time Zone ID
+            using (var reader = new StreamReader(filePath))
+            {
+                // Read and skip the header line
+                string headerLine = await reader.ReadLineAsync().ConfigureAwait(false);
+
+                string line;
+                while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
+                {
+                    var columns = line.Split(',');
+                    if (columns.Length > 6)
+                    {
+                        string timeZoneId = columns[6].Trim(); // Trim to remove any leading/trailing spaces
+                        if (!groupedLines.ContainsKey(timeZoneId))
+                        {
+                            groupedLines[timeZoneId] = new List<string>();
+                        }
+                        groupedLines[timeZoneId].Add(line);
+                    }
+                    else
+                    {
+                        LoggerObserver.OnFileFailed($"Malformed line: {line}");
+                    }
+                }
+            }
+
             using (var writer = new StreamWriter(destinationFilePath))
             {
                 // Write header to destination file
-                writer.WriteLine("Employee ID,Location ID,Clock In Time,Clock In Type,Deleted,External ID,Role");
+                await writer.WriteLineAsync("Employee ID,Location ID,Clock In Time,Clock In Type,Deleted,External ID,Role").ConfigureAwait(false);
 
                 int index = 0;
 
-                // Group lines by time zone ID before processing
-                var groupedByTimeZone = lines.Skip(1) // Skip header
-                                             .GroupBy(line => line.Split(',')[6]); // Assuming 6th column is the Time Zone ID
-
-                foreach (var group in groupedByTimeZone)
+                // Process each group of lines grouped by Time Zone ID
+                foreach (var group in groupedLines)
                 {
-                    int timeZoneId = int.Parse(group.Key);
-                    TimeZoneInfo timeZoneInfo = GetTimeZoneInfo(timeZoneId);
-
-                    // Parallel processing of each group of lines with the same time zone
-                    var tasks = group.Select(line => Task.Run(async () =>
+                    // Parse Time Zone ID to integer
+                    if (!int.TryParse(group.Key, out int timeZoneId))
                     {
-                        var processedLine = await ProcessLineWithTimeZoneAsync(line, timeZoneInfo);
-                        return processedLine;
-                    }));
+                        LoggerObserver.OnFileFailed($"Invalid TimeZoneID: {group.Key}");
+                        continue; // Skip this group if Time Zone ID is invalid
+                    }
 
-                    var processedLines = await Task.WhenAll(tasks);
+                    TimeZoneInfo timeZoneInfo = GetTimeZoneInfo(timeZoneId);
+                    if (timeZoneInfo == null)
+                    {
+                        // Skip processing for invalid or unfound time zones
+                        continue;
+                    }
+
+                    // Parallel processing of each line within the same time zone
+                    var tasks = group.Value.Select(line => ProcessLineWithTimeZoneAsync(line, timeZoneInfo));
+
+                    // Await all processing tasks for the current group
+                    var processedLines = await Task.WhenAll(tasks).ConfigureAwait(false);
 
                     foreach (var processedLine in processedLines)
                     {
@@ -70,7 +103,7 @@ namespace ProcessFiles_Demo.FileProcessing
 
                         if (++index % batchSize == 0)
                         {
-                            await WriteBatchAsync(writer, lineBuffer);
+                            await WriteBatchAsync(writer, lineBuffer).ConfigureAwait(false);
                             lineBuffer.Clear(); // Clear the buffer after writing
                         }
                     }
@@ -79,7 +112,7 @@ namespace ProcessFiles_Demo.FileProcessing
                 // Write any remaining lines in the buffer
                 if (lineBuffer.Any())
                 {
-                    await WriteBatchAsync(writer, lineBuffer);
+                    await WriteBatchAsync(writer, lineBuffer).ConfigureAwait(false);
                 }
             }
 
@@ -88,6 +121,7 @@ namespace ProcessFiles_Demo.FileProcessing
             TimeSpan duration = endTime - startTime;
             LoggerObserver.LogFileProcessed($"Time taken to process file: {duration.TotalSeconds} seconds.");
         }
+
 
         // Process individual lines with time zone adjustment
         private async Task<string> ProcessLineWithTimeZoneAsync(string line, TimeZoneInfo timeZoneInfo)
