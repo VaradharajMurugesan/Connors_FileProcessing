@@ -9946,3 +9946,58 @@
 9/30/2024 3:30:28 PM: INFO: File processed: Time taken to process file: 0.4927282 seconds.
 9/30/2024 3:30:28 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv
 9/30/2024 3:30:28 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20240930_153028.csv
+10/1/2024 11:56:02 AM: INFO: File processed: Decryption completed for C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport_20240924_142057.csv.signed.pgp
+10/1/2024 11:56:04 AM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/1/2024 11:56:04 AM
+10/1/2024 11:56:05 AM: ERROR: File failed: Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer.
+10/1/2024 11:56:05 AM: ERROR: File failed: Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer.
+10/1/2024 11:56:05 AM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/1/2024 11:56:05 AM
+10/1/2024 11:56:05 AM: INFO: File processed: Time taken to process file: 1.6219997 seconds.
+10/1/2024 11:56:05 AM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv
+10/1/2024 11:56:05 AM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20241001_115605.csv
+10/1/2024 12:01:23 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:01:23 PM
+10/1/2024 12:02:20 PM: ERROR: File failed: Invalid TimeZoneID: 111155
+10/1/2024 12:02:20 PM: ERROR: File failed: Invalid TimeZoneID: 134112
+10/1/2024 12:02:20 PM: ERROR: File failed: Invalid TimeZoneID: 134113
+10/1/2024 12:02:20 PM: ERROR: File failed: Invalid TimeZoneID: 134114
+10/1/2024 12:02:20 PM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:02:20 PM
+10/1/2024 12:02:20 PM: INFO: File processed: Time taken to process file: 56.3055021 seconds.
+10/1/2024 12:02:20 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv
+10/1/2024 12:02:20 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_test_1_20241001_120220.csv
+10/1/2024 12:05:08 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:05:08 PM
+10/1/2024 12:07:20 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:07:20 PM
+10/1/2024 12:07:56 PM: ERROR: File failed: Invalid TimeZoneID: 111155
+10/1/2024 12:08:14 PM: ERROR: File failed: Invalid TimeZoneID: 134112
+10/1/2024 12:09:03 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:09:03 PM
+10/1/2024 12:12:18 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:12:18 PM
+10/1/2024 12:12:59 PM: ERROR: File failed: Invalid TimeZoneID: 111155
+10/1/2024 12:13:33 PM: ERROR: File failed: Invalid TimeZoneID: 134113
+10/1/2024 12:13:35 PM: ERROR: File failed: Invalid TimeZoneID: 134114
+10/1/2024 12:13:35 PM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:13:35 PM
+10/1/2024 12:13:35 PM: INFO: File processed: Time taken to process file: 76.8121019 seconds.
+10/1/2024 12:13:35 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv
+10/1/2024 12:13:35 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_test_1_20241001_121335.csv
+10/1/2024 12:19:48 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:19:48 PM
+10/1/2024 12:20:28 PM: ERROR: File failed: Invalid TimeZoneID: 111155
+10/1/2024 12:21:15 PM: ERROR: File failed: Invalid DateTime format: 66/30/2024  5:00:00 AM
+10/1/2024 12:22:03 PM: ERROR: File failed: Invalid TimeZoneID: 134113
+10/1/2024 12:22:04 PM: ERROR: File failed: Invalid TimeZoneID: 134114
+10/1/2024 12:22:04 PM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:22:04 PM
+10/1/2024 12:22:04 PM: INFO: File processed: Time taken to process file: 135.9307794 seconds.
+10/1/2024 12:22:04 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv
+10/1/2024 12:22:04 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_test_1_20241001_122204.csv
+10/1/2024 12:39:49 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:39:49 PM
+10/1/2024 12:40:11 PM: ERROR: File failed: Invalid TimeZoneID: 111155
+10/1/2024 12:40:36 PM: ERROR: File failed: Invalid DateTime format: 66/30/2024  5:00:00 AM
+10/1/2024 12:40:48 PM: ERROR: File failed: Invalid TimeZoneID: 134113
+10/1/2024 12:40:50 PM: ERROR: File failed: Invalid TimeZoneID: 134114
+10/1/2024 12:40:50 PM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv at 10/1/2024 12:40:50 PM
+10/1/2024 12:40:50 PM: INFO: File processed: Time taken to process file: 61.5069751 seconds.
+10/1/2024 12:40:50 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_test_1.csv
+10/1/2024 12:40:50 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_test_1_20241001_124050.csv
+10/1/2024 1:30:37 PM: INFO: File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport.csv at 10/1/2024 1:30:37 PM
+10/1/2024 1:30:41 PM: ERROR: File failed: Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer.
+10/1/2024 1:30:41 PM: ERROR: File failed: Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer.
+10/1/2024 1:30:41 PM: INFO: File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport.csv at 10/1/2024 1:30:41 PM
+10/1/2024 1:30:41 PM: INFO: File processed: Time taken to process file: 4.249124 seconds.
+10/1/2024 1:30:41 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport.csv
+10/1/2024 1:30:41 PM: INFO: File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20241001_133041.csv

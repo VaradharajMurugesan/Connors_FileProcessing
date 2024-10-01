@@ -146,7 +146,7 @@ namespace ProcessFiles_Demo.FileProcessing
             if (!DateTime.TryParseExact(dateTimeStr, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateTime))
             {
                 LoggerObserver.OnFileFailed($"Invalid DateTime format: {dateTimeStr}");
-                return null;
+                dateTime = DateTime.MinValue; // Assign a default DateTime value
             }
 
             // Adjust the date/time according to the time zone

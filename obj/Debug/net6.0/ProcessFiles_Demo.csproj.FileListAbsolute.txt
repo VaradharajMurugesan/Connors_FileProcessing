@@ -25,3 +25,13 @@ C:\Users\intel\source\repos\ProcessFiles_Demo\obj\Debug\net6.0\refint\ProcessFil
 C:\Users\intel\source\repos\ProcessFiles_Demo\obj\Debug\net6.0\ProcessFiles_Demo.pdb
 C:\Users\intel\source\repos\ProcessFiles_Demo\obj\Debug\net6.0\ProcessFiles_Demo.genruntimeconfig.cache
 C:\Users\intel\source\repos\ProcessFiles_Demo\obj\Debug\net6.0\ref\ProcessFiles_Demo.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\NLog.config
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\NLog.dll
+C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\NLog.Extensions.Logging.dll
