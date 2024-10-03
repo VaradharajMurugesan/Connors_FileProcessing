@@ -10,6 +10,7 @@
         "dependencies": {
           "DidiSoft.Pgp.Trial": "1.9.4.72",
           "NLog": "5.3.4",
+          "NLog.Config": "4.7.15",
           "NLog.Extensions.Logging": "5.3.14",
           "Newtonsoft.Json": "13.0.3",
           "Polly": "8.4.1",
@@ -151,6 +152,12 @@
           }
         }
       },
+      "NLog.Config/4.7.15": {
+        "dependencies": {
+          "NLog": "5.3.4",
+          "NLog.Schema": "4.7.15"
+        }
+      },
       "NLog.Extensions.Logging/5.3.14": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
@@ -164,6 +171,7 @@
           }
         }
       },
+      "NLog.Schema/4.7.15": {},
       "Polly/8.4.1": {
         "dependencies": {
           "Polly.Core": "8.4.1"
@@ -303,12 +311,26 @@
       "path": "nlog/5.3.4",
       "hashPath": "nlog.5.3.4.nupkg.sha512"
     },
+    "NLog.Config/4.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-njc2NvwgAzEuH609TGO4yqpokcxXFdypHwG3I8hyLYIE4pr+j4KJB4ZhsyODVwkP/n2F2V4uJ24VW4icNyJMcA==",
+      "path": "nlog.config/4.7.15",
+      "hashPath": "nlog.config.4.7.15.nupkg.sha512"
+    },
     "NLog.Extensions.Logging/5.3.14": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-ZFcdwdIYcGvWY268QMw2lIqnE8ziJTaS4iLm2ajRMUdgy9MFxJl+Y5s0zQxfgjTxbownGrAkJfoTkquAayKG6A==",
       "path": "nlog.extensions.logging/5.3.14",
       "hashPath": "nlog.extensions.logging.5.3.14.nupkg.sha512"
+    },
+    "NLog.Schema/4.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cBzca2abS5Qz8e40vIPZNWBiDAQaRY7PKWffBbazMAzvxGBM6/ZWgaAEmqHUOluhV41cuyXnHOzo485JPLeChg==",
+      "path": "nlog.schema/4.7.15",
+      "hashPath": "nlog.schema.4.7.15.nupkg.sha512"
     },
     "Polly/8.4.1": {
       "type": "package",

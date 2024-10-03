@@ -5,6 +5,7 @@ using ProcessFiles_Demo.FileProcessing;
 using ProcessFiles_Demo.Helpers;
 using ProcessFiles_Demo.Logging;
 using ProcessFiles_Demo.Decryption;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,46 +15,65 @@ using System.Threading.Tasks;
 class Program
 {
     private static readonly string ConfigFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+    private static readonly Logger Logger = LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
 
     static async Task Main(string[] args)
     {
-        string processor_type = "punchexport";
+        try
+        {
+            Logger.Debug("Application Starting");
 
-        // Load client settings
-        var clientSettings = LoadClientSettings(processor_type);
+            string processor_type = "punchexport";
 
-        // Extract FTP/SFTP settings
-        string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
-        string host = clientSettings["FTPSettings"]["Host"].ToString();
-        int port = (int)clientSettings["FTPSettings"]["Port"];
-        string username = clientSettings["FTPSettings"]["Username"].ToString();
-        string password = clientSettings["FTPSettings"]["Password"].ToString();
+            // Load client settings
+            var clientSettings = LoadClientSettings(processor_type);
 
-        // Extract folder paths
-        string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
-        string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
-        string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
-        string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
-        string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
+            // Extract FTP/SFTP settings
+            string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
+            string host = clientSettings["FTPSettings"]["Host"].ToString();
+            int port = (int)clientSettings["FTPSettings"]["Port"];
+            string username = clientSettings["FTPSettings"]["Username"].ToString();
+            string password = clientSettings["FTPSettings"]["Password"].ToString();
 
-        // Ensure directories exist
-        Directory.CreateDirectory(reprocessingFolder);
-        Directory.CreateDirectory(failedFolder);
-        Directory.CreateDirectory(processedFolder);
-        Directory.CreateDirectory(outputFolder);
-        Directory.CreateDirectory(decryptedFolderOutput);
+            // Extract folder paths
+            string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
+            string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
+            string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
+            string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
+            string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
 
-        // Initialize file transfer client
-        var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
+            // Ensure directories exist
+            Directory.CreateDirectory(reprocessingFolder);
+            Directory.CreateDirectory(failedFolder);
+            Directory.CreateDirectory(processedFolder);
+            Directory.CreateDirectory(outputFolder);
+            Directory.CreateDirectory(decryptedFolderOutput);
 
-        // 1. Process any files in the Reprocessing folder first
-        await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+            // Initialize file transfer client
+            var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
 
-        // 2. Fetch and process files from FTP/SFTP
-        await FetchAndProcessFilesAsync(fileTransferClient, processor_type, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings);
+            // 1. Process any files in the Reprocessing folder first
+            await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
 
-        // 3. Process any remaining files in the Reprocessing folder again
-        // await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+            // 2. Fetch and process files from FTP/SFTP
+            await FetchAndProcessFilesAsync(fileTransferClient, processor_type, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings);
+
+            // 3. Process any remaining files in the Reprocessing folder again
+            // await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+
+            Logger.Info("Application Completed Successfully");
+        }
+        catch (Exception ex)
+        {
+            // Log setup errors
+            Logger.Error(ex, "Application terminated unexpectedly");
+            throw;
+        }
+        finally
+        {
+            // Ensure to flush and stop internal timers/threads before application-exit
+            LogManager.Shutdown();
+        }
     }
 
     private static async Task FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, string processor_type, string processedFolder, string reprocessingFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings)
@@ -115,13 +135,13 @@ class Program
                     catch (Exception ex)
                     {
                         string reprocessFilePath = MoveFileToFolder(remoteFile, reprocessingFolder);
-                        LoggerObserver.OnFileFailed(reprocessFilePath);
+                        LoggerObserver.OnFileFailed($"Failed to process {reprocessFilePath}: {ex.Message}");
                         LoggerObserver.LogFileProcessed($"ERROR: {ex.Message} - moved to ReprocessFiles.");
                     }
                 }
                 else
                 {
-                    LoggerObserver.OnFileFailed($"Not a valid PGP file - {remoteFile}");
+                    LoggerObserver.OnFileFailed($"Not a valid PGP or CSV file - {remoteFile}");
                 }
             }
         }
@@ -172,7 +192,7 @@ class Program
             {
                 // If it fails again, move to Failed folder
                 string failedFilePath = MoveFileToFolder(file, failedFolder);
-                LoggerObserver.OnFileFailed(failedFilePath);
+                LoggerObserver.OnFileFailed($"Failed to reprocess {failedFilePath}: {ex.Message}");
                 LoggerObserver.LogFileProcessed($"ERROR: {ex.Message} - moved to FailedFiles.");
             }
         }

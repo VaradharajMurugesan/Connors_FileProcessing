@@ -26,6 +26,7 @@
     <PackageReference Include="DidiSoft.Pgp.Trial" Version="1.9.4.72" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="NLog.Config" Version="4.7.15" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.14" />
     <PackageReference Include="Polly" Version="8.4.1" />
     <PackageReference Include="SSH.NET" Version="2020.0.1" />

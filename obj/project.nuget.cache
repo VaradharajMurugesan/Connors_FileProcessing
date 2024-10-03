@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ljdcbSbhRSfJj20YjpKnjulfZRyck3s5Encfpd7flFn7QdbaUX0xw7IJUUKNKGXpmuHUKsS1h3QOPwCOUBeY7g==",
+  "dgSpecHash": "j65hUG+SBVU+Vwhz4jbgN09XKhOCXlTqYdryCJgT1UHUTzAbwHeLYuGAEqSnU295MNBTPzfmvgodmvg89WbjcA==",
   "success": true,
   "projectFilePath": "C:\\Users\\intel\\source\\repos\\ProcessFiles_Demo\\ProcessFiles_Demo.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,9 @@
     "C:\\Users\\intel\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
+    "C:\\Users\\intel\\.nuget\\packages\\nlog.config\\4.7.15\\nlog.config.4.7.15.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\nlog.extensions.logging\\5.3.14\\nlog.extensions.logging.5.3.14.nupkg.sha512",
+    "C:\\Users\\intel\\.nuget\\packages\\nlog.schema\\4.7.15\\nlog.schema.4.7.15.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\polly\\8.4.1\\polly.8.4.1.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\polly.core\\8.4.1\\polly.core.8.4.1.nupkg.sha512",
     "C:\\Users\\intel\\.nuget\\packages\\ssh.net\\2020.0.1\\ssh.net.2020.0.1.nupkg.sha512",

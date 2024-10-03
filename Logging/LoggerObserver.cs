@@ -1,44 +1,35 @@
 ﻿using System;
-using System.IO;
+using NLog;
 
 namespace ProcessFiles_Demo.Logging
 {
     public static class LoggerObserver
     {
-        private static readonly string LogFilePath = "application.log"; // Specify the log file path
+        // Lazy initialization of the Logger
+        private static Logger Logger => LogManager.GetCurrentClassLogger();
 
         // Method to log file processing information
         public static void LogFileProcessed(string filePath)
         {
-            LogToFile($"INFO: File processed: {filePath}");
+            Logger.Info($"File processed: {filePath}");
         }
 
         // Method to log file processing failures
-        public static void OnFileFailed(string filePath)
+        public static void OnFileFailed(string message)
         {
-            LogToFile($"ERROR: File failed: {filePath}");
+            Logger.Error(message);
         }
 
-
-        private static readonly object logLock = new object();
-        // Private method to handle actual file logging
-        private static void LogToFile(string message)
+        // Optional: Method to log exceptions with stack trace
+        public static void LogException(Exception ex, string contextMessage = null)
         {
-            try
+            if (contextMessage != null)
             {
-                lock (logLock) // Ensures only one thread can access the file at a time
-                {
-                    // Append log message to the file
-                    using (var writer = new StreamWriter(LogFilePath, append: true))
-                    {
-                        writer.WriteLine($"{DateTime.Now}: {message}");
-                    }
-                }
+                Logger.Error(ex, contextMessage);
             }
-            catch (Exception ex)
+            else
             {
-                // Handle any exceptions that occur during logging
-                Console.WriteLine($"Logging error: {ex.Message}");
+                Logger.Error(ex);
             }
         }
     }
