@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="DidiSoft.Pgp.Trial" Version="1.9.4.72" />
+    <PackageReference Include="EPPlus" Version="7.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.3.4" />
     <PackageReference Include="NLog.Config" Version="4.7.15" />

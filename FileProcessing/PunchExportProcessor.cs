@@ -6,14 +6,17 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ProcessFiles_Demo.Logging;
+using OfficeOpenXml;
+
 
 namespace ProcessFiles_Demo.FileProcessing
 {
+    
     public class PunchExportProcessor : ICsvFileProcessorStrategy
-    {
+    {        
         private Dictionary<int, string> timeZoneMap;
         private Dictionary<string, TimeZoneInfo> timeZoneCache;
-
+        private Dictionary<string, string> employeeLocationMap;
         public PunchExportProcessor()
         {
             // Load Time Zone mappings from JSON file
@@ -22,6 +25,41 @@ namespace ProcessFiles_Demo.FileProcessing
 
             // Initialize cache for TimeZoneInfo objects
             timeZoneCache = new Dictionary<string, TimeZoneInfo>();
+
+            // Load employee-location mapping
+            employeeLocationMap = LoadEmployeeLocationMap("2024.09.26 Employee_Location mapping.xlsx");
+        }
+
+        private Dictionary<string, string> LoadEmployeeLocationMap(string filePath)
+        {
+            // Set the LicenseContext for EPPlus
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var map = new Dictionary<string, string>();
+
+            // Load the Excel package
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                // Get the first worksheet in the file
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+
+                int rowCount = worksheet.Dimension.Rows;
+                int colEmployeeId = 1;   // Assuming Employee Number is in column 1
+                int colLocation = 2;     // Assuming Labor Level 2 (Location) is in column 2
+
+                // Loop through rows and read Employee Number and Location
+                for (int row = 2; row <= rowCount; row++) // Starting from row 2, skipping header
+                {
+                    string employeeId = worksheet.Cells[row, colEmployeeId].Text.Trim();
+                    string location = worksheet.Cells[row, colLocation].Text.Trim();
+
+                    if (!string.IsNullOrWhiteSpace(employeeId) && !string.IsNullOrWhiteSpace(location))
+                    {
+                        map[employeeId] = location;
+                    }
+                }
+            }
+
+            return map;
         }
 
         public async Task ProcessAsync(string filePath, string destinationPath)
@@ -139,6 +177,9 @@ namespace ProcessFiles_Demo.FileProcessing
             string laborLevelTransfer = columns[2];
             string punchType = columns[5]; // Column index for Punch Type
 
+            // Fetch location from employee-location mapping
+            string location = employeeLocationMap.ContainsKey(employeeId) ? employeeLocationMap[employeeId] : "Unknown";
+
             // Define the possible formats with both yyyy and yy
             string[] formats = { "M/d/yyyy H:mm", "M/d/yy H:mm", "M/d/yyyy h:mm tt", "M/d/yy h:mm tt" };
 
@@ -162,7 +203,7 @@ namespace ProcessFiles_Demo.FileProcessing
             string externalId = $"{employeeId}-{dateTimeStr}-{laborLevelTransfer}";
 
             // Return the formatted line to be written
-            return $"{employeeId},{laborLevelTransfer},{clockInTime},{clockInType},,{externalId},";
+            return $"{employeeId},{location},{clockInTime},{clockInType},,{externalId},";
         }
 
         // Method to get TimeZoneInfo from cache or fetch if not present

@@ -109,3 +109,36 @@
 2024-10-03 14:09:51.1327 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv 
 2024-10-03 14:09:51.1327 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20241003_140951.csv 
 2024-10-03 14:09:51.1540 [INFO] Application Completed Successfully 
+2024-10-03 19:55:13.1889 [INFO] File processed: Decryption completed for C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport_20240924_142057.csv.signed.pgp 
+2024-10-03 19:55:14.2022 [ERROR] Failed to process C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_20240924_142057.csv.signed_20241003_195514.pgp: Could not find file 'C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\employee_location_mapping.csv'. 
+2024-10-03 19:55:14.2125 [INFO] File processed: ERROR: Could not find file 'C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\employee_location_mapping.csv'. - moved to ReprocessFiles. 
+2024-10-03 19:55:14.2125 [INFO] Application Completed Successfully 
+2024-10-03 19:57:14.9056 [INFO] File processed: Decryption completed for reprocessed file: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_20240924_142057.csv.signed_20241003_195514.pgp 
+2024-10-03 20:01:28.4950 [INFO] File processed: Decryption completed for reprocessed file: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_20240924_142057.csv.signed_20241003_195514.pgp 
+2024-10-03 20:05:52.6272 [INFO] File processed: Decryption completed for reprocessed file: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_20240924_142057.csv.signed_20241003_195514.pgp 
+2024-10-03 20:29:50.7852 [INFO] File processed: Decryption completed for reprocessed file: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ReprocessFiles\PunchExport_20240924_142057.csv.signed_20241003_195514.pgp 
+2024-10-03 20:30:10.8300 [INFO] File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed_20241003_195514.csv at 10/3/2024 8:30:10 PM 
+2024-10-03 20:30:11.8713 [ERROR] Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer. 
+2024-10-03 20:30:12.0002 [ERROR] Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer. 
+2024-10-03 20:30:12.0117 [INFO] File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed_20241003_195514.csv at 10/3/2024 8:30:12 PM 
+2024-10-03 20:30:12.0117 [INFO] File processed: Time taken to process file: 1.1836719 seconds. 
+2024-10-03 20:30:12.0117 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed_20241003_195514.csv 
+2024-10-03 20:30:12.0274 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20241003_195514_20241003_203012.csv 
+2024-10-03 20:30:12.3631 [INFO] File processed: Decryption completed for C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport_20240924_142057.csv.signed.pgp 
+2024-10-03 20:30:18.2361 [INFO] File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/3/2024 8:30:18 PM 
+2024-10-03 20:30:18.6654 [ERROR] Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer. 
+2024-10-03 20:30:18.7798 [ERROR] Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer. 
+2024-10-03 20:30:18.7934 [INFO] File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/3/2024 8:30:18 PM 
+2024-10-03 20:30:18.7934 [INFO] File processed: Time taken to process file: 0.5582157 seconds. 
+2024-10-03 20:30:18.7934 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv 
+2024-10-03 20:30:18.7934 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20241003_203018.csv 
+2024-10-03 20:30:18.8541 [INFO] Application Completed Successfully 
+2024-10-03 20:32:47.9922 [INFO] File processed: Decryption completed for C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport_20240924_142057.csv.signed.pgp 
+2024-10-03 20:32:57.3785 [INFO] File processed: Start processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/3/2024 8:32:57 PM 
+2024-10-03 20:33:01.0824 [ERROR] Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer. 
+2024-10-03 20:33:01.1861 [ERROR] Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer. 
+2024-10-03 20:33:01.1861 [INFO] File processed: Finished processing Punch Export CSV: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv at 10/3/2024 8:33:01 PM 
+2024-10-03 20:33:01.1952 [INFO] File processed: Time taken to process file: 3.8163315 seconds. 
+2024-10-03 20:33:01.1952 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/PunchExportFiles_Decrypt\PunchExport_20240924_142057.csv.signed.csv 
+2024-10-03 20:33:01.2110 [INFO] File processed: C:\Users\intel\source\repos\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport_20240924_142057.csv.signed_20241003_203301.csv 
+2024-10-03 20:33:01.2303 [INFO] Application Completed Successfully 

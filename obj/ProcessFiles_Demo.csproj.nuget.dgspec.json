@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.9.4.72, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
             "NLog": {
               "target": "Package",
               "version": "[5.3.4, )"
