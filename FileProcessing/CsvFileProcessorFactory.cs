@@ -19,6 +19,10 @@ namespace ProcessFiles_Demo.FileProcessing
             {
                 return new PaycodeExportProcessor();
             }
+            else if (processortype.Contains("payroll", StringComparison.OrdinalIgnoreCase))
+            {
+                return new PayrollProcessor();
+            }
             else
             {
                 throw new ArgumentException("Unknown CSV file type.");

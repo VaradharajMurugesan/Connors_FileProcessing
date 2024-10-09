@@ -199,8 +199,8 @@ namespace ProcessFiles_Demo.FileProcessing
             // Generate ClockInType based on the Punch Type
             string clockInType = GetClockInType(punchType);
 
-            // External ID is a combination of Employee ID, Date/time, and Labor Level Transfer
-            string externalId = $"{employeeId}-{dateTimeStr}-{laborLevelTransfer}";
+            //// External ID is a combination of Employee ID, Location, Date/time, and Labor Level Transfer
+            string externalId = $"{employeeId}-{location}-{dateTimeStr}-{laborLevelTransfer}";
 
             // Return the formatted line to be written
             return $"{employeeId},{location},{clockInTime},{clockInType},,{externalId},";
