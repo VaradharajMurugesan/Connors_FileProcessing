@@ -23,7 +23,7 @@ class Program
         {
             Logger.Debug("Application Starting");
 
-            string processor_type = "punchexport";
+            string processor_type = "payroll";
 
             // Load client settings
             var clientSettings = LoadClientSettings(processor_type);

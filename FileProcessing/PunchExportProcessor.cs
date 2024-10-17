@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 using ProcessFiles_Demo.Logging;
 using OfficeOpenXml;
 
-
 namespace ProcessFiles_Demo.FileProcessing
 {
-    
     public class PunchExportProcessor : ICsvFileProcessorStrategy
-    {        
+    {
         private Dictionary<int, string> timeZoneMap;
         private Dictionary<string, TimeZoneInfo> timeZoneCache;
         private Dictionary<string, string> employeeLocationMap;
+
         public PunchExportProcessor()
         {
             // Load Time Zone mappings from JSON file
@@ -65,18 +64,17 @@ namespace ProcessFiles_Demo.FileProcessing
         public async Task ProcessAsync(string filePath, string destinationPath)
         {
             DateTime startTime = DateTime.Now;
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
             LoggerObserver.LogFileProcessed($"Start processing Punch Export CSV: {filePath} at {startTime}");
 
             const int batchSize = 1000;
             string destinationFileName = Path.GetFileName(filePath);
-            var destinationFilePath = Path.Combine(destinationPath, $"Processed_{destinationFileName}");
+            var destinationFilePath = Path.Combine(destinationPath, $"Clockin_{timestamp}.csv");
 
             var lineBuffer = new List<string>(batchSize);
+            var groupedLines = new Dictionary<string, Dictionary<string, List<string>>>(); // Group by Time Zone and Employee ID
 
-            // Dictionary to hold grouped lines by time zone
-            var groupedLines = new Dictionary<string, List<string>>();
-
-            // Asynchronously read lines and group them by Time Zone ID
+            // Asynchronously read lines and group them by Time Zone ID and Employee ID
             using (var reader = new StreamReader(filePath))
             {
                 // Read and skip the header line
@@ -88,12 +86,21 @@ namespace ProcessFiles_Demo.FileProcessing
                     var columns = line.Split(',');
                     if (columns.Length > 6)
                     {
-                        string timeZoneId = columns[6].Trim(); // Trim to remove any leading/trailing spaces
+                        string timeZoneId = columns[6].Trim(); // Get Time Zone ID
+                        string employeeId = columns[0].Trim(); // Get Employee ID
+
+                        // Initialize group if not already present
                         if (!groupedLines.ContainsKey(timeZoneId))
                         {
-                            groupedLines[timeZoneId] = new List<string>();
+                            groupedLines[timeZoneId] = new Dictionary<string, List<string>>();
                         }
-                        groupedLines[timeZoneId].Add(line);
+
+                        if (!groupedLines[timeZoneId].ContainsKey(employeeId))
+                        {
+                            groupedLines[timeZoneId][employeeId] = new List<string>();
+                        }
+
+                        groupedLines[timeZoneId][employeeId].Add(line);
                     }
                     else
                     {
@@ -105,44 +112,55 @@ namespace ProcessFiles_Demo.FileProcessing
             using (var writer = new StreamWriter(destinationFilePath))
             {
                 // Write header to destination file
-                await writer.WriteLineAsync("Employee ID,Location ID,Clock In Time,Clock In Type,Deleted,External ID,Role").ConfigureAwait(false);
+                await writer.WriteLineAsync("employeeid,locationId,clockintime,clockintype,deleted,externalId,role").ConfigureAwait(false);
 
-                int index = 0;
+                // Dictionary to maintain the last punch type for each employee
+                var lastPunchTypes = new Dictionary<string, string>();
 
-                // Process each group of lines grouped by Time Zone ID
-                foreach (var group in groupedLines)
+                // Process each group of lines grouped by Time Zone ID and Employee ID
+                foreach (var timeZoneGroup in groupedLines)
                 {
+                    string timeZoneIdStr = timeZoneGroup.Key;
+
                     // Parse Time Zone ID to integer
-                    if (!int.TryParse(group.Key, out int timeZoneId))
+                    if (!int.TryParse(timeZoneIdStr, out int timeZoneId))
                     {
-                        LoggerObserver.OnFileFailed($"Invalid TimeZoneID: {group.Key}");
+                        LoggerObserver.OnFileFailed($"Invalid TimeZoneID: {timeZoneIdStr}");
                         continue; // Skip this group if Time Zone ID is invalid
                     }
 
                     TimeZoneInfo timeZoneInfo = GetTimeZoneInfo(timeZoneId);
                     if (timeZoneInfo == null)
                     {
-                        // Skip processing for invalid or unfound time zones
-                        continue;
+                        continue; // Skip processing for invalid or unfound time zones
                     }
 
-                    // Parallel processing of each line within the same time zone
-                    var tasks = group.Value.Select(line => ProcessLineWithTimeZoneAsync(line, timeZoneInfo));
-
-                    // Await all processing tasks for the current group
-                    var processedLines = await Task.WhenAll(tasks).ConfigureAwait(false);
-
-                    foreach (var processedLine in processedLines)
+                    foreach (var employeeGroup in timeZoneGroup.Value)
                     {
-                        if (processedLine != null)
-                        {
-                            lineBuffer.Add(processedLine);
-                        }
+                        // Sort the punches for this employee by check-in time
+                        var sortedLines = employeeGroup.Value
+                            .OrderBy(line =>
+                            {
+                                var columns = line.Split(',');
+                                return DateTime.TryParse(columns[1], out var dateTime) ? dateTime : DateTime.MinValue;
+                            })
+                            .ToList();
 
-                        if (++index % batchSize == 0)
+                        // Process each sorted line
+                        for (int i = 0; i < sortedLines.Count; i++)
                         {
-                            await WriteBatchAsync(writer, lineBuffer).ConfigureAwait(false);
-                            lineBuffer.Clear(); // Clear the buffer after writing
+                            string currentLine = sortedLines[i];
+                            var processedLine = await ProcessLineWithTimeZoneAsync(currentLine, timeZoneInfo, i < sortedLines.Count - 1 ? sortedLines[i + 1] : null, lastPunchTypes);
+                            if (processedLine != null)
+                            {
+                                lineBuffer.Add(processedLine);
+                            }
+
+                            if (lineBuffer.Count % batchSize == 0)
+                            {
+                                await WriteBatchAsync(writer, lineBuffer).ConfigureAwait(false);
+                                lineBuffer.Clear(); // Clear the buffer after writing
+                            }
                         }
                     }
                 }
@@ -161,8 +179,9 @@ namespace ProcessFiles_Demo.FileProcessing
         }
 
 
+
         // Process individual lines with time zone adjustment
-        private async Task<string> ProcessLineWithTimeZoneAsync(string line, TimeZoneInfo timeZoneInfo)
+        private async Task<string> ProcessLineWithTimeZoneAsync(string line, TimeZoneInfo timeZoneInfo, string nextLine, Dictionary<string, string> lastPunchTypes)
         {
             var columns = line.Split(',');
             if (columns.Length < 8) // Ensure the line has enough columns
@@ -174,7 +193,6 @@ namespace ProcessFiles_Demo.FileProcessing
             // Extract relevant fields
             string employeeId = columns[0];
             string dateTimeStr = columns[1];
-            string laborLevelTransfer = columns[2];
             string punchType = columns[5]; // Column index for Punch Type
 
             // Fetch location from employee-location mapping
@@ -193,14 +211,28 @@ namespace ProcessFiles_Demo.FileProcessing
             // Adjust the date/time according to the time zone
             DateTime adjustedDateTime = ConvertToTimeZone(dateTime, timeZoneInfo);
 
+            // Prepare for next punch type lookup
+            string nextPunchType = null;
+            if (!string.IsNullOrEmpty(nextLine))
+            {
+                var nextColumns = nextLine.Split(',');
+                if (nextColumns.Length > 5)
+                {
+                    nextPunchType = nextColumns[5]; // Get the punch type from the next line
+                }
+            }
+
             // Format the ClockInTime as Kronos format
-            string clockInTime = adjustedDateTime.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+            string clockInTime = adjustedDateTime.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
 
-            // Generate ClockInType based on the Punch Type
-            string clockInType = GetClockInType(punchType);
+            // Generate ClockInType based on the Punch Type and next Punch Type
+            string clockInType = GetClockInType(punchType, nextPunchType, lastPunchTypes, employeeId);
 
-            //// External ID is a combination of Employee ID, Location, Date/time, and Labor Level Transfer
-            string externalId = $"{employeeId}-{location}-{dateTimeStr}-{laborLevelTransfer}";
+            // External ID is a combination of Employee ID, Location, Date/time
+            string externalId = $"{employeeId}-{location}-{dateTimeStr}";
+
+            // Store the current punch type as the last punch type for this employee
+            lastPunchTypes[employeeId] = punchType;
 
             // Return the formatted line to be written
             return $"{employeeId},{location},{clockInTime},{clockInType},,{externalId},";
@@ -232,53 +264,78 @@ namespace ProcessFiles_Demo.FileProcessing
             return timeZoneCache[timeZoneIdName];
         }
 
-        // Method to adjust DateTime based on Time Zone
-        private DateTime ConvertToTimeZone(DateTime dateTime, TimeZoneInfo timeZoneInfo)
+        // Method to convert DateTime to a specific time zone
+        private DateTime ConvertToTimeZone(DateTime dateTime, TimeZoneInfo timeZone)
         {
-            if (timeZoneInfo == null)
-            {
-                // Return the original dateTime or apply a default timezone (e.g., UTC) if no valid timezone is found
-                return dateTime; // You can apply a default conversion here if needed
-            }
-
-            return TimeZoneInfo.ConvertTimeFromUtc(dateTime, timeZoneInfo);
+            return TimeZoneInfo.ConvertTime(dateTime, timeZone);
         }
 
-        // Buffer writing method to write a batch of lines at once asynchronously
+        // Method to map punch type to ClockInType with conditions
+        // Updated method to determine ClockInType with last punch type tracking
+        private string GetClockInType(string punchType, string nextPunchType, Dictionary<string, string> lastPunchTypes, string employeeId)
+        {
+            // Check for last punch type
+            string lastPunchType = lastPunchTypes.ContainsKey(employeeId) ? lastPunchTypes[employeeId] : null;
+
+            // Handle ClockInType based on the current and last punch types
+            if (punchType == "Out Punch")
+            {
+                if (IsMealBreakType(nextPunchType) || lastPunchType == "New Shift")
+                {
+                    return "MealBreakBegin";
+                }
+                return "ShiftEnd"; // Default for "Out Punch"
+            }
+
+            if (punchType == "New Shift")
+            {
+                return "ShiftBegin";
+            }
+
+            if (IsMealBreakEndType(punchType))
+            {
+                return "MealBreakEnd";
+            }
+
+            // Handle rest break types
+            if (lastPunchType == "RestBreakBegin" && punchType == "RestBreakEnd")
+            {
+                return "RestBreakEnd";
+            }
+
+            return punchType; // Return the punchType if no specific mapping found
+        }
+
+        // Helper method to check if the punch type is a meal break type
+        private bool IsMealBreakType(string punchType)
+        {
+            return punchType == "30 Min Meal" ||
+                   punchType == "CA 30 Min Meal at LT 5 Hrs" ||
+                   punchType == "CA Less Than a 30 Minute Meal" ||
+                   punchType == "CA 30 Min Meal at GT 5 Hrs";
+        }
+
+        // Helper method to check if the punch type is a meal break end type
+        private bool IsMealBreakEndType(string punchType)
+        {
+            return punchType == "30 Min Meal" ||
+                   punchType == "CA 30 Min Meal at LT 5 Hrs" ||
+                   punchType == "CA Less Than a 30 Minute Meal" ||
+                   punchType == "CA 30 Min Meal at GT 5 Hrs";
+        }
+
+        // Helper method to check if two DateTime values are on the same day
+        private bool IsSameDay(DateTime dt1, DateTime dt2)
+        {
+            return dt1.Date == dt2.Date;
+        }
+
+        // Write a batch of lines to the file asynchronously
         private async Task WriteBatchAsync(StreamWriter writer, List<string> lines)
         {
             foreach (var line in lines)
             {
-                await writer.WriteLineAsync(line);
-            }
-        }
-
-        // Method to map punch type to ClockInType
-        private string GetClockInType(string punchType)
-        {
-            switch (punchType)
-            {
-                case "ShiftBegin":
-                    return "New Shift";
-
-                case "ShiftEnd":
-                case "MealBreakBegin":
-                    return "Out Punch";
-
-                case "MealBreakEnd":
-                    return "30 Min Meal";
-
-                case "RestBreakBegin":
-                case "RestBreakEnd":
-                    return "N/A";
-
-                case "New Shift":
-                case "Out Punch":
-                case "30 Min Meal":
-                    return punchType;
-
-                default:
-                    return "Unknown Punch Type";
+                await writer.WriteLineAsync(line).ConfigureAwait(false);
             }
         }
     }

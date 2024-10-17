@@ -21,7 +21,7 @@ namespace ProcessFiles_Demo.FileProcessing
             }
             else if (processortype.Contains("payroll", StringComparison.OrdinalIgnoreCase))
             {
-                return new PayrollProcessor();
+                return new PayrollFileProcessor();
             }
             else
             {
