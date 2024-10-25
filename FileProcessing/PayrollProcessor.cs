@@ -12,39 +12,23 @@ namespace ProcessFiles_Demo.FileProcessing
 {
     public class PayrollFileProcessor : ICsvFileProcessorStrategy
     {
-        // Grouped HR mapping: Outer dictionary maps location -> inner dictionary maps employeeId -> EmployeeHrData
-        private Dictionary<string, Dictionary<string, EmployeeHrData>> groupedEmployeeHrMapping;
-        private Dictionary<string, string> companyCodeMap;
-        private Dictionary<string, string> payCodeMap;
+        // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
+        private Dictionary<string, EmployeeHrData> employeeHrMapping;        
+        private Dictionary<string, PaycodeData> payCodeMap; // Updated type
+        private Dictionary<string, List<PaycodeData>> paycodeDict;
 
         public PayrollFileProcessor()
         {
-            // Sample company code mapping
-            companyCodeMap = new Dictionary<string, string>()
-            {
-                { "Location_A", "Company_001" },
-                { "Location_B", "Company_002" },
-                { "100", "Company_003" }
-            };
-
-            // Load employee HR mapping from Excel
-            groupedEmployeeHrMapping = LoadGroupedEmployeeHrMappingFromExcel("Employee_HR_mapping.xlsx");
-
-            // Sample pay code mapping (map earning codes to pay types)
-            payCodeMap = new Dictionary<string, string>()
-            {
-                { "Regular Hours", "E100" },
-                { "Overtime", "E200" },
-                { "Holiday Pay", "E300" },
-                { "Sick Leave", "E400" }
-            };
+            // Load employee HR mapping from Excel (grouped by employee ID now)
+            employeeHrMapping = LoadGroupedEmployeeHrMappingFromExcel("Employee_HR_mapping.xlsx");
+            paycodeDict = LoadPaycodeMappingFromXlsx("LegionPayCodes.xlsx");
         }
 
-        // Optimized method to load and group employee HR data by location
-        private Dictionary<string, Dictionary<string, EmployeeHrData>> LoadGroupedEmployeeHrMappingFromExcel(string filePath)
+        // Optimized method to load and group employee HR data by employee ID
+        private Dictionary<string, EmployeeHrData> LoadGroupedEmployeeHrMappingFromExcel(string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var groupedHrMapping = new Dictionary<string, Dictionary<string, EmployeeHrData>>();
+            var hrMapping = new Dictionary<string, EmployeeHrData>();
 
             using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
@@ -55,33 +39,78 @@ namespace ProcessFiles_Demo.FileProcessing
                 for (int row = 2; row <= rowCount; row++)
                 {
                     string employeeId = worksheet.Cells[row, 1].Value?.ToString().Trim(); // Assuming employee ID is in the first column
-                    string locationName = worksheet.Cells[row, 4].Value?.ToString().Trim(); // Assuming location in column 4
 
-                    if (!string.IsNullOrEmpty(employeeId) && !string.IsNullOrEmpty(locationName))
+                    if (!string.IsNullOrEmpty(employeeId))
                     {
                         EmployeeHrData hrData = new EmployeeHrData
                         {
                             externalId = employeeId,
                             firstName = worksheet.Cells[row, 2].Value?.ToString().Trim(),    // Assuming first name in column 2
                             lastName = worksheet.Cells[row, 3].Value?.ToString().Trim(),     // Assuming last name in column 3
-                            locationName = locationName,
+                            locationName = worksheet.Cells[row, 4].Value?.ToString().Trim(), // Assuming location in column 4
                             jobTitle = worksheet.Cells[row, 5].Value?.ToString().Trim(),     // Assuming job title in column 5
-                            hourlyRate = worksheet.Cells[row, 6].Value?.ToString().Trim(),    // Assuming hourly rate in column 6
+                            hourlyRate = worksheet.Cells[row, 6].Value?.ToString().Trim(),   // Assuming hourly rate in column 6
                             salaried = Convert.ToBoolean(worksheet.Cells[row, 7].Value?.ToString().Trim().ToLower())
                         };
 
-                        // Add to the grouped dictionary by location and employeeId
-                        if (!groupedHrMapping.ContainsKey(locationName))
+                        // Add to the dictionary by employee ID
+                        if (!hrMapping.ContainsKey(employeeId))
                         {
-                            groupedHrMapping[locationName] = new Dictionary<string, EmployeeHrData>();
+                            hrMapping[employeeId] = hrData;
                         }
-
-                        groupedHrMapping[locationName][employeeId] = hrData;
                     }
                 }
             }
 
-            return groupedHrMapping;
+            return hrMapping;
+        }
+
+        // Method to load and group paycode data from an excel file
+        public Dictionary<string, List<PaycodeData>> LoadPaycodeMappingFromXlsx(string filePath)
+        {
+            var paycodeDict = new Dictionary<string, List<PaycodeData>>();
+
+            // Set the LicenseContext for EPPlus (required)
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                // Get the first worksheet
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                int rowCount = worksheet.Dimension.Rows; // Get number of rows
+
+                // Start reading from row 2 (skipping the header)
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    var paycode = new PaycodeData
+                    {
+                        PayType = worksheet.Cells[row, 1].Text.Trim(),
+                        PayName = worksheet.Cells[row, 2].Text.Trim(),
+                        Reference = worksheet.Cells[row, 3].Text.Trim(),
+                        ADPColumn = worksheet.Cells[row, 4].Text.Trim(),
+                        ADPHoursOrAmountCode = worksheet.Cells[row, 5].Text.Trim(),
+                        PassForHourly = worksheet.Cells[row, 6].Text.Trim(),
+                        PassForSalary = worksheet.Cells[row, 7].Text.Trim()
+                    };
+
+                    // Ensure PayType is not empty
+                    if (!string.IsNullOrWhiteSpace(paycode.PayType))
+                    {
+                        // If the pay type already exists in the dictionary, add to the list
+                        if (paycodeDict.ContainsKey(paycode.PayType))
+                        {
+                            paycodeDict[paycode.PayType].Add(paycode);
+                        }
+                        else
+                        {
+                            // If pay type doesn't exist, create a new list and add it to the dictionary
+                            paycodeDict[paycode.PayType] = new List<PaycodeData> { paycode };
+                        }
+                    }
+                }
+            }
+
+            return paycodeDict;
         }
 
         public async Task ProcessAsync(string filePath, string destinationPath)
@@ -113,10 +142,10 @@ namespace ProcessFiles_Demo.FileProcessing
                     var payrollRecord = ParseLineToPayrollRecord(line);
                     if (payrollRecord != null)
                     {
-                        string processedLine = await ProcessPayrollLineAsync(payrollRecord);
-                        if (processedLine != null)
+                        var processedLines = await ProcessPayrollLineAsync(payrollRecord);
+                        if (processedLines != null && processedLines.Any())
                         {
-                            lineBuffer.Add(processedLine);
+                            lineBuffer.AddRange(processedLines); // Add all processed lines for the current record
                         }
 
                         if (lineBuffer.Count > 0 && lineBuffer.Count % batchSize == 0)
@@ -146,37 +175,50 @@ namespace ProcessFiles_Demo.FileProcessing
 
         private PayrollRecord ParseLineToPayrollRecord(string line)
         {
-            var columns = line.Split(',');
-
-            if (columns.Length >= 14)
+            try
             {
-                return new PayrollRecord
-                {
-                    Date = DateTime.Parse(columns[0].Trim()),
-                    EmployeeId = columns[1].Trim(),
-                    EmployeeName = columns[2].Trim(),
-                    HomeLocation = columns[3].Trim(),
-                    JobTitle = columns[4].Trim(),
-                    WorkLocation = columns[5].Trim(),
-                    WorkRole = columns[6].Trim(),
-                    PayType = columns[7].Trim(),
-                    Hours = decimal.Parse(columns[10].Trim()),
-                    TimesheetId = columns[13].Trim()
-                };
-            }
+                var columns = line.Split(',');
 
-            LoggerObserver.OnFileFailed($"Malformed line: {line}");
-            return null;
+                if (columns.Length >= 13)
+                {
+                    return new PayrollRecord
+                    {
+                        Date = columns[0].Trim(),
+                        EmployeeId = columns[1].Trim(),
+                        EmployeeName = columns[2].Trim(),
+                        HomeLocation = columns[3].Trim(),
+                        JobTitle = columns[4].Trim(),
+                        WorkLocation = columns[5].Trim(),
+                        WorkRole = columns[6].Trim(),
+                        PayType = columns[7].Trim(),
+                        PayName = columns[8].Trim(),
+                        PayRollEarningRole = columns[9].Trim(),
+                        Hours = decimal.Parse(columns[10].Trim()),
+                        Rate = decimal.Parse(columns[11].Trim()),
+                        Amount = decimal.Parse(columns[12].Trim())
+                    };
+                }
+
+                LoggerObserver.OnFileFailed($"Malformed line: {line}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        private async Task<string> ProcessPayrollLineAsync(PayrollRecord record)
+        private async Task<List<string>> ProcessPayrollLineAsync(PayrollRecord record)
         {
+            var processedLines = new List<string>();
             // Lookup HR data using grouping by location first, then by employeeId
             EmployeeHrData hrData = null;
-            if (groupedEmployeeHrMapping.ContainsKey(record.WorkLocation))
+            if (employeeHrMapping.ContainsKey(record.EmployeeId))
             {
-                var locationGroup = groupedEmployeeHrMapping[record.WorkLocation];
-                hrData = locationGroup.ContainsKey(record.EmployeeId) ? locationGroup[record.EmployeeId] : null;
+                var locationGroup = employeeHrMapping[record.EmployeeId];
+                hrData = employeeHrMapping.ContainsKey(record.EmployeeId)
+                ? employeeHrMapping[record.EmployeeId]
+                : null;
             }
 
             if (hrData == null)
@@ -187,48 +229,154 @@ namespace ProcessFiles_Demo.FileProcessing
             }
 
             // Lookup pay code based on pay type
-            string earningCode = payCodeMap.ContainsKey(record.PayType) ? payCodeMap[record.PayType] : "E999"; // Default for unknown types
+            //string earningCode = payCodeMap.ContainsKey(record.PayType) ? payCodeMap[record.PayType] : "E999"; // Default for unknown types
+            // Lookup pay code based on pay type in payCodeMap
+            //PaycodeData payCodeData = payCodeMap.ContainsKey(record.PayType) ? payCodeMap[record.PayType] : null;
+
+
+            // Initialize fields with default or empty values
+            string regHours = "0.00";
+            string otHours = "0.00"; // Overtime hours (if any)         
+
+
+            // Use default values if pay code is not found
+            string earningCode = ""; //payCodeData?.Code ?? "E999"; // Default earning code
+
+
             // Lookup company code based on location
-            string companyCode = companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
+            string companyCode = "K3T"; //Assuming this will be generated based on the file name //companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
             // Set 2 for salaried employee
             string rateCode = hrData.salaried ? "2" : "";
             // Determine Temp Dept: Use Work Location if different from Home Location
             string tempDept = record.WorkLocation != record.HomeLocation ? record.WorkLocation : string.Empty;
-            // Populate the payroll line using HR data and calculated values
-            string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{hrData.jobTitle},{record.Hours},{earningCode},{record.PayType},{hrData.hourlyRate}";
-            return processedLine;
+            // If the pay type is "Regular", assign the hours to Reg Hours
+            if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase))
+            {
+                regHours = record.Hours.ToString("F2"); // Assuming Hours is a decimal and needs to be formatted
+            }
+            // Initialize variables to hold the values for each column based on PayType mapping
+            string regularHoursColumn = "";
+            string overtimeHoursColumn = "";
+            string otherPayTypeColumn = "";
+            string hours3Code = "";
+            string earnings3Code = "";
+
+
+            decimal regularHours = 0;
+            decimal overtimeHours = 0;
+            decimal hours3Amount = 0;
+            decimal earnings3Amount = 0;
+            decimal otherHours = 0;
+
+            // Check PayType for "Regular" or "Over Time" using paycodeDict
+            if (paycodeDict.ContainsKey(record.PayType))
+            {
+                // Filter PaycodeData by both PayType, PayName, and ADPColumn, then remove duplicates
+                var filteredPaycodes = paycodeDict[record.PayType]
+                    .Where(pc => string.Equals(pc.PayName, record.PayName, StringComparison.OrdinalIgnoreCase))
+                    .Distinct(new PaycodeDataComparer()) // Use Distinct with custom comparer
+                    .ToList();
+
+                // Only proceed if we found matching PaycodeData for both PayType and PayName
+                if (filteredPaycodes.Any())
+                {
+                    // Iterate over all PaycodeData entries in paycodeDataList and create a processed line for each one
+                    foreach (var paycodeData in filteredPaycodes)
+                    {
+                        //var paycodeDataList = paycodeDict[record.PayType];
+                        regularHoursColumn = "";
+                        overtimeHoursColumn = "";
+                        otherPayTypeColumn = "";
+                        hours3Code = "";
+                        earnings3Code = "";
+
+                        regularHours = 0;
+                        overtimeHours = 0;
+                        hours3Amount = 0;
+                        earnings3Amount = 0;
+                        otherHours = 0;
+
+                        //if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn.Equals("Reg Hours", StringComparison.OrdinalIgnoreCase))
+                        //{
+                        //    regularHoursColumn = paycodeData.ADPColumn;
+                        //    regularHours = record.Hours;
+                        //}
+                        if (paycodeData.ADPColumn == "Reg Hours" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            regularHoursColumn = paycodeData.ADPColumn;
+                            regularHours = record.Hours;
+                        }
+                        //if (record.PayType.Equals("Overtime", StringComparison.OrdinalIgnoreCase))
+                        //{
+                        //    overtimeHoursColumn = paycodeData.ADPColumn;
+                        //    overtimeHours = record.Hours;
+                        //}
+                        else if (paycodeData.ADPColumn == "O/T Hours" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            overtimeHoursColumn = paycodeData.ADPColumn;
+                            overtimeHours = record.Hours;
+                        }
+                        else if (paycodeData.ADPColumn == "Hours 3 Code" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            hours3Code = paycodeData.ADPHoursOrAmountCode;
+                        }
+                        else if (paycodeData.ADPColumn == "Hours 3 Amount" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            hours3Amount = record.Hours;
+                        }
+                        else if (paycodeData.ADPColumn == "Earnings 3 Code" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            earnings3Code = paycodeData.ADPHoursOrAmountCode;
+                        }
+                        else if (paycodeData.ADPColumn == "Earnings 3 Amount" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            earnings3Amount = record.Amount;
+                        }
+                        // Generate processed line for each paycodeData entry
+                        string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{regularHours},{overtimeHours},"
+                                             + $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{"memoCode"}";
+
+                        processedLines.Add(processedLine);
+                    }
+                }
+                else
+                {
+                    LoggerObserver.OnFileFailed($"No Paycode found for PayType: {record.PayType}");
+                }
+            }
+
+            return processedLines;
         }
 
-        private async Task WriteBatchAsync(string filePath, List<string> lines)
+        // Custom comparer to eliminate duplicate PaycodeData entries based on PayType, PayName, and ADPColumn
+        public class PaycodeDataComparer : IEqualityComparer<PaycodeData>
         {
-            using (var writer = new StreamWriter(filePath, true)) // Append mode
+            public bool Equals(PaycodeData x, PaycodeData y)
             {
-                foreach (var line in lines)
+                // Define equality based on PayType, PayName, and ADPColumn (you can extend this comparison to other properties as needed)
+                return string.Equals(x.PayType, y.PayType, StringComparison.OrdinalIgnoreCase) &&
+                       string.Equals(x.PayName, y.PayName, StringComparison.OrdinalIgnoreCase) &&
+                       string.Equals(x.ADPColumn, y.ADPColumn, StringComparison.OrdinalIgnoreCase);
+            }
+
+            public int GetHashCode(PaycodeData obj)
+            {
+                // Combine the hash codes of PayType, PayName, and ADPColumn
+                return (obj.PayType?.ToLower().GetHashCode() ?? 0) ^
+                       (obj.PayName?.ToLower().GetHashCode() ?? 0) ^
+                       (obj.ADPColumn?.ToLower().GetHashCode() ?? 0);
+            }
+        }
+
+        private async Task WriteBatchAsync(string destinationFilePath, List<string> lineBuffer)
+        {
+            using (var writer = new StreamWriter(destinationFilePath, true))
+            {
+                foreach (var line in lineBuffer)
                 {
                     await writer.WriteLineAsync(line).ConfigureAwait(false);
                 }
             }
         }
-    }
-
-    // HR Data Model
-    public class EmployeeHrData
-    {
-        public string address1 { get; set; }
-        public string city { get; set; }
-        public string costCenter { get; set; }
-        public string email { get; set; }
-        public bool exempt { get; set; }
-        public string externalId { get; set; }
-        public string firstName { get; set; }
-        public string hireDate { get; set; }
-        public bool hourly { get; set; }
-        public string hourlyRate { get; set; }
-        public string jobTitle { get; set; }
-        public string lastName { get; set; }
-        public string locationName { get; set; }
-        public bool salaried { get; set; }
-        public string state { get; set; }
-        public string zip { get; set; }
     }
 }

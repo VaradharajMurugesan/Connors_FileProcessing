@@ -6,6 +6,8 @@ using ProcessFiles_Demo.Helpers;
 using ProcessFiles_Demo.Logging;
 using ProcessFiles_Demo.Decryption;
 using NLog;
+using NLog.Config;
+using NLog.Targets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,16 +17,23 @@ using System.Threading.Tasks;
 class Program
 {
     private static readonly string ConfigFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
-    private static readonly Logger Logger = LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
+    //private static readonly Logger Logger = LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
 
     static async Task Main(string[] args)
     {
+
         try
         {
-            Logger.Debug("Application Starting");
 
-            string processor_type = "payroll";
+            // Set the processType variable before loading the configuration 
+            // Default to empty if no argument is passed
+            string processor_type = args.Length > 0 ? args[0] : "";
+            AppDomain.CurrentDomain.SetData("ProcessorType", processor_type);
 
+            LoggerObserver.Debug("Application Starting");
+            
             // Load client settings
             var clientSettings = LoadClientSettings(processor_type);
 
@@ -61,12 +70,12 @@ class Program
             // 3. Process any remaining files in the Reprocessing folder again
             // await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
 
-            Logger.Info("Application Completed Successfully");
+            LoggerObserver.Info("Application Completed Successfully");
         }
         catch (Exception ex)
         {
             // Log setup errors
-            Logger.Error(ex, "Application terminated unexpectedly");
+            LoggerObserver.Error(ex, "Application terminated unexpectedly");
             throw;
         }
         finally
@@ -110,13 +119,13 @@ class Program
                             var decrypt = new Decrypt();
                             finalFilePath = decrypt.DecryptFile(downloadedFilePath, decryptedFilePath, privateKeyPath, passPhrase);
 
-                            LoggerObserver.LogFileProcessed($"Decryption completed for {downloadedFilePath}");
+                            LoggerObserver.Info($"Decryption completed for {downloadedFilePath}");
                         }
                         else
                         {
                             // If decryption is not required, use the file as is
                             finalFilePath = downloadedFilePath;
-                            LoggerObserver.LogFileProcessed($"No decryption needed for {downloadedFilePath}");
+                            LoggerObserver.Info($"No decryption needed for {downloadedFilePath}");
                         }
 
                         // 3. Process the CSV file using the factory to select the correct processor
@@ -127,7 +136,7 @@ class Program
                         // 4. Move file to Processed folder after successful processing
                         string processedFilePath = MoveFileToFolder(finalFilePath, processedFolder);
                         processedFiles.Add(processedFilePath);
-                        LoggerObserver.LogFileProcessed(processedFilePath);
+                        LoggerObserver.Info(processedFilePath);
 
                         // 5. Upload processed CSV back to FTP/SFTP
                         await RetryHelper.RetryAsync(() => fileTransferClient.UploadAsync(processedFilePath, remoteFile));
@@ -135,8 +144,8 @@ class Program
                     catch (Exception ex)
                     {
                         string reprocessFilePath = MoveFileToFolder(remoteFile, reprocessingFolder);
-                        LoggerObserver.OnFileFailed($"Failed to process {reprocessFilePath}: {ex.Message}");
-                        LoggerObserver.LogFileProcessed($"ERROR: {ex.Message} - moved to ReprocessFiles.");
+                        LoggerObserver.Error(ex, $"Failed to process {reprocessFilePath}: ");
+                        LoggerObserver.Info($"ERROR: {ex.Message} - moved to ReprocessFiles.");
                     }
                 }
                 else
@@ -147,7 +156,7 @@ class Program
         }
         catch (Exception ex)
         {
-            LoggerObserver.OnFileFailed("Error processing files from FTP/SFTP");
+            LoggerObserver.Error(ex,"Error processing files from FTP/SFTP");
             LoggerObserver.LogFileProcessed($"ERROR: {ex.Message}");
         }
     }
@@ -192,7 +201,7 @@ class Program
             {
                 // If it fails again, move to Failed folder
                 string failedFilePath = MoveFileToFolder(file, failedFolder);
-                LoggerObserver.OnFileFailed($"Failed to reprocess {failedFilePath}: {ex.Message}");
+                LoggerObserver.Error(ex, $"Failed to reprocess {failedFilePath}");
                 LoggerObserver.LogFileProcessed($"ERROR: {ex.Message} - moved to FailedFiles.");
             }
         }

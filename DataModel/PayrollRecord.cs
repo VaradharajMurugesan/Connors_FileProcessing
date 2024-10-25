@@ -8,7 +8,7 @@ namespace ProcessFiles_Demo.DataModel
 {
     public class PayrollRecord
     {
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string HomeLocation { get; set; }
@@ -16,7 +16,11 @@ namespace ProcessFiles_Demo.DataModel
         public string WorkLocation { get; set; }
         public string WorkRole { get; set; }
         public string PayType { get; set; }
+        public string PayName { get; set; }
+        public string PayRollEarningRole { get; set; }
         public decimal Hours { get; set; }
+        public decimal Rate { get; set; }
+        public decimal Amount { get; set; }
         public string TimesheetId { get; set; }
     }
 }

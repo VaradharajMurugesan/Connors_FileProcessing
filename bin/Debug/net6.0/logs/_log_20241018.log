@@ -1,0 +1,4 @@
+2024-10-18 19:19:23.7966 [DEBUG] Application Starting 
+2024-10-18 19:19:24.1520 [ERROR] Application terminated unexpectedly System.Exception: Client not found in the configuration file.
+   at Program.LoadClientSettings(String clientName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 232
+   at Program.Main(String[] args) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 49

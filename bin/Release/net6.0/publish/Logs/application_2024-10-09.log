@@ -1,0 +1,42 @@
+2024-10-09 14:44:29.0501 [ERROR] Application terminated unexpectedly System.IO.FileNotFoundException: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\appsettings.json'.
+File name: 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\appsettings.json'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding)
+   at System.IO.File.ReadAllText(String path)
+   at Program.LoadClientSettings(String clientName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 203
+   at Program.Main(String[] args) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 29
+2024-10-09 14:44:38.8374 [ERROR] Application terminated unexpectedly System.IO.FileNotFoundException: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\appsettings.json'.
+File name: 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\appsettings.json'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding)
+   at System.IO.File.ReadAllText(String path)
+   at Program.LoadClientSettings(String clientName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 203
+   at Program.Main(String[] args) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 29
+2024-10-09 14:46:15.6413 [INFO] File processed: No decryption needed for D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport.csv 
+2024-10-09 14:46:16.3713 [INFO] File processed: Start processing Punch Export CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport.csv at 10/9/2024 2:46:16 PM 
+2024-10-09 14:46:16.4089 [ERROR] Time zone not found: Central Daylight Time. Error: The time zone ID 'Central Daylight Time' was not found on the local computer. 
+2024-10-09 14:46:16.4176 [ERROR] Time zone not found: Eastern Daylight Time. Error: The time zone ID 'Eastern Daylight Time' was not found on the local computer. 
+2024-10-09 14:46:16.4176 [INFO] File processed: Finished processing Punch Export CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport.csv at 10/9/2024 2:46:16 PM 
+2024-10-09 14:46:16.4176 [INFO] File processed: Time taken to process file: 0.0481662 seconds. 
+2024-10-09 14:46:16.4176 [INFO] File processed: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport.csv 
+2024-10-09 14:46:16.4176 [INFO] File processed: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport/ProcessedFiles\PunchExport_20241009_144616.csv 
+2024-10-09 14:46:16.4356 [INFO] File processed: No decryption needed for D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport_test_1.csv 
+2024-10-09 14:46:16.8342 [INFO] File processed: Start processing Punch Export CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport_test_1.csv at 10/9/2024 2:46:16 PM 
+2024-10-09 14:46:16.8342 [ERROR] Invalid TimeZoneID: 134112 
+2024-10-09 14:46:16.8363 [ERROR] Invalid TimeZoneID: 134113 
+2024-10-09 14:46:16.8363 [ERROR] Invalid TimeZoneID: 134114 
+2024-10-09 14:46:16.8363 [INFO] File processed: Finished processing Punch Export CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport_test_1.csv at 10/9/2024 2:46:16 PM 
+2024-10-09 14:46:16.8363 [INFO] File processed: Time taken to process file: 0.002915 seconds. 
+2024-10-09 14:46:16.8363 [INFO] File processed: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport_test_1.csv 
+2024-10-09 14:46:16.8363 [INFO] File processed: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\PunchExport/ProcessedFiles\PunchExport_test_1_20241009_144616.csv 
+2024-10-09 14:46:16.8363 [INFO] Application Completed Successfully 

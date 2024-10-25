@@ -229,7 +229,7 @@ namespace ProcessFiles_Demo.FileProcessing
             string clockInType = GetClockInType(punchType, nextPunchType, lastPunchTypes, employeeId);
 
             // External ID is a combination of Employee ID, Location, Date/time
-            string externalId = $"{employeeId}-{location}-{dateTimeStr}";
+            string externalId = $"{employeeId}-{location}-{dateTimeStr}".Replace(" ","");
 
             // Store the current punch type as the last punch type for this employee
             lastPunchTypes[employeeId] = punchType;
@@ -278,27 +278,32 @@ namespace ProcessFiles_Demo.FileProcessing
             string lastPunchType = lastPunchTypes.ContainsKey(employeeId) ? lastPunchTypes[employeeId] : null;
 
             // Handle ClockInType based on the current and last punch types
-            if (punchType == "Out Punch")
+            if (punchType == "Out Punch" & (nextPunchType == null || lastPunchType == null))
+            {               
+                return "ShiftEnd"; // Default for "Out Punch"
+            }
+
+            else if (punchType == "Out Punch")
             {
                 if (IsMealBreakType(nextPunchType) || lastPunchType == "New Shift")
                 {
                     return "MealBreakBegin";
                 }
-                return "ShiftEnd"; // Default for "Out Punch"
+                //return "ShiftEnd"; // Default for "Out Punch"
             }
 
-            if (punchType == "New Shift")
+            else if (punchType == "New Shift")
             {
                 return "ShiftBegin";
             }
 
-            if (IsMealBreakEndType(punchType))
+            else if (IsMealBreakEndType(punchType))
             {
                 return "MealBreakEnd";
             }
 
             // Handle rest break types
-            if (lastPunchType == "RestBreakBegin" && punchType == "RestBreakEnd")
+            else if (lastPunchType == "RestBreakBegin" && punchType == "RestBreakEnd")
             {
                 return "RestBreakEnd";
             }

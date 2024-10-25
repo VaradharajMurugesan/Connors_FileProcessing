@@ -1,0 +1,45 @@
+Kronos Pay Code ID,ÿKronos Pay Code,ÿADP Hours Type,ÿADP Hours Code,,ÿPass Yes or No Hourly,ÿPass Yes or No Salary,Code,Description,Short Description,Earnings Type,Hours Field,Earnings Field
+ÿ14,ÿRetro,ÿ020,Z,,ÿYes,ÿYes,Z,Retro Pay,RETRO,Retroactive Earnings Type,Hours 3 Field,Earnings 3 Field
+ÿ22,ÿVacation,ÿ016,V,,ÿYes,ÿYes,V,Vacation,VACATN,None,Hours 3 Field,Earnings 3 Field
+ÿ21,ÿTraining,ÿ016,T,,ÿYes,ÿYes,T,Training/dev,TRAIN,None,Hours 3 Field,Earnings 3 Field
+ÿ25,ÿIT Shift OT Hours,ÿ016,SOT,,ÿYes,ÿNo,SOT,It Prem Ot,PREMOT,None,Hours 3 Field,Earnings 3 Field
+ÿ24,ÿIT Shift Premium,ÿ016,SHF,,ÿYes,ÿNo,SHF,It Prem,IRPREM,None,Hours 3 Field,Earnings 3 Field
+,ÿStore Guard,ÿ016,SG,,ÿYes,ÿYes,SG,Security Guard,SecGrd,None,Hours 3 Field,Earnings 3 Field
+ÿ34,ÿCalifornia Paid Sick,ÿ016,S,,ÿYes,ÿYes,S,Sick,SICK,None,Hours 3 Field,Earnings 3 Field
+ÿ16,ÿSick,ÿ016,S,,ÿYes,ÿYes,S,Sick,SICK,None,Hours 3 Field,Earnings 3 Field
+,ÿRTR City Premium Hours,ÿ016,RTR,,ÿYes,ÿYes,RTR,Right To Rest,RTRPAY,None,Hours 3 Field,Earnings 3 Field
+,ÿRTR City Premium Flat Rate,ÿ020,RTR,,ÿYes,ÿYes,RTR,Right To Rest,RTRPAY,None,Hours 3 Field,Earnings 3 Field
+,ÿCA Reporting Pay,ÿ016,RPT,,ÿYes,ÿYes,RPT,Report In Pay,RPTIPY,None,Hours 3 Field,Earnings 3 Field
+ÿ33,ÿCA Rest Premium,ÿ016,RP,,ÿYes,ÿYes,RP,Rest Premium,REST,None,Hours 3 Field,Earnings 3 Field
+,ÿRemodel,ÿ016,RM,,ÿYes,ÿYes,RM,Remodel,Remode,None,Hours 3 Field,Earnings 3 Field
+,ÿParental Leave,ÿ016,PPL,,ÿYes,ÿYes,PPL,Parent Loa,PLOA,None,Hours 3 Field,Earnings 3 Field
+,ÿPredictability Pay,ÿ016,PDP,,ÿYes,ÿYes,PDP,Predictability,PDP,None,Hours 3 Field,Earnings 3 Field
+ÿ10,ÿPersonal,ÿ016,P,,ÿYes,ÿYes,P,Personal,PERS,None,Hours 3 Field,Earnings 3 Field
+ÿ23,ÿComp Time Taken,ÿ016,N,,ÿYes,ÿYes,N,Comp Time,CMPTME,None,Hours 3 Field,Earnings 3 Field
+,ÿMeal Premium,ÿ016,MP,,ÿYes,ÿYes,MP,Meal Premium,MEAL,None,Hours 3 Field,Earnings 3 Field
+ÿ8,ÿJury Duty,ÿ016,J,,ÿYes,ÿYes,J,Jury Duty,JURY,None,Hours 3 Field,Earnings 3 Field
+ÿ7,ÿInventory,ÿ016,I,,ÿYes,ÿYes,I,Inventory,INVENT,None,Hours 3 Field,Earnings 3 Field
+ÿ27,ÿComp Holiday,ÿ016,H,,ÿYes,ÿYes,H,Holiday,HOLIDA,None,Hours 3 Field,Earnings 3 Field
+ÿ5,ÿHoliday,ÿ016,H,,ÿYes,ÿYes,H,Holiday,HOLIDA,None,Hours 3 Field,Earnings 3 Field
+ÿ20,ÿTake 5 Day,ÿ016,F,,ÿYes,ÿYes,F,Take Five,TAKE5,None,Hours 3 Field,Earnings 3 Field
+,ÿEmergency Pay,ÿ016,EP,,ÿYes,ÿYes,EP,Emergency Pay,EMERPA,None,Hours 3 Field,Earnings 3 Field
+ÿ30,ÿMA RI Sunday Store Meeting,ÿ013,DOT,,ÿYes,ÿNo,DOT,Meeting Ot,MEETOT,None,Hours 3 Field,Earnings 3 Field
+ÿ19,ÿStore Meeting,ÿ016,D,,ÿYes,ÿYes,D,Store Meeting,STMEET,None,Hours 3 Field,Earnings 3 Field
+,ÿCA Onboarding,ÿ016,CAO,,ÿYes,ÿYes,CAO,Ca Onboarding,CAonbr,None,Hours 3 Field,Earnings 3 Field
+,ÿBereavement,ÿ016,BEV,,ÿYes,ÿYes,BEV,Bereavement,BEREAV,None,Hours 3 Field,Earnings 3 Field
+ÿ3,ÿBonus,ÿ020,B,,ÿYes,ÿYes,B,Bonus,BONUS,None,No Hours Allowed,Earnings 3 Field
+ÿ32,ÿ2nd Meal Premium,ÿ016,2MP,,ÿYes,ÿYes,2MP,2nd Meal,2ND ME,None,Hours 3 Field,Earnings 3 Field
+ÿ31,ÿ1st Meal Premium,ÿ016,1MP,,ÿYes,ÿYes,1MP,1st Meal,1ST ME,None,Hours 3 Field,Earnings 3 Field
+ÿ4,ÿDoubletime,ÿ016,18,,ÿYes,ÿYes,18,Double Time,DOUBLE,None,Hours 3 Field,Earnings 3 Field
+ÿ13,ÿPreopen Training,ÿ016,17,,ÿYes,ÿYes,17,Preopen Train,PREOTD,None,Hours 3 Field,Earnings 3 Field
+ÿ26,ÿPre Open Recruiting,ÿ016,16,,ÿYes,ÿYes,16,Preopen Recru,PREREC,None,Hours 3 Field,Earnings 3 Field
+ÿ12,ÿPreopen Non Exempt,ÿ016,14,,ÿYes,ÿYes,14,Preopen Non,PREOPN,None,Hours 3 Field,Earnings 3 Field
+ÿ11,ÿPreopen Exempt,ÿ016,13,,ÿYes,ÿYes,13,Preopen Exmp,PREOPE,None,Hours 3 Field,Earnings 3 Field
+ÿ15,ÿSetup,ÿ016,12,,ÿYes,ÿYes,12,Setup,SETUP,None,Hours 3 Field,Earnings 3 Field
+ÿ17,ÿSpecial Comp Time,ÿ016,10,,ÿYes,ÿYes,10,Special Proj,SPCLPR,None,Hours 3 Field,Earnings 3 Field
+ÿ28,ÿSpecial Project,ÿ016,10,,ÿYes,ÿYes,10,Special Proj,SPCLPR,None,Hours 3 Field,Earnings 3 Field
+ÿ1,ÿRegular,ÿ012,,,ÿYes,ÿYes,,,,,,
+ÿ6,ÿHoliday Worked 1.5,ÿ013,,,ÿYes,ÿNo,,,,,,
+ÿ35,ÿOther OT,ÿ013,,,ÿYes,ÿNo,,,,,,
+ÿ2,ÿOvertime,ÿ013,,,ÿYes,ÿNo,,,,,,
+ÿ36,ÿSunday OT,ÿ013,,,ÿYes,ÿNo,,,,,,
