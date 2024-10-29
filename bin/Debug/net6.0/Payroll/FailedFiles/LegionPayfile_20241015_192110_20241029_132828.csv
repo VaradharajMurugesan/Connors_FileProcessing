@@ -1,0 +1,30 @@
+Dates,Employee Id,Employee Name,Home location,Job title,Work location,Work role,Pay Type,Pay Name,Payroll Earning Code,Hours,Rate,Amount,Timesheet Id
+9/23/2024,7999902,Dora Employee_Test,100,Sales Associate,100,crew,Regular,,,5,0,0,5d067648-11b8-461f-88ec-ec2bf94cbf32
+9/24/2024,7999902,Dora Employee_Test,100,Sales Associate,100,crew,Regular,,,5,0,0,9a8b19f1-6c1b-4571-b369-10393c1cfdfa
+9/25/2024,7999902,Dora Employee_Test,100,Sales Associate,100,crew,Regular,,,6,0,0,94624269-0788-4d88-817d-96c4d491fbca
+9/22/2024,795505,Joe Rodriguez Ceron,100,Sales Associate,100,crew,Regular,,,8,0,0,dc4392af-2b47-4476-95ee-6b7845e4812b
+9/23/2024,795505,Joe Rodriguez Ceron,100,Sales Associate,100,crew,Regular,,,8,0,0,43a20769-7849-4029-9209-cc038fdf859c
+9/24/2024,795505,Joe Rodriguez Ceron,100,Sales Associate,100,crew,Regular,,,8,0,0,21226898-e7a0-4ad3-9ca1-61a8c4585385
+9/25/2024,795505,Joe Rodriguez Ceron,100,Sales Associate,100,crew,Regular,,,8,0,0,efe2f4e9-4767-493b-b98c-86022d51e085
+9/26/2024,795505,Joe Rodriguez Ceron,100,Sales Associate,100,crew,Regular,,,8,0,0,756dd79b-f063-4173-a995-bbe948bd1642
+9/22/2024,743034,Jonas Lacer,100,Sales Associate,100,,Other Pay,Emergency Pay,EmergencyPay,3,0,0,02f0f000-8d49-404e-bd24-b1f5f59564b5
+9/23/2024,743034,Jonas Lacer,100,Sales Associate,100,,Other Pay,Covid Pay,CovidPay,4,0,0,65588651-3e81-40e7-8b66-f4db768e01ba
+9/24/2024,743034,Jonas Lacer,100,Sales Associate,100,,Other Pay,Parental Leave,ParentalLeave,3,0,0,389cf754-9e02-4a96-bfde-086c72994760
+9/25/2024,743034,Jonas Lacer,100,Sales Associate,100,,Other Pay,Unpaid,Unpaid,4,0,0,5201db8a-3db3-4a37-bf86-09e078fa87a8
+9/27/2024,743034,Jonas Lacer,100,Sales Associate,100,,Other Pay,Special Project,SpecialProject,4,0,0,8961e6cc-6b9e-43b4-96e8-35335107f3e2
+9/23/2024,798924,Maryorie Urbina,100,Sales Associate,100,crew,Regular,,,7.08,0,0,386e7737-b519-4846-a0c6-6ebcaeeef0f3
+9/24/2024,798924,Maryorie Urbina,100,Sales Associate,100,crew,Regular,,,7.15,0,0,970ff631-e987-46a9-9c55-da807d7f95da
+9/25/2024,798924,Maryorie Urbina,100,Sales Associate,100,crew,Regular,,,7.33,0,0,65190216-313f-41a2-acce-cd3ac7056eec
+9/22/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,3,0,0,5b010dc6-7475-4cd1-a520-0a52fbf689da
+9/23/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,3,0,0,71a76353-23b4-49bd-a2c9-7a3a46f93045
+9/24/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,3,0,0,661d1080-cecc-49ac-8be6-09390e6e8242
+9/25/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,9,0,0,bcc0a97c-0a84-4383-9c86-9e3ee8bad58f
+9/26/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,10,0,0,441982e1-e2eb-480d-934d-bc17e5273abb
+9/27/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,9,0,0,08f515f1-401f-4a39-93e2-5d720f10c7e4
+9/28/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Regular,,,3,0,0,28e11205-b60d-4250-98a3-9dc6fb16b704
+9/28/2024,7999903,Roderick Employee_Test,100,Sales Associate,100,crew,Overtime,,,1,0,0,28e11205-b60d-4250-98a3-9dc6fb16b704
+9/22/2024,214656,Usha Basu,100,Customer Experience Manager,100,management,Regular,,,8,0,0,d405a518-9a0f-4f9a-b6a6-bea194d42b74
+9/25/2024,214656,Usha Basu,100,Customer Experience Manager,100,management,Regular,,,8,0,0,423f959a-7b51-47a0-b4cc-587021d2cc99
+9/23/2024,214656,Usha Basu,100,Customer Experience Manager,100,,Time Off,Personal,Personal,8,0,0,4173d334-ee19-4cac-9e38-797f18211e69
+9/24/2024,214656,Usha Basu,100,Customer Experience Manager,100,,Time Off,Take 5 Day,Take 5 Day,8,0,0,b4d7fcff-9b48-4a91-9bd8-88ac3baafe6a
+9/27/2024,214656,Usha Basu,100,Customer Experience Manager,100,,Time Off,Vacation,Vacation,8,0,0,ae2cc1cf-d47e-4260-8361-73c137b44663

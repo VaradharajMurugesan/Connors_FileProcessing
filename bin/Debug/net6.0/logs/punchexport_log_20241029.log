@@ -1,0 +1,10 @@
+2024-10-29 13:06:58.0200 [DEBUG] Application Starting 
+2024-10-29 13:06:59.2368 [ERROR] Error processing files from FTP/SFTP System.Net.WebException: The remote server returned an error: (530) Not logged in.
+   at System.Net.FtpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebRequest.<>c.<GetResponseAsync>b__68_2(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location ---
+   at ProcessFiles_Demo.Client.FtpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 31
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 95
+2024-10-29 13:06:59.3938 [INFO] ERROR: The remote server returned an error: (530) Not logged in. 
+2024-10-29 13:06:59.3938 [INFO] Application Completed Successfully 
