@@ -211,3 +211,61 @@
    at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 95
 2024-10-29 15:41:46.1939 [INFO] ERROR: No such host is known. 
 2024-10-29 15:41:46.1939 [INFO] Application Completed Successfully 
+2024-10-29 16:22:35.7384 [DEBUG] Application Starting 
+2024-10-29 16:22:37.9351 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source.csv at 10/29/2024 4:22:37 PM 
+2024-10-29 16:25:12.5425 [DEBUG] Application Starting 
+2024-10-29 16:25:14.4558 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source.csv at 10/29/2024 4:25:14 PM 
+2024-10-29 18:18:55.4599 [DEBUG] Application Starting 
+2024-10-29 18:18:57.7276 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source.csv at 10/29/2024 6:18:57 PM 
+2024-10-29 18:19:09.9050 [ERROR] No Paycode found for PayType: Other Pay System.Exception: No Paycode found for PayType: Other Pay
+2024-10-29 18:19:09.9050 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-10-29 18:19:09.9050 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source.csv at 10/29/2024 6:19:09 PM 
+2024-10-29 18:19:09.9124 [INFO] Time taken to process file: 12.1854303 seconds. 
+2024-10-29 18:19:09.9124 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source.csv 
+2024-10-29 18:19:09.9297 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\payroll_source_20241029_181909.csv 
+2024-10-29 18:19:10.7470 [ERROR] Error processing files from FTP/SFTP System.Net.Sockets.SocketException (11001): No such host is known.
+   at Renci.SshNet.Abstractions.SocketAbstraction.ConnectCore(Socket socket, EndPoint remoteEndpoint, TimeSpan connectTimeout, Boolean ownsSocket)
+   at Renci.SshNet.Connection.ConnectorBase.SocketConnect(EndPoint endPoint, TimeSpan timeout)
+   at Renci.SshNet.Session.Connect()
+   at Renci.SshNet.BaseClient.CreateAndConnectSession()
+   at Renci.SshNet.BaseClient.Connect()
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 102
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 95
+2024-10-29 18:19:10.7832 [INFO] ERROR: No such host is known. 
+2024-10-29 18:19:10.7832 [INFO] Application Completed Successfully 
+2024-10-29 18:55:55.3710 [DEBUG] Application Starting 
+2024-10-29 18:55:56.6076 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv at 10/29/2024 6:55:56 PM 
+2024-10-29 18:57:02.3566 [ERROR] No Paycode found for PayType: Other Pay System.Exception: No Paycode found for PayType: Other Pay
+2024-10-29 18:57:02.3678 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-10-29 18:57:02.3678 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv at 10/29/2024 6:57:02 PM 
+2024-10-29 18:57:02.3678 [INFO] Time taken to process file: 65.7620317 seconds. 
+2024-10-29 18:57:02.3678 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv 
+2024-10-29 18:57:02.3894 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\payroll_source_20241029_20241029_185702.csv 
+2024-10-29 18:57:02.9324 [ERROR] Error processing files from FTP/SFTP System.Net.Sockets.SocketException (11001): No such host is known.
+   at Renci.SshNet.Abstractions.SocketAbstraction.ConnectCore(Socket socket, EndPoint remoteEndpoint, TimeSpan connectTimeout, Boolean ownsSocket)
+   at Renci.SshNet.Connection.ConnectorBase.SocketConnect(EndPoint endPoint, TimeSpan timeout)
+   at Renci.SshNet.Session.Connect()
+   at Renci.SshNet.BaseClient.CreateAndConnectSession()
+   at Renci.SshNet.BaseClient.Connect()
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 102
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 95
+2024-10-29 18:57:02.9547 [INFO] ERROR: No such host is known. 
+2024-10-29 18:57:02.9547 [INFO] Application Completed Successfully 
+2024-10-29 19:40:07.9503 [DEBUG] Application Starting 
+2024-10-29 19:40:09.2043 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv at 10/29/2024 7:40:09 PM 
+2024-10-29 19:40:09.2280 [ERROR] No Paycode found for PayType: Other Pay System.Exception: No Paycode found for PayType: Other Pay
+2024-10-29 19:40:09.2280 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-10-29 19:40:09.2280 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv at 10/29/2024 7:40:09 PM 
+2024-10-29 19:40:09.2280 [INFO] Time taken to process file: 0.0272997 seconds. 
+2024-10-29 19:40:09.2280 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\payroll_source_20241029.csv 
+2024-10-29 19:40:09.2280 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\payroll_source_20241029_20241029_194009.csv 
+2024-10-29 19:40:09.8324 [ERROR] Error processing files from FTP/SFTP System.Net.Sockets.SocketException (11001): No such host is known.
+   at Renci.SshNet.Abstractions.SocketAbstraction.ConnectCore(Socket socket, EndPoint remoteEndpoint, TimeSpan connectTimeout, Boolean ownsSocket)
+   at Renci.SshNet.Connection.ConnectorBase.SocketConnect(EndPoint endPoint, TimeSpan timeout)
+   at Renci.SshNet.Session.Connect()
+   at Renci.SshNet.BaseClient.CreateAndConnectSession()
+   at Renci.SshNet.BaseClient.Connect()
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 102
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 95
+2024-10-29 19:40:09.8410 [INFO] ERROR: No such host is known. 
+2024-10-29 19:40:09.8410 [INFO] Application Completed Successfully 

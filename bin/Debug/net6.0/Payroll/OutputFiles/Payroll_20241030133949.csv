@@ -1,0 +1,13 @@
+Co Code,Batch ID,File #,Rate Code,Temp Dept,Reg Hours,O/T Hours,Hours 3 Code,Hours 3 Amount,Earnings 3 Code,Earnings 3 Amount,Memo Code,Memo Amount,Special Proc Code,Other Begin Date,Other End Date
+,Legion,9999911,,,11,,,,,,WK,1, 
+,Legion,9999911,,,,,SG,11,,,WK,1, 
+,Legion,9999911,,,,,V,8,,,WK,1, 
+,Legion,9999911,,,,,PDP,15,,,WK,2, 
+,Legion,9999913,,,7.25,,,,,,WK,1, 
+,Legion,9999913,,,,,SG,7.25,,,WK,1, 
+,Legion,9999917,,,-4.5,,,,,,WK,1, E
+,Legion,9999917,,,,,SG,-4.5,,,WK,1, E
+,Legion,9999917,,,,,PDP,15,,,WK,1, 
+,Legion,9999919,,,2.95,,,,,,WK,1, 
+,Legion,9999919,,,,,SG,2.95,,,WK,1, 
+,Legion,9999919,,,,,PDP,15,,,WK,2, 

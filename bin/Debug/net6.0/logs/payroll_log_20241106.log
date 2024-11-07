@@ -1,0 +1,315 @@
+2024-11-06 12:41:35.9730 [DEBUG] Application Starting 
+2024-11-06 12:42:00.4752 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:42:01.2163 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 12:42:01.2163 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:42:08.4707 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 12:42:08 PM 
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5636 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5855 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5855 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [ERROR] No Paycode found for PayType: Reporting System.Exception: No Paycode found for PayType: Reporting
+2024-11-06 12:42:16.5904 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 12:42:16 PM 
+2024-11-06 12:42:16.5904 [INFO] Time taken to process file: 8.1428246 seconds. 
+2024-11-06 12:42:16.5904 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv 
+2024-11-06 12:42:16.6270 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-06_20241105_145928_20241106_124216.csv 
+2024-11-06 12:42:28.9670 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 12:42:29.0903 [INFO] ERROR: /remote/payroll 
+2024-11-06 12:42:29.0903 [INFO] Application Completed Successfully 
+2024-11-06 12:50:52.3568 [DEBUG] Application Starting 
+2024-11-06 12:51:37.2716 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:51:38.1475 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 12:51:38.1475 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:51:41.5481 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 12:51:41 PM 
+2024-11-06 12:54:45.0774 [DEBUG] Application Starting 
+2024-11-06 12:55:05.8630 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:55:06.6899 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 12:55:06.6899 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 12:55:09.1218 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 12:55:09 PM 
+2024-11-06 13:30:58.7650 [DEBUG] Application Starting 
+2024-11-06 13:31:22.5887 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 13:31:23.3168 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 13:31:23.3168 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 13:31:25.6442 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 1:31:25 PM 
+2024-11-06 13:36:52.0770 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 1:36:52 PM 
+2024-11-06 13:36:52.0830 [INFO] Time taken to process file: 326.4340679 seconds. 
+2024-11-06 13:36:52.0830 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv 
+2024-11-06 13:36:52.1046 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-06_20241105_145928_20241106_133652.csv 
+2024-11-06 13:37:03.9132 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 13:37:04.0510 [INFO] ERROR: /remote/payroll 
+2024-11-06 13:37:04.0510 [INFO] Application Completed Successfully 
+2024-11-06 13:52:12.4720 [DEBUG] Application Starting 
+2024-11-06 13:52:34.2946 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 13:52:35.2010 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 13:52:35.2010 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 13:52:36.7926 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 1:52:36 PM 
+2024-11-06 13:52:41.7239 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 13:52:41.7362 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 13:52:41.7435 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 13:52:41.7435 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv at 11/6/2024 1:52:41 PM 
+2024-11-06 13:52:41.7435 [INFO] Time taken to process file: 4.9604022 seconds. 
+2024-11-06 13:52:41.7435 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-06_20241105_145928.csv 
+2024-11-06 13:52:41.7435 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-06_20241105_145928_20241106_135241.csv 
+2024-11-06 13:52:52.2675 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 13:52:52.3456 [INFO] ERROR: /remote/payroll 
+2024-11-06 13:52:52.3456 [INFO] Application Completed Successfully 
+2024-11-06 14:01:50.8116 [DEBUG] Application Starting 
+2024-11-06 14:02:15.7220 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:02:16.5433 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 14:02:16.5433 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:02:19.3572 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:02:19 PM 
+2024-11-06 14:02:19.4422 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 14:02:19.4422 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 14:02:19.4741 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:02:19 PM 
+2024-11-06 14:02:19.4741 [INFO] Time taken to process file: 0.118329 seconds. 
+2024-11-06 14:02:19.4741 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 14:02:19.4741 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_140219.csv 
+2024-11-06 14:02:29.5149 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 14:02:29.6012 [INFO] ERROR: /remote/payroll 
+2024-11-06 14:02:29.6012 [INFO] Application Completed Successfully 
+2024-11-06 14:05:39.6996 [DEBUG] Application Starting 
+2024-11-06 14:06:07.5605 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:06:08.3737 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 14:06:08.3737 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:06:09.8930 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:06:09 PM 
+2024-11-06 14:09:22.8733 [DEBUG] Application Starting 
+2024-11-06 14:09:31.6825 [DEBUG] Application Starting 
+2024-11-06 14:09:46.4814 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:09:47.1555 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 14:09:47.1555 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:09:48.6513 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:09:48 PM 
+2024-11-06 14:26:14.8939 [DEBUG] Application Starting 
+2024-11-06 14:27:39.4487 [DEBUG] Application Starting 
+2024-11-06 14:29:16.3519 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:29:17.0952 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 14:29:17.0952 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 14:29:23.6908 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:29:23 PM 
+2024-11-06 14:30:25.8741 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 14:30:25.8741 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 14:30:25.8868 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 2:30:25 PM 
+2024-11-06 14:30:25.8868 [INFO] Time taken to process file: 62.1965646 seconds. 
+2024-11-06 14:30:25.8868 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 14:30:25.8868 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_143025.csv 
+2024-11-06 14:30:38.2795 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 14:30:38.3030 [INFO] ERROR: /remote/payroll 
+2024-11-06 14:30:38.3030 [INFO] Application Completed Successfully 
+2024-11-06 15:08:01.2203 [DEBUG] Application Starting 
+2024-11-06 15:10:48.9582 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 15:10:49.6249 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 15:10:49.6249 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 15:10:49.6249 [INFO] Date range not found in the filename. 
+2024-11-06 15:14:57.9633 [DEBUG] Application Starting 
+2024-11-06 15:17:17.3725 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 15:17:18.0747 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 15:17:18.0747 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 15:59:51.3538 [DEBUG] Application Starting 
+2024-11-06 16:00:08.2504 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:00:08.9428 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 16:00:08.9428 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:00:45.4906 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 4:00:44 PM 
+2024-11-06 16:01:39.2808 [DEBUG] Application Starting 
+2024-11-06 16:01:53.9299 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:01:54.6013 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 16:01:54.6013 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:02:01.2415 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 4:02:01 PM 
+2024-11-06 16:26:23.2024 [DEBUG] Application Starting 
+2024-11-06 16:26:40.4133 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:26:41.1206 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 16:26:41.1206 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 16:26:51.5944 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 4:26:51 PM 
+2024-11-06 16:27:08.8744 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 16:27:08.8744 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 16:27:08.8991 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 4:27:08 PM 
+2024-11-06 16:27:08.8991 [INFO] Time taken to process file: 17.3117961 seconds. 
+2024-11-06 16:27:08.9005 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 16:27:08.9005 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_162708.csv 
+2024-11-06 16:27:19.3829 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 16:27:19.4512 [INFO] ERROR: /remote/payroll 
+2024-11-06 16:27:19.4512 [INFO] Application Completed Successfully 
+2024-11-06 18:06:44.5985 [DEBUG] Application Starting 
+2024-11-06 18:07:03.0178 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 18:07:04.0449 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 18:07:04.0449 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 18:07:10.2053 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 6:07:10 PM 
+2024-11-06 18:07:13.8046 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 18:07:13.8046 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 18:07:13.8568 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 6:07:13 PM 
+2024-11-06 18:07:13.8568 [INFO] Time taken to process file: 3.6528146 seconds. 
+2024-11-06 18:07:13.8568 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 18:07:13.8755 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_180713.csv 
+2024-11-06 18:07:24.7584 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 18:07:24.9042 [INFO] ERROR: /remote/payroll 
+2024-11-06 18:07:24.9042 [INFO] Application Completed Successfully 
+2024-11-06 18:53:00.8704 [DEBUG] Application Starting 
+2024-11-06 18:53:24.1685 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 18:53:24.9527 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 18:53:24.9527 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 18:53:33.5770 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 6:53:33 PM 
+2024-11-06 18:53:33.7120 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 18:53:33.7120 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 18:53:33.7678 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 6:53:33 PM 
+2024-11-06 18:53:33.7678 [INFO] Time taken to process file: 0.192138 seconds. 
+2024-11-06 18:53:33.7678 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 18:53:33.7817 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_185333.csv 
+2024-11-06 18:53:45.0017 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 18:53:45.1170 [INFO] ERROR: /remote/payroll 
+2024-11-06 18:53:45.1170 [INFO] Application Completed Successfully 
+2024-11-06 20:13:54.1447 [DEBUG] Application Starting 
+2024-11-06 20:14:14.1900 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:14:15.0853 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:14:15.0853 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:14:17.8069 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:14:17 PM 
+2024-11-06 20:14:23.8208 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 20:14:23.8208 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 20:14:23.8723 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:14:23 PM 
+2024-11-06 20:14:23.8723 [INFO] Time taken to process file: 6.0665963 seconds. 
+2024-11-06 20:14:23.8723 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 20:14:23.8867 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_201423.csv 
+2024-11-06 20:14:33.8165 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 20:14:33.9611 [INFO] ERROR: /remote/payroll 
+2024-11-06 20:14:33.9611 [INFO] Application Completed Successfully 
+2024-11-06 20:17:41.5087 [DEBUG] Application Starting 
+2024-11-06 20:18:00.3714 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:18:01.1005 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:18:01.1005 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:18:03.6510 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:18:03 PM 
+2024-11-06 20:23:10.4589 [DEBUG] Application Starting 
+2024-11-06 20:23:31.7499 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:23:32.5536 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:23:32.5536 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:23:34.2024 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:23:34 PM 
+2024-11-06 20:27:20.7403 [DEBUG] Application Starting 
+2024-11-06 20:27:33.3520 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:27:33.9221 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:27:33.9221 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:27:34.7845 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:27:34 PM 
+2024-11-06 20:31:02.6670 [DEBUG] Application Starting 
+2024-11-06 20:31:15.5743 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:31:16.2096 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:31:16.2096 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:31:17.2907 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:31:17 PM 
+2024-11-06 20:35:14.2235 [DEBUG] Application Starting 
+2024-11-06 20:35:28.0722 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:35:28.7476 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:35:28.7476 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:35:29.6863 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:35:29 PM 
+2024-11-06 20:37:14.4031 [DEBUG] Application Starting 
+2024-11-06 20:37:27.3286 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:37:27.9506 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:37:27.9506 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:37:28.7929 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:37:28 PM 
+2024-11-06 20:39:06.1125 [DEBUG] Application Starting 
+2024-11-06 20:39:20.4010 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:39:21.1063 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:39:21.1063 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:39:22.0689 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:39:22 PM 
+2024-11-06 20:41:43.5076 [DEBUG] Application Starting 
+2024-11-06 20:41:56.2290 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:41:56.8811 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:41:56.8811 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:41:57.7680 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:41:57 PM 
+2024-11-06 20:42:15.5056 [DEBUG] Application Starting 
+2024-11-06 20:42:28.9382 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:42:29.5911 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:42:29.5911 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:42:30.4902 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:42:30 PM 
+2024-11-06 20:43:56.4358 [DEBUG] Application Starting 
+2024-11-06 20:44:08.9671 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:44:09.5964 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:44:09.5964 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:44:10.4969 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:44:10 PM 
+2024-11-06 20:51:21.8262 [DEBUG] Application Starting 
+2024-11-06 20:51:38.1203 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:51:38.7818 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:51:38.7826 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:51:39.6888 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:51:39 PM 
+2024-11-06 20:52:10.4621 [DEBUG] Application Starting 
+2024-11-06 20:52:24.9842 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:52:25.6979 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:52:25.6979 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:52:26.7188 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:52:26 PM 
+2024-11-06 20:52:47.3680 [DEBUG] Application Starting 
+2024-11-06 20:53:03.0520 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:53:03.7257 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:53:03.7257 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:53:04.7604 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:53:04 PM 
+2024-11-06 20:57:12.8404 [DEBUG] Application Starting 
+2024-11-06 20:57:25.8322 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:57:26.5350 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 20:57:26.5350 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 20:57:27.4508 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 8:57:27 PM 
+2024-11-06 21:51:45.4962 [DEBUG] Application Starting 
+2024-11-06 21:52:04.8970 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:52:05.6530 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 21:52:05.6530 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:52:07.5779 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 9:52:07 PM 
+2024-11-06 21:54:58.0552 [DEBUG] Application Starting 
+2024-11-06 21:55:11.7694 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:55:12.3953 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 21:55:12.3953 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:55:13.2990 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 9:55:13 PM 
+2024-11-06 21:57:09.6127 [DEBUG] Application Starting 
+2024-11-06 21:57:22.4664 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:57:23.0683 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-06 21:57:23.0683 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-06 21:57:24.0843 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 9:57:24 PM 
+2024-11-06 22:01:40.9931 [ERROR] No Paycode found for PayType: Differential System.Exception: No Paycode found for PayType: Differential
+2024-11-06 22:01:40.9931 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/6/2024 10:01:40 PM 
+2024-11-06 22:01:40.9931 [INFO] Time taken to process file: 256.9134359 seconds. 
+2024-11-06 22:01:40.9931 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-06 22:01:41.0089 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241106_220141.csv 
+2024-11-06 22:01:53.0841 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-06 22:01:53.1337 [INFO] ERROR: /remote/payroll 
+2024-11-06 22:01:53.1337 [INFO] Application Completed Successfully 

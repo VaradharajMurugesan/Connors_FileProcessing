@@ -50,6 +50,7 @@ class Program
             string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
             string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
             string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
+            string mappingFilesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
 
             // Ensure directories exist
             Directory.CreateDirectory(reprocessingFolder);
@@ -57,6 +58,7 @@ class Program
             Directory.CreateDirectory(processedFolder);
             Directory.CreateDirectory(outputFolder);
             Directory.CreateDirectory(decryptedFolderOutput);
+            Directory.CreateDirectory(mappingFilesFolder);
 
             // Initialize file transfer client
             var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
@@ -129,7 +131,7 @@ class Program
                         }
 
                         // 3. Process the CSV file using the factory to select the correct processor
-                        var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type);
+                        var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type, clientSettings);
                         var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
                         await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
 
@@ -189,7 +191,7 @@ class Program
                 }
 
                 // 3. Process the CSV (whether decrypted or raw CSV)
-                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type);
+                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type, clientSettings);
                 var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
                 await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
 

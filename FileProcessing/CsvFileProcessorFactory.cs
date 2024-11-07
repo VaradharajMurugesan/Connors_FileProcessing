@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace ProcessFiles_Demo.FileProcessing
 {
     public static class CsvFileProcessorFactory
     {
-        public static ICsvFileProcessorStrategy GetProcessor(string processortype)
+        public static ICsvFileProcessorStrategy GetProcessor(string processortype, JObject clientSettings)
         {
             // Determine the type of file and return the appropriate processor
             if (processortype.Contains("punchexport", StringComparison.OrdinalIgnoreCase))
@@ -21,7 +22,7 @@ namespace ProcessFiles_Demo.FileProcessing
             }
             else if (processortype.Contains("payroll", StringComparison.OrdinalIgnoreCase))
             {
-                return new PayrollFileProcessor();
+                return new PayrollFileProcessor(clientSettings);
             }
             else
             {
