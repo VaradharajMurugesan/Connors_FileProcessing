@@ -174,19 +174,19 @@ namespace ProcessFiles_Demo.FileProcessing
         }
 
         // Helper method to determine the memoAmount
-        private (string memoCode, int memoAmount, string specialProcCode, DateTime? otherStartDate, DateTime? otherEndDate) GetMemoAmount(DateTime startDate, DateTime endDate, DateTime fileStartDate, DateTime week1EndDate, DateTime week2StartDate, DateTime fileEndDate)
+        private (string memoCode, int? memoAmount, string specialProcCode, DateTime? otherStartDate, DateTime? otherEndDate) GetMemoAmount(DateTime startDate, DateTime endDate, DateTime fileStartDate, DateTime week1EndDate, DateTime week2StartDate, DateTime fileEndDate)
         {
-            if (startDate >= fileStartDate && endDate <= week1EndDate)
+            if (startDate.Date >= fileStartDate.Date && endDate.Date <= week1EndDate.Date)
             {
                 return ("WK",1, "",null,null); // Week 1
             }
-            else if (startDate >= week2StartDate && endDate <= fileEndDate)
+            else if (startDate.Date >= week2StartDate.Date && endDate.Date <= fileEndDate.Date)
             {
                 return ("WK",2, "",null,null); // Week 2
             }
             else
             {
-                return ("",0, "E", startDate, endDate);
+                return ("",null, "E", startDate.Date, endDate.Date);
             }
         }
 
@@ -314,10 +314,16 @@ namespace ProcessFiles_Demo.FileProcessing
 
                         // Apply the adjustedDoubleTimeHours back to the Double Time record
                         var doubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Double Time");
+                        var holidayDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Holiday Worked Doubletime");
                         var differentialDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Differential" && (r.PayRollEarningRole == "2SDDT" || r.PayRollEarningRole == "2SDHDT"));
                         if (doubleTimeRecord != null)
                         {
                             doubleTimeRecord.Hours = adjustedDoubleTimeHours;                         
+
+                        }
+                        if (holidayDoubleTimeRecord != null)
+                        {
+                            holidayDoubleTimeRecord.Hours = adjustedDoubleTimeHours;
 
                         }
                         if (differentialDoubleTimeRecord != null)
@@ -336,8 +342,10 @@ namespace ProcessFiles_Demo.FileProcessing
             // Step 3: Remove specific records based on conditions
             finalRecords = finalRecords
                 .GroupBy(r => new { r.EmployeeId, r.Date, r.WorkLocation }) // Group by EmployeeId, Date, and WorkLocation
+
                 .SelectMany(g =>
                 {
+                    
                     var recordsList = g.ToList(); // Convert grouping to a list for easier manipulation
 
                     // Condition: Remove "Holiday Worked Doubletime" if both "Double Time" and "Holiday Worked Doubletime" are present
@@ -367,11 +375,22 @@ namespace ProcessFiles_Demo.FileProcessing
 
             // Add back the ungrouped "Regular" and "Store Guard" records
             var ungroupedRecords = records
-                .Where(r => r.PayType == "Regular" && r.WorkRole == "Store Guard")
-                .Select(r => new PayrollRecord
+            .Where(r => r.PayType == "Regular" && r.WorkRole == "Store Guard")
+            .Select(r =>
+            {
+                // Extract the date range from the record's date
+                var dateRange = ParseDateRange(r.Date);
+
+                // Get memoCode, memoAmount, and other date-based fields based on the date range
+                var (memoCode, memoAmount, specialProcCode, otherStartDate, otherEndDate) =
+                    GetMemoAmount(dateRange.startDate, dateRange.endDate, Convert.ToDateTime(fileStartDate), week1EndDate, week2StartDate, Convert.ToDateTime(fileEndDate));
+
+                return new PayrollRecord
                 {
                     EmployeeId = r.EmployeeId,
-                    Date = r.Date,
+                    Date = dateRange.startDate == dateRange.endDate
+                        ? dateRange.startDate.ToString("M/d/yyyy")
+                        : $"{dateRange.startDate:M/d/yyyy} to {dateRange.endDate:M/d/yyyy}",
                     PayType = r.PayType,
                     EmployeeName = r.EmployeeName,
                     HomeLocation = r.HomeLocation,
@@ -382,9 +401,16 @@ namespace ProcessFiles_Demo.FileProcessing
                     PayRollEarningRole = r.PayRollEarningRole,
                     Hours = r.Hours,
                     Rate = r.Rate,
-                    Amount = r.Amount
-                })
-                .ToList();
+                    Amount = r.Amount,
+                    MemoCode = memoCode,
+                    MemoAmount = memoAmount,
+                    SpecialProcCode = specialProcCode,
+                    OtherStartDate = Convert.ToString(otherStartDate),
+                    OtherEndDate = Convert.ToString(otherEndDate),
+                };
+            })
+            .ToList();
+
 
             // Combine grouped and ungrouped records
             finalRecords.AddRange(ungroupedRecords);
@@ -511,7 +537,8 @@ namespace ProcessFiles_Demo.FileProcessing
             string memoCode=string.Empty;
             int? memoAmount = null;
             string specialProcCode = string.Empty;
-            DateTime? startDate = null;
+            string rateCode = string.Empty;
+           DateTime ? startDate = null;
             DateTime? endDate = null;
             // Lookup HR data using grouping by location first, then by employeeId
             EmployeeHrData hrData = null;           
@@ -531,39 +558,25 @@ namespace ProcessFiles_Demo.FileProcessing
                 return null;
             }
 
-            //if (IsValidWeeklyDateRange(record.Date) & hrData.Hourly & record.Hours >= 0)
-            //{
-            //    // Extract and parse the start date from the range
-            //    startDate = ParseDateRange(record.Date).startDate;
-            //    memoCode = "WK";
-            //    memoAmount = DetermineWeek(startDate.Value);
-            //    startDate = null;
-            //}
-            //else if (record.Hours < 0)
-            //{
-            //    specialProcCode = "E";
-            //    (startDate, endDate) = ParseDateRange(record.Date);
-            //}
-
-            // Lookup pay code based on pay type
-            //string earningCode = payCodeMap.ContainsKey(record.PayType) ? payCodeMap[record.PayType] : "E999"; // Default for unknown types
-            // Lookup pay code based on pay type in payCodeMap
-            //PaycodeData payCodeData = payCodeMap.ContainsKey(record.PayType) ? payCodeMap[record.PayType] : null;
-
+            if (hrData.Salaried)
+            {
+                // Set 2 for salaried employee
+                rateCode = hrData.Salaried ? "2" : "";
+                // Extract and parse the start date from the range
+                record.MemoCode = "";
+                record.MemoAmount = null;
+            }           
 
             // Initialize fields with default or empty values
             string regHours = "0.00";
             string otHours = "0.00"; // Overtime hours (if any)         
 
-
             // Use default values if pay code is not found
             string earningCode = ""; //payCodeData?.Code ?? "E999"; // Default earning code
 
-
             // Lookup company code based on location
             string companyCode = hrData.CompanyId; //Assuming this will be generated based on the file name //companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
-            // Set 2 for salaried employee
-            string rateCode = hrData.Salaried ? "2" : "";
+
             // Determine Temp Dept: Use Work Location if different from Home Location
             string tempDept = record.WorkLocation != record.HomeLocation ? record.WorkLocation : string.Empty;
             // If the pay type is "Regular", assign the hours to Reg Hours
@@ -577,7 +590,6 @@ namespace ProcessFiles_Demo.FileProcessing
             string otherPayTypeColumn = "";
             string hours3Code = "";
             string earnings3Code = "";
-
 
             decimal? regularHours = null;
             decimal? overtimeHours = null;
@@ -672,6 +684,10 @@ namespace ProcessFiles_Demo.FileProcessing
                         // Generate processed line for each paycodeData entry
                         if (isConditionMatched)
                         {
+                            // Set OtherStartDate and OtherEndDate to contain only the date part if applicable
+                            record.OtherStartDate = ExtractDatePart(record.OtherStartDate);
+                            record.OtherEndDate = ExtractDatePart(record.OtherEndDate);
+
                             string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{regularHours},{overtimeHours},"
                                                  + $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{record.MemoCode},{record.MemoAmount}, {record.SpecialProcCode},"
                                                  + $"{record.OtherStartDate},{record.OtherEndDate}";
@@ -707,6 +723,14 @@ namespace ProcessFiles_Demo.FileProcessing
                        (obj.PayName?.ToLower().GetHashCode() ?? 0) ^
                        (obj.ADPColumn?.ToLower().GetHashCode() ?? 0);
             }
+        }
+
+        // Helper method to extract only the date part from a string if it represents a DateTime
+        private string ExtractDatePart(string dateStr)
+        {
+            return DateTime.TryParse(dateStr, out DateTime date)
+                ? date.ToString("M/d/yyyy")
+                : dateStr;
         }
 
         private async Task WriteBatchAsync(string destinationFilePath, List<string> lineBuffer)

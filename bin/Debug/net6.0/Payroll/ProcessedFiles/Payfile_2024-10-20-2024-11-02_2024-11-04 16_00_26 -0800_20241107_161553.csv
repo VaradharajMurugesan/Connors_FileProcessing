@@ -29,10 +29,6 @@ Dates,Employee Id,Employee Name,Home location,Job title,Work location,Work role,
 10/13/2024 to 10/19/2024,702250,Abigail Damian,1400,Support Lead Part Time,1400,,Meal Premium,,,1,0,0
 10/13/2024 to 10/19/2024,702250,Abigail Damian,1400,Support Lead Part Time,1400,Crew,Double Time,,,5,0,0
 10/13/2024 to 10/19/2024,702250,Abigail Damian,1400,Support Lead Part Time,1400,Crew,Overtime,,,8,0,0
-10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Regular,,,40,0,0
-10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Overtime,,,1.5,0,0
-10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Differential,2nd Shift,2SD,33,1,0
-10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Differential,2nd Shift,2SDOT,1.5,1,0
 10/13/2024 to 10/19/2024,805441,Aaron Moncrief,72034,Ship Crew Hourly,72034,Crew Hourly,Regular,,,9,0,0
 10/13/2024 to 10/19/2024,805441,Aaron Moncrief,72034,Ship Crew Hourly,72034,General Ship Crew,Regular,,,26,0,0
 10/13/2024 to 10/19/2024,805441,Aaron Moncrief,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Regular,,,3,0,0
@@ -127,3 +123,9 @@ Dates,Employee Id,Employee Name,Home location,Job title,Work location,Work role,
 10/13/2024 to 10/19/2024,765154,Mayrin Rubio,1334,Sales Associate,1334,Store Meeting,Overtime,,,1,0,0
 10/13/2024 to 10/19/2024,765154,Mayrin Rubio,1334,Sales Associate,1334,Store Meeting,Regular,,,8,0,0
 10/13/2024 to 10/19/2024,765154,Mayrin Rubio,1334,Sales Associate,1334,Setup,Regular,,,8,0,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Regular,,,40,0,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Overtime,,,1.5,0,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Holiday Worked Doubletime,,,2,0,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Differential,2nd Shift,2SD,33,1,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Differential,2nd Shift,2SDOT,1.5,1,0
+10/20/2024 to 10/26/2024,620171,Aaron Russell,72034,Ship Crew Hourly,72034,2nd Shift Ship Crew,Differential,2nd Shift,2SDHDT,1,1,0

@@ -1,0 +1,107 @@
+2024-11-08 13:48:15.2433 [DEBUG] Application Starting 
+2024-11-08 13:48:31.6350 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 13:48:32.2760 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-08 13:48:32.2760 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 13:48:33.1395 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 1:48:33 PM 
+2024-11-08 13:48:33.2001 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 1:48:33 PM 
+2024-11-08 13:48:33.2001 [INFO] Time taken to process file: 0.0612208 seconds. 
+2024-11-08 13:48:33.2001 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-08 13:48:33.2060 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241108_134833.csv 
+2024-11-08 13:48:41.7844 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-08 13:48:41.8501 [INFO] ERROR: /remote/payroll 
+2024-11-08 13:48:41.8501 [INFO] Application Completed Successfully 
+2024-11-08 13:53:32.1074 [DEBUG] Application Starting 
+2024-11-08 13:53:45.6621 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 13:53:46.3058 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-08 13:53:46.3067 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 13:53:47.2173 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 1:53:47 PM 
+2024-11-08 13:53:55.5508 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 1:53:55 PM 
+2024-11-08 13:53:55.5508 [INFO] Time taken to process file: 8.3339443 seconds. 
+2024-11-08 13:53:55.5508 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-08 13:53:55.5581 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241108_135355.csv 
+2024-11-08 13:54:04.6424 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-08 13:54:04.6642 [INFO] ERROR: /remote/payroll 
+2024-11-08 13:54:04.6642 [INFO] Application Completed Successfully 
+2024-11-08 14:32:09.5050 [DEBUG] Application Starting 
+2024-11-08 14:32:27.2741 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 14:32:27.9774 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-08 14:32:27.9774 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 14:32:29.0104 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 2:32:29 PM 
+2024-11-08 14:32:29.0722 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 2:32:29 PM 
+2024-11-08 14:32:29.0722 [INFO] Time taken to process file: 0.0623193 seconds. 
+2024-11-08 14:32:29.0722 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-08 14:32:29.0722 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241108_143229.csv 
+2024-11-08 14:32:41.5129 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-08 14:32:41.5407 [INFO] ERROR: /remote/payroll 
+2024-11-08 14:32:41.5407 [INFO] Application Completed Successfully 
+2024-11-08 14:51:34.8984 [DEBUG] Application Starting 
+2024-11-08 14:51:46.1295 [ERROR] Error processing files from FTP/SFTP Renci.SshNet.Common.SftpPathNotFoundException: /remote/payroll
+   at Renci.SshNet.Sftp.SftpSession.RequestOpenDir(String path, Boolean nullOnError)
+   at Renci.SshNet.SftpClient.InternalListDirectory(String path, SftpListDirectoryAsyncResult asyncResult, Action`1 listCallback)
+   at ProcessFiles_Demo.Client.SftpFileTransferClient.ListFilesAsync(String path) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Client\FtpFileTransferClient.cs:line 105
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 97
+2024-11-08 14:51:46.1539 [INFO] ERROR: /remote/payroll 
+2024-11-08 14:51:46.1539 [INFO] Application Completed Successfully 
+2024-11-08 14:53:10.3755 [DEBUG] Application Starting 
+2024-11-08 14:53:30.6967 [ERROR] Error processing files from FTP/SFTP System.IO.FileNotFoundException: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'.
+File name: 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'
+   at System.IO.File.Move(String sourceFileName, String destFileName, Boolean overwrite)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Program.MoveFileToFolder(String sourceFilePath, String destinationFolder) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 239
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 148
+2024-11-08 14:53:30.7381 [INFO] ERROR: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'. 
+2024-11-08 14:53:30.7381 [INFO] Application Completed Successfully 
+2024-11-08 14:54:58.5712 [DEBUG] Application Starting 
+2024-11-08 14:55:20.6333 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\tmp9DA5.tmp 
+2024-11-08 14:55:33.1065 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 14:55:33.7966 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-08 14:55:33.7966 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 14:55:34.5996 [INFO] Date range not found in the filename. 
+2024-11-08 14:55:34.5996 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\tmp9DA5.tmp at 11/8/2024 2:55:34 PM 
+2024-11-08 14:55:34.6609 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\tmp9DA5.tmp at 11/8/2024 2:55:34 PM 
+2024-11-08 14:55:34.6609 [INFO] Time taken to process file: 0.0608793 seconds. 
+2024-11-08 14:55:34.6609 [INFO] C:\Users\varadharaj\AppData\Local\Temp\tmp9DA5.tmp 
+2024-11-08 14:55:34.6609 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\tmp9DA5_20241108_145534.tmp 
+2024-11-08 14:56:41.0261 [ERROR] Error processing files from FTP/SFTP System.IO.FileNotFoundException: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'.
+File name: 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'
+   at System.IO.File.Move(String sourceFileName, String destFileName, Boolean overwrite)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Program.MoveFileToFolder(String sourceFilePath, String destinationFolder) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 239
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 148
+2024-11-08 14:56:41.0783 [INFO] ERROR: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'. 
+2024-11-08 14:56:41.0783 [INFO] Application Completed Successfully 
+2024-11-08 14:59:24.0194 [DEBUG] Application Starting 
+2024-11-08 15:00:19.2978 [DEBUG] Application Starting 
+2024-11-08 15:01:45.8651 [DEBUG] Application Starting 
+2024-11-08 15:02:48.9515 [DEBUG] Application Starting 
+2024-11-08 15:05:52.4555 [DEBUG] Application Starting 
+2024-11-08 15:09:17.0448 [DEBUG] Application Starting 
+2024-11-08 15:10:08.9744 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-08 15:10:22.7519 [INFO] Downloaded file: EmployeeEntity-2024-294-2024-328.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 15:10:23.4179 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv 
+2024-11-08 15:10:23.4179 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-294-2024-328.csv.gz 
+2024-11-08 15:10:29.9875 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 3:10:29 PM 
+2024-11-08 15:10:30.0822 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv at 11/8/2024 3:10:30 PM 
+2024-11-08 15:10:30.0822 [INFO] Time taken to process file: 0.0956544 seconds. 
+2024-11-08 15:10:30.0822 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv 
+2024-11-08 15:10:30.0894 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800_20241108_151030.csv 
+2024-11-08 15:11:38.0992 [ERROR] Error processing files from FTP/SFTP System.IO.FileNotFoundException: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'.
+File name: 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'
+   at System.IO.File.Move(String sourceFileName, String destFileName, Boolean overwrite)
+   at System.IO.File.Move(String sourceFileName, String destFileName)
+   at Program.MoveFileToFolder(String sourceFilePath, String destinationFolder) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 239
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processor_type, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 148
+2024-11-08 15:11:38.1218 [INFO] ERROR: Could not find file 'D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payfile_2024-10-20-2024-11-02_2024-11-04 16_00_26 -0800.csv'. 
+2024-11-08 15:11:38.1218 [INFO] Application Completed Successfully 

@@ -112,7 +112,11 @@ namespace ProcessFiles_Demo.Client
 
         public async Task<string> DownloadAsync(string remoteFilePath)
         {
-            string localFilePath = Path.GetTempFileName();
+            // Extract the actual file name from the remote file path
+            string fileName = Path.GetFileName(remoteFilePath);
+
+            // Define a temporary local file path with the actual file name
+            string localFilePath = Path.Combine(Path.GetTempPath(), fileName);
 
             using (var sftp = new SftpClient(_host, _port, _username, _password))
             {

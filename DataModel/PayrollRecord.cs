@@ -22,7 +22,7 @@ namespace ProcessFiles_Demo.DataModel
         public decimal Rate { get; set; }
         public decimal Amount { get; set; }
         public string TimesheetId { get; set; }
-        public int MemoAmount { get; set; }
+        public int? MemoAmount { get; set; }
         public string MemoCode { get; set; }
         public string SpecialProcCode { get; set; }
         public string OtherStartDate { get; set; }
