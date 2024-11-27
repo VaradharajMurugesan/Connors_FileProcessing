@@ -59,3 +59,4 @@ D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\obj\Release\net6.0\P
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\obj\Release\net6.0\ProcessFiles_Demo.genruntimeconfig.cache
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\obj\Release\net6.0\ref\ProcessFiles_Demo.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\ExcelDataReader.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\CsvHelper.dll

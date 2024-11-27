@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ProcessFiles_Demo.Logging;
 using Renci.SshNet;
+using Renci.SshNet.Common;
 
 namespace ProcessFiles_Demo.Client
 {
@@ -42,16 +44,49 @@ namespace ProcessFiles_Demo.Client
             }
         }
 
+        public async Task<string> GetLatestFileAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension)
+        {
+            try
+            {
+                using (var sftp = new SftpClient(_host, _username, _password))
+                {
+                    sftp.Connect();
 
-        public async Task<string> DownloadAsync(string remoteFilePath)
+                    // Get the list of files in the directory
+                    var files = sftp.ListDirectory(remoteDirectoryPath)
+                                    .Where(f => !f.IsDirectory &&
+                                                f.Name.StartsWith(fileNameStartsWith, StringComparison.OrdinalIgnoreCase) &&
+                                                f.Name.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
+                                    .OrderByDescending(f => f.LastWriteTime)
+                                    .ToList();
+
+                    sftp.Disconnect();
+
+                    // If files are found, return the latest file's name
+                    if (files.Any())
+                    {
+                        return files.First().Name;
+                    }
+
+                    LoggerObserver.OnFileFailed($"No files matching the criteria found in directory {remoteDirectoryPath}.");
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.OnFileFailed($"An error occurred while fetching the latest file: {ex.Message}");
+                return string.Empty;
+            }
+        }
+        public async Task<string> DownloadAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension)
         {
             // Extract the file name from the remote file path
-            string fileName = Path.GetFileName(remoteFilePath);
+            string fileName = Path.GetFileName(remoteDirectoryPath);
 
             // Define the local file path using the same file name
             string localFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
-            var request = (FtpWebRequest)WebRequest.Create(new Uri(new Uri(_host), remoteFilePath));
+            var request = (FtpWebRequest)WebRequest.Create(new Uri(new Uri(_host), remoteDirectoryPath));
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(_username, _password);
 
@@ -109,27 +144,108 @@ namespace ProcessFiles_Demo.Client
                 return await Task.FromResult(files);
             }
         }
-
-        public async Task<string> DownloadAsync(string remoteFilePath)
+        public async Task<string> GetLatestFileAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension)
         {
-            // Extract the actual file name from the remote file path
-            string fileName = Path.GetFileName(remoteFilePath);
-
-            // Define a temporary local file path with the actual file name
-            string localFilePath = Path.Combine(Path.GetTempPath(), fileName);
-
-            using (var sftp = new SftpClient(_host, _port, _username, _password))
+            try
             {
-                sftp.Connect();
-                using (var fileStream = File.Create(localFilePath))
+                using (var sftp = new SftpClient(_host, _port, _username, _password))
                 {
-                    sftp.DownloadFile(remoteFilePath, fileStream);
-                }
-                sftp.Disconnect();
-            }
+                    sftp.Connect();
 
-            return localFilePath;
+                    // Get the list of files in the directory
+                    var files = sftp.ListDirectory(remoteDirectoryPath)
+                                    .Where(f => !f.IsDirectory &&
+                                                f.Name.StartsWith(fileNameStartsWith, StringComparison.OrdinalIgnoreCase) &&
+                                                f.Name.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
+                                    .OrderByDescending(f => f.LastWriteTime)
+                                    .ToList();
+
+                    sftp.Disconnect();
+
+                    // If files are found, return the latest file's name
+                    if (files.Any())
+                    {
+                        return files.First().Name;
+                    }
+
+                    LoggerObserver.OnFileFailed($"No files matching the criteria found in directory {remoteDirectoryPath}.");
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.OnFileFailed($"An error occurred while fetching the latest file: {ex.Message}");
+                return string.Empty;
+            }
         }
+        public async Task<string> DownloadAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension)
+        {
+            try
+            {
+                using (var sftp = new SftpClient(_host, _port, _username, _password))
+                {
+                    // Connect to the SFTP server once
+                    sftp.Connect();
+
+                    // Get the list of files in the directory and filter based on criteria
+                    var files = sftp.ListDirectory(remoteDirectoryPath)
+                                     .Where(f => !f.IsDirectory &&
+                                                f.Name.StartsWith(fileNameStartsWith, StringComparison.OrdinalIgnoreCase) &&
+                                                f.Name.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
+                                     .OrderByDescending(f => f.LastWriteTime)
+                                     .ToList();
+
+                    // If no files found, return an empty string
+                    if (!files.Any())
+                    {
+                        LoggerObserver.OnFileFailed($"No matching {fileExtension} files found in the specified directory {remoteDirectoryPath}.");
+                        sftp.Disconnect();
+                        return string.Empty;
+                    }
+
+                    // Get the latest file
+                    var latestFile = files.First();
+                    string remoteFilePath = $"{remoteDirectoryPath.TrimEnd('/')}/{latestFile.Name}";
+                    string localFilePath = Path.Combine(Path.GetTempPath(), latestFile.Name);
+
+                    // Log the remote file path for debugging
+                    LoggerObserver.Info($"Attempting to download file from: {remoteFilePath}");
+
+                    // Check if the file exists on the remote server
+                    if (!sftp.Exists(remoteFilePath))
+                    {
+                        LoggerObserver.OnFileFailed($"File not found on remote server: {remoteFilePath}");
+                        sftp.Disconnect();
+                        return string.Empty;
+                    }
+
+                    // Download the file
+                    using (var fileStream = File.Create(localFilePath))
+                    {
+                        await Task.Run(() => sftp.DownloadFile(remoteFilePath, fileStream));
+                    }
+
+                    // Disconnect the SFTP client
+                    sftp.Disconnect();
+
+                    LoggerObserver.Info($"Latest file downloaded: {localFilePath}");
+                    return localFilePath;
+                }
+            }
+            catch (SftpPathNotFoundException ex)
+            {
+                LoggerObserver.OnFileFailed($"File path not found: {ex.Message}");
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.OnFileFailed($"An error occurred while downloading the file: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
+
+
 
         public async Task UploadAsync(string localFilePath, string remoteFilePath)
         {

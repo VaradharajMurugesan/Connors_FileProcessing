@@ -1,0 +1,24 @@
+2024-11-20 12:47:48.3134 [DEBUG] Application Starting 
+2024-11-20 12:48:02.1658 [INFO] Downloaded file: EmployeeEntity-2024-308-2024-342.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 12:48:02.9281 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv 
+2024-11-20 12:48:02.9281 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 12:48:43.7152 [DEBUG] Application Starting 
+2024-11-20 12:48:57.6848 [INFO] Downloaded file: EmployeeEntity-2024-308-2024-342.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 12:48:58.3122 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv 
+2024-11-20 12:48:58.3122 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 12:50:22.3693 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115.csv at 11/20/2024 12:50:22 PM 
+2024-11-20 12:50:36.0740 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115.csv at 11/20/2024 12:50:36 PM 
+2024-11-20 12:50:36.0754 [INFO] Time taken to process file: 13.7060283 seconds. 
+2024-11-20 12:50:36.0754 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115.csv 
+2024-11-20 12:50:36.0754 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ProcessedFiles\AccrualBalanceExport_20241115_20241120_125036.csv 
+2024-11-20 12:50:45.9645 [INFO] Application Completed Successfully 
+2024-11-20 22:01:58.8241 [DEBUG] Application Starting 
+2024-11-20 22:02:12.9764 [INFO] Downloaded file: EmployeeEntity-2024-308-2024-342.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 22:02:13.6400 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv 
+2024-11-20 22:02:13.6400 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/Mapping\EmployeeEntity-2024-308-2024-342.csv.gz 
+2024-11-20 22:02:48.3417 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115_232138_20241115_235340.csv at 11/20/2024 10:02:48 PM 
+2024-11-20 22:07:02.5233 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115_232138_20241115_235340.csv at 11/20/2024 10:07:02 PM 
+2024-11-20 22:07:02.5233 [INFO] Time taken to process file: 254.1830088 seconds. 
+2024-11-20 22:07:02.5233 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ReprocessFiles\AccrualBalanceExport_20241115_232138_20241115_235340.csv 
+2024-11-20 22:07:02.5233 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\AccrualBalanceExport/ProcessedFiles\AccrualBalanceExport_20241115_232138_20241115_235340_20241120_220702.csv 
+2024-11-20 22:07:13.0636 [INFO] Application Completed Successfully 

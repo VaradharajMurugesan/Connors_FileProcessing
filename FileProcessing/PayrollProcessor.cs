@@ -16,12 +16,32 @@ namespace ProcessFiles_Demo.FileProcessing
 {
     public class PayrollFileProcessor : ICsvFileProcessorStrategy
     {
+        // Global list of excluded roles
+        private static readonly List<string> ExcludedRoles = new List<string>
+        {
+            "Store Guard",
+            "Store Asset Protection",
+            "Remodel",
+            "Setup",
+            "Inventory",
+            "Pre-Open Recruiting",
+            "Store Meeting",
+            "Training - Manager New Hire",
+            "Training - Manager Promotion",
+            "Training - Services",
+            "Training - Harassment",
+            "Training - AP",
+            "TSM",
+            "Training - Other",
+            "Special Project"
+        };
+
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<string, EmployeeHrData> employeeHrMapping;        
         private Dictionary<string, PaycodeData> payCodeMap; // Updated type
         private Dictionary<string, List<PaycodeData>> paycodeDict;
         SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
-       
+        ExtractEmployeeEntityData extractEmployeeEntityData = new ExtractEmployeeEntityData();
 
         public PayrollFileProcessor(JObject clientSettings)
         {
@@ -29,7 +49,7 @@ namespace ProcessFiles_Demo.FileProcessing
             string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
             string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath);
             // Load employee HR mapping from Excel (grouped by employee ID now)
-            employeeHrMapping = LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
+            employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
             paycodeDict = LoadPaycodeMappingFromXlsx("LegionPayCodes.xlsx");
 
         }
@@ -39,59 +59,76 @@ namespace ProcessFiles_Demo.FileProcessing
         private Dictionary<string, EmployeeHrData> LoadGroupedEmployeeHrMappingFromCsv(string filePath)
         {
             var hrMapping = new Dictionary<string, EmployeeHrData>();
-
-            using (var reader = new StreamReader(filePath))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            try
             {
-                csv.Read();
-                csv.ReadHeader();
-
-                while (csv.Read())
+                using (var reader = new StreamReader(filePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    string employeeExternalId = csv.GetField("EmployeeExternalId");
+                    csv.Read();
+                    csv.ReadHeader();
 
-                    if (!string.IsNullOrEmpty(employeeExternalId))
+                    while (csv.Read())
                     {
-                        EmployeeHrData hrData = new EmployeeHrData
-                        {
-                            EmployeeId = csv.GetField("EmployeeId"),
-                            EmployeeExternalId = employeeExternalId,
-                            LegionUserId = Convert.ToInt64(csv.GetField("LegionUserId")),
-                            LocationId = csv.GetField("LocationId"),
-                            LocationExternalId = csv.GetField("LocationExternalId"),
-                            LastModifiedDate = DateTime.Parse(csv.GetField("LastModifiedDate")),
-                            FirstName = csv.GetField("FirstName"),
-                            LastName = csv.GetField("LastName"),
-                            MiddleInitial = csv.GetField("MiddleInitial"),
-                            NickName = csv.GetField("NickName"),
-                            Title = csv.GetField("Title"),
-                            Email = csv.GetField("Email"),
-                            PhoneNumber = csv.GetField("PhoneNumber"),
-                            Status = csv.GetField("Status"),
-                            ManagerId = csv.GetField("ManagerId"),
-                            Salaried = csv.GetField<bool>("Salaried"),
-                            Hourly = csv.GetField<bool>("Hourly"),
-                            Exempt = csv.GetField<bool>("Exempt"),
-                            HourlyRate = decimal.TryParse(csv.GetField("HourlyRate"), out var hourlyRate) ? hourlyRate : 0,
-                            LegionUserFirstName = csv.GetField("LegionUserFirstName"),
-                            LegionUserLastName = csv.GetField("LegionUserLastName"),
-                            LegionUserNickName = csv.GetField("LegionUserNickName"),
-                            LegionUserEmail = csv.GetField("LegionUserEmail"),
-                            LegionUserPhoneNumber = csv.GetField("LegionUserPhoneNumber"),
-                            LegionUserAddress = csv.GetField("LegionUserAddress"),
-                            LegionUserPhoto = csv.GetField("LegionUserPhoto"),
-                            LegionUserBusinessPhoto = csv.GetField("LegionUserBusinessPhoto"),
-                            CompanyId = csv.GetField("CompanyId"),
-                            CompanyName = csv.GetField("CompanyName")
-                        };
+                        string employeeExternalId = csv.GetField("EmployeeExternalId");
 
-                        // Add to the dictionary by EmployeeExternalId
-                        if (!hrMapping.ContainsKey(employeeExternalId))
+                        if (!string.IsNullOrEmpty(employeeExternalId))
                         {
-                            hrMapping[employeeExternalId] = hrData;
+                            EmployeeHrData hrData = new EmployeeHrData
+                            {
+                                EmployeeId = csv.GetField("EmployeeId"),
+                                EmployeeExternalId = employeeExternalId,
+                                LegionUserId = Convert.ToInt64(csv.GetField("LegionUserId")),
+                                LocationId = csv.GetField("LocationId"),
+                                LocationExternalId = csv.GetField("LocationExternalId"),
+                                LastModifiedDate = DateTime.Parse(csv.GetField("LastModifiedDate")),
+                                FirstName = csv.GetField("FirstName"),
+                                LastName = csv.GetField("LastName"),
+                                MiddleInitial = csv.GetField("MiddleInitial"),
+                                NickName = csv.GetField("NickName"),
+                                Title = csv.GetField("Title"),
+                                Email = csv.GetField("Email"),
+                                PhoneNumber = csv.GetField("PhoneNumber"),
+                                Status = csv.GetField("Status"),
+                                ManagerId = csv.GetField("ManagerId"),
+                                Salaried = csv.GetField<bool>("Salaried"),
+                                Hourly = csv.GetField<bool>("Hourly"),
+                                Exempt = csv.GetField<bool>("Exempt"),
+                                HourlyRate = decimal.TryParse(csv.GetField("HourlyRate"), out var hourlyRate) ? hourlyRate : 0,
+                                LegionUserFirstName = csv.GetField("LegionUserFirstName"),
+                                LegionUserLastName = csv.GetField("LegionUserLastName"),
+                                LegionUserNickName = csv.GetField("LegionUserNickName"),
+                                LegionUserEmail = csv.GetField("LegionUserEmail"),
+                                LegionUserPhoneNumber = csv.GetField("LegionUserPhoneNumber"),
+                                LegionUserAddress = csv.GetField("LegionUserAddress"),
+                                LegionUserPhoto = csv.GetField("LegionUserPhoto"),
+                                LegionUserBusinessPhoto = csv.GetField("LegionUserBusinessPhoto"),
+                                CompanyId = csv.GetField("CompanyId"),
+                                CompanyName = csv.GetField("CompanyName")
+                            };
+
+                            // Add to the dictionary by EmployeeExternalId
+                            if (!hrMapping.ContainsKey(employeeExternalId))
+                            {
+                                hrMapping[employeeExternalId] = hrData;
+                            }
                         }
                     }
                 }
+            }
+            catch (HeaderValidationException ex)
+            {
+                // Log error for malformed CSV header
+                LoggerObserver.OnFileFailed($"Error: Malformed CSV header in file '{filePath}'. Exception: {ex.Message}");
+            }
+            catch (FormatException ex)
+            {
+                // Log error for format issues
+                LoggerObserver.OnFileFailed($"Error: Format issue in file '{filePath}'. Exception: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log any other unexpected errors
+                LoggerObserver.OnFileFailed($"Error: An unexpected error occurred while processing the CSV file '{filePath}'. Exception: {ex.Message}");
             }
 
             // Sort the dictionary by EmployeeExternalId for performance improvement
@@ -191,7 +228,7 @@ namespace ProcessFiles_Demo.FileProcessing
         }
 
         public async Task ProcessAsync(string filePath, string destinationPath)
-        {
+        {            
             var (fileStartDate, fileEndDate) = ExtractDateRange(Path.GetFileNameWithoutExtension(filePath));
             // Calculate Week 1 and Week 2 date ranges
             var week1EndDate = Convert.ToDateTime(fileStartDate).AddDays(6); // End of Week 1
@@ -235,7 +272,7 @@ namespace ProcessFiles_Demo.FileProcessing
             // Sort by Employee Id and Date
             // Step 1: Group records by EmployeeId, date range, PayType, and PayrollEarningRole
             var initialGroupedRecords = records
-                .Where(r => !(r.PayType == "Regular" && r.WorkRole == "Store Guard"))
+                .Where(r => !(r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))) // Check for multiple roles
                 .OrderBy(r => r.EmployeeId)
                 .ThenBy(r => ParseDateRange(r.Date).startDate)
                 .GroupBy(r =>
@@ -375,7 +412,7 @@ namespace ProcessFiles_Demo.FileProcessing
 
             // Add back the ungrouped "Regular" and "Store Guard" records
             var ungroupedRecords = records
-            .Where(r => r.PayType == "Regular" && r.WorkRole == "Store Guard")
+            .Where(r => r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))
             .Select(r =>
             {
                 // Extract the date range from the record's date
@@ -634,7 +671,7 @@ namespace ProcessFiles_Demo.FileProcessing
                         //    regularHoursColumn = paycodeData.ADPColumn;
                         //    regularHours = record.Hours;
                         //}
-                        if (paycodeData.ADPColumn == "Reg Hours" & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)) & record.WorkRole != "Store Guard")
+                        if (paycodeData.ADPColumn == "Reg Hours" & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)) & !ExcludedRoles.Contains(record.WorkRole))
                         {
                             regularHoursColumn = paycodeData.ADPColumn;
                             regularHours = record.Hours;
@@ -653,7 +690,7 @@ namespace ProcessFiles_Demo.FileProcessing
                         }
                         else if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn == "Hours 3 Code"
                                 & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
-                                & record.WorkRole == "Store Guard")
+                                & ExcludedRoles.Contains(record.WorkRole))
                         {
                             hours3Code = paycodeData.ADPHoursOrAmountCode;
                             hours3Amount = (record.Hours != 0 ? record.Hours : (record.Amount != 0 ? record.Amount : (decimal?)null));

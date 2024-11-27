@@ -9,7 +9,8 @@ namespace ProcessFiles_Demo.Client
     public interface IFileTransferClient
     {
         Task<IEnumerable<string>> ListFilesAsync(string path); // Add this method
-        Task<string> DownloadAsync(string remoteFilePath);
+        Task<string> GetLatestFileAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension);
+        Task<string> DownloadAsync(string remoteDirectoryPath, string fileNameStartsWith, string fileExtension);
         Task UploadAsync(string localFilePath, string remoteFilePath);
     }
 

@@ -24,6 +24,10 @@ namespace ProcessFiles_Demo.FileProcessing
             {
                 return new PayrollFileProcessor(clientSettings);
             }
+            else if (processortype.Contains("accrualbalanceexport", StringComparison.OrdinalIgnoreCase))
+            {
+                return new AccrualBalanceExportProcessor(clientSettings);
+            }
             else
             {
                 throw new ArgumentException("Unknown CSV file type.");

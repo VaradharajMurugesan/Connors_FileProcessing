@@ -229,13 +229,13 @@ namespace ProcessFiles_Demo.FileProcessing
             string clockInType = GetClockInType(punchType, nextPunchType, lastPunchTypes, employeeId);
 
             // External ID is a combination of Employee ID, Location, Date/time
-            string externalId = $"{employeeId}-{location}-{dateTimeStr}".Replace(" ","");
+            string externalId = $"{employeeId}-{location}-{dateTimeStr}".Replace(" ","").Replace("/","-");
 
             // Store the current punch type as the last punch type for this employee
             lastPunchTypes[employeeId] = punchType;
 
             // Return the formatted line to be written
-            return $"{employeeId},{location},{clockInTime},{clockInType},,{externalId},";
+            return $"{employeeId},{location},{clockInTime},{clockInType},,{externalId},crew";
         }
 
         // Method to get TimeZoneInfo from cache or fetch if not present

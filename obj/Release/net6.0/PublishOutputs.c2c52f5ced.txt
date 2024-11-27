@@ -4,6 +4,7 @@ D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\p
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\ProcessFiles_Demo.deps.json
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\ProcessFiles_Demo.runtimeconfig.json
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\ProcessFiles_Demo.pdb
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\CsvHelper.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\DidiSoft.BouncyCastle.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\DidiSoft.Pgp.Mail.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Release\net6.0\publish\DidiSoft.Pgp.Net.LdapClient.dll

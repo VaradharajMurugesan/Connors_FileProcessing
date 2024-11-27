@@ -26,16 +26,17 @@ class Program
 
         try
         {
-
             // Set the processType variable before loading the configuration 
             // Default to empty if no argument is passed
-            string processor_type = args.Length > 0 ? args[0] : "";
-            AppDomain.CurrentDomain.SetData("ProcessorType", processor_type);
+            // Ensure processType and fileNameStartsWith are set based on provided arguments
+            string processorType = args.Length > 0 ? args[0] : string.Empty; // Default to empty if no argument is passed
+            string fileNameStartsWith = args.Length > 1 ? args[1] : string.Empty; // Default to empty if second argument is not passed
+            AppDomain.CurrentDomain.SetData("ProcessorType", processorType);
 
             LoggerObserver.Debug("Application Starting");
             
             // Load client settings
-            var clientSettings = LoadClientSettings(processor_type);
+            var clientSettings = ClientSettingsLoader.LoadClientSettings(processorType);
 
             // Extract FTP/SFTP settings
             string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
@@ -64,13 +65,10 @@ class Program
             var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
 
             // 1. Process any files in the Reprocessing folder first
-            await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+            await ProcessReprocessingFilesAsync(fileTransferClient, processorType, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
 
             // 2. Fetch and process files from FTP/SFTP
-            await FetchAndProcessFilesAsync(fileTransferClient, processor_type, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings);
-
-            // 3. Process any remaining files in the Reprocessing folder again
-            // await ProcessReprocessingFilesAsync(fileTransferClient, processor_type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+            await FetchAndProcessFilesAsync(fileTransferClient, processorType, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings, fileNameStartsWith);
 
             LoggerObserver.Info("Application Completed Successfully");
         }
@@ -87,83 +85,80 @@ class Program
         }
     }
 
-    private static async Task FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, string processor_type, string processedFolder, string reprocessingFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings)
+    private static async Task FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, string processorType, string processedFolder, string reprocessingFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings, string fileNameStartsWith)
     {
         var processedFiles = new List<string>();
 
         try
         {
             string remoteDirectoryPath = clientSettings["FTPSettings"]["filePath"].ToString();
-            var fileList = await fileTransferClient.ListFilesAsync(remoteDirectoryPath);
+            string fileExtension = clientSettings["FTPSettings"]["fileExtension"].ToString();
+            bool needsDecryption = (bool)clientSettings["DecryptionSettings"]["NeedsDecryption"];
+            
+            // Step 1: Download the latest file
+            string downloadedFilePath = await RetryHelper.RetryAsync(() => fileTransferClient.DownloadAsync(remoteDirectoryPath, fileNameStartsWith, fileExtension));
 
-            foreach (var remoteFile in fileList)
+            if (string.IsNullOrEmpty(downloadedFilePath))
             {
-                // Check if the file is either a PGP or CSV file
-                if (remoteFile.EndsWith(".pgp", StringComparison.OrdinalIgnoreCase) || remoteFile.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
+                LoggerObserver.OnFileFailed("No valid file was downloaded for processing.");
+                return;
+            }
+
+            try
+            {
+                string finalFilePath;
+
+                // Step 2: Check if decryption is required               
+
+                if (needsDecryption)
                 {
-                    try
-                    {
-                        // 1. Download the encrypted file from FTP/SFTP
-                        string downloadedFilePath = await RetryHelper.RetryAsync(() => fileTransferClient.DownloadAsync($"{remoteDirectoryPath}/{remoteFile}"));
+                    // If decryption is required, decrypt the file
+                    string privateKeyPath = clientSettings["DecryptionSettings"]["PrivateKeyPath"].ToString();
+                    string passPhrase = clientSettings["DecryptionSettings"]["PassPhrase"].ToString();
+                    string decryptedFilePath = Path.Combine(decryptedFolderOutput, Path.GetFileNameWithoutExtension(downloadedFilePath) + ".csv");
 
-                        string finalFilePath;
+                    var decrypt = new Decrypt();
+                    finalFilePath = decrypt.DecryptFile(downloadedFilePath, decryptedFilePath, privateKeyPath, passPhrase);
 
-                        // 2. Check if decryption is required
-                        bool needsDecryption = (bool)clientSettings["DecryptionSettings"]["NeedsDecryption"];
-
-                        if (needsDecryption)
-                        {
-                            // If decryption is required, decrypt the file
-                            string privateKeyPath = clientSettings["DecryptionSettings"]["PrivateKeyPath"].ToString();
-                            string passPhrase = clientSettings["DecryptionSettings"]["PassPhrase"].ToString();
-                            string decryptedFilePath = Path.Combine(decryptedFolderOutput, Path.GetFileNameWithoutExtension(remoteFile) + ".csv");
-
-                            var decrypt = new Decrypt();
-                            finalFilePath = decrypt.DecryptFile(downloadedFilePath, decryptedFilePath, privateKeyPath, passPhrase);
-
-                            LoggerObserver.Info($"Decryption completed for {downloadedFilePath}");
-                        }
-                        else
-                        {
-                            // If decryption is not required, use the file as is
-                            finalFilePath = downloadedFilePath;
-                            LoggerObserver.Info($"No decryption needed for {downloadedFilePath}");
-                        }
-
-                        // 3. Process the CSV file using the factory to select the correct processor
-                        var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type, clientSettings);
-                        var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
-                        await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
-
-                        // 4. Move file to Processed folder after successful processing
-                        string processedFilePath = MoveFileToFolder(finalFilePath, processedFolder);
-                        processedFiles.Add(processedFilePath);
-                        LoggerObserver.Info(processedFilePath);
-
-                        // 5. Upload processed CSV back to FTP/SFTP
-                        await RetryHelper.RetryAsync(() => fileTransferClient.UploadAsync(processedFilePath, remoteFile));
-                    }
-                    catch (Exception ex)
-                    {
-                        string reprocessFilePath = MoveFileToFolder(remoteFile, reprocessingFolder);
-                        LoggerObserver.Error(ex, $"Failed to process {reprocessFilePath}: ");
-                        LoggerObserver.Info($"ERROR: {ex.Message} - moved to ReprocessFiles.");
-                    }
+                    LoggerObserver.Info($"Decryption completed for {downloadedFilePath}");
                 }
                 else
                 {
-                    LoggerObserver.OnFileFailed($"Not a valid PGP or CSV file - {remoteFile}");
+                    // If decryption is not required, use the file as is
+                    finalFilePath = downloadedFilePath;
+                    LoggerObserver.Info($"No decryption needed for {downloadedFilePath}");
                 }
+
+                // Step 3: Process the CSV file using the factory to select the correct processor
+                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processorType, clientSettings);
+                var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
+                await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
+
+                // Step 4: Move file to Processed folder after successful processing
+                string processedFilePath = MoveFileToFolder(finalFilePath, processedFolder);
+                processedFiles.Add(processedFilePath);
+                LoggerObserver.Info($"File successfully processed and moved to: {processedFilePath}");
+
+                // Step 5: Upload processed CSV back to FTP/SFTP
+                await RetryHelper.RetryAsync(() => fileTransferClient.UploadAsync(processedFilePath, Path.GetFileName(processedFilePath)));
+            }
+            catch (Exception ex)
+            {
+                // Move file to Reprocessing folder on failure
+                string reprocessFilePath = MoveFileToFolder(downloadedFilePath, reprocessingFolder);
+                LoggerObserver.Error(ex, $"Failed to process {reprocessFilePath}: ");
+                LoggerObserver.Info($"ERROR: {ex.Message} - moved to ReprocessFiles.");
             }
         }
         catch (Exception ex)
         {
-            LoggerObserver.Error(ex,"Error processing files from FTP/SFTP");
+            LoggerObserver.Error(ex, "Error processing files from FTP/SFTP");
             LoggerObserver.LogFileProcessed($"ERROR: {ex.Message}");
         }
     }
 
-    private static async Task ProcessReprocessingFilesAsync(IFileTransferClient fileTransferClient, string processor_type, string reprocessingFolder, string processedFolder, string failedFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings)
+
+    private static async Task ProcessReprocessingFilesAsync(IFileTransferClient fileTransferClient, string processorType, string reprocessingFolder, string processedFolder, string failedFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings)
     {
         var filesToReprocess = Directory.GetFiles(reprocessingFolder);
 
@@ -191,7 +186,7 @@ class Program
                 }
 
                 // 3. Process the CSV (whether decrypted or raw CSV)
-                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processor_type, clientSettings);
+                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processorType, clientSettings);
                 var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
                 await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
 
@@ -207,20 +202,6 @@ class Program
                 LoggerObserver.LogFileProcessed($"ERROR: {ex.Message} - moved to FailedFiles.");
             }
         }
-    }
-
-    private static JObject LoadClientSettings(string clientName)
-    {
-        string json = File.ReadAllText(ConfigFilePath);
-        JObject config = JObject.Parse(json);
-        foreach (var client in config["Clients"])
-        {
-            if (client["ClientName"].ToString() == clientName)
-            {
-                return (JObject)client;
-            }
-        }
-        throw new Exception("Client not found in the configuration file.");
     }
 
     private static string MoveFileToFolder(string sourceFilePath, string destinationFolder)

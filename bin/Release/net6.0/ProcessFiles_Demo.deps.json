@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ProcessFiles_Demo/1.0.0": {
         "dependencies": {
+          "CsvHelper": "33.0.1",
           "DidiSoft.Pgp.Trial": "1.9.4.72",
           "EPPlus": "7.4.0",
           "ExcelDataReader": "3.7.0",
@@ -20,6 +21,14 @@
         },
         "runtime": {
           "ProcessFiles_Demo.dll": {}
+        }
+      },
+      "CsvHelper/33.0.1": {
+        "runtime": {
+          "lib/net6.0/CsvHelper.dll": {
+            "assemblyVersion": "33.0.0.0",
+            "fileVersion": "33.0.1.24"
+          }
         }
       },
       "DidiSoft.Pgp.Trial/1.9.4.72": {
@@ -464,6 +473,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CsvHelper/33.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ==",
+      "path": "csvhelper/33.0.1",
+      "hashPath": "csvhelper.33.0.1.nupkg.sha512"
     },
     "DidiSoft.Pgp.Trial/1.9.4.72": {
       "type": "package",
