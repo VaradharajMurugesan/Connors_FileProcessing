@@ -369,8 +369,8 @@ namespace ProcessFiles_Demo.FileProcessing
                         }
                     }
 
-                    // Return updated records in the group
-                    return g;
+                    // Exclude records with zero Hours
+                    return g.Where(r => r.Hours > 0 || r.Amount > 0);
                 })
                 .SelectMany(r => r) // Flatten grouped records
                 .ToList();
@@ -568,6 +568,54 @@ namespace ProcessFiles_Demo.FileProcessing
             }
         }
 
+        public static string DetermineTempDept(string homeLocation, string workLocation)
+        {
+            // Initialize TempDept as empty
+            string tempDept = string.Empty;
+
+            // Ensure HomeLocation and WorkLocation are numeric
+            bool isHomeLocationNumeric = int.TryParse(homeLocation, out int homeLocationValue);
+            bool isWorkLocationNumeric = int.TryParse(workLocation.Split('_')[0], out int workLocationValue);
+
+            if (isHomeLocationNumeric && isWorkLocationNumeric)
+            {
+                if (homeLocationValue == workLocationValue)
+                {
+                    // Case 1: Both locations are the same, set TempDept as empty
+                    tempDept = string.Empty;
+                }
+                else
+                {
+                    // Case 3: Locations are numeric but different, set TempDept as WorkLocation
+                    tempDept = workLocation;
+                }
+            }
+            else
+            {
+                // Handle non-numeric WorkLocation scenarios
+                if (isHomeLocationNumeric && workLocation.Contains('_'))
+                {
+                    // Case 2: Check for match after splitting WorkLocation with '_'
+                    string[] workLocationParts = workLocation.Split('_');
+                    if (int.TryParse(workLocationParts[0], out int splitWorkLocationValue) && homeLocationValue == splitWorkLocationValue)
+                    {
+                        tempDept = string.Empty; // Matched after split
+                    }
+                    else
+                    {
+                        tempDept = workLocation; // Different even after split
+                    }
+                }
+                else
+                {
+                    // Case 4: Non-numeric locations like 'EasterTime', '1abcd_ET', set TempDept as empty
+                    tempDept = string.Empty;
+                }
+            }
+
+            return tempDept;
+        }
+
         private async Task<List<string>> ProcessPayrollLineAsync(PayrollRecord record)
         {
             var processedLines = new List<string>();
@@ -614,8 +662,10 @@ namespace ProcessFiles_Demo.FileProcessing
             // Lookup company code based on location
             string companyCode = hrData.CompanyId; //Assuming this will be generated based on the file name //companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
 
+
             // Determine Temp Dept: Use Work Location if different from Home Location
-            string tempDept = record.WorkLocation != record.HomeLocation ? record.WorkLocation : string.Empty;
+            //string tempDept = record.WorkLocation != record.HomeLocation ? record.WorkLocation : string.Empty;
+            string tempDept = DetermineTempDept(record.HomeLocation, record.WorkLocation);
             // If the pay type is "Regular", assign the hours to Reg Hours
             if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase))
             {
@@ -637,101 +687,96 @@ namespace ProcessFiles_Demo.FileProcessing
             var payNames = record.PayName.Split('~');
             // Check PayType for "Regular" or "Over Time" using paycodeDict
             if (paycodeDict.ContainsKey(record.PayType))
-            {                
+            {
                 // Filter PaycodeData by both PayType, PayName, and ADPColumn, then remove duplicates
                 var filteredPaycodes = paycodeDict[record.PayType]
                 .Where(pc =>
-                    payNames.Any(pn => string.Equals(pn.Trim(), pc.PayName, StringComparison.OrdinalIgnoreCase)) ||
-                    string.Equals(pc.PayName, record.PayRollEarningRole, StringComparison.OrdinalIgnoreCase)
+                    (payNames.Any(pn => string.Equals(pn.Trim(), pc.PayName, StringComparison.OrdinalIgnoreCase)) || // Match PayName from list
+                     string.Equals(pc.PayName, record.PayRollEarningRole, StringComparison.OrdinalIgnoreCase) || // Match PayRollEarningRole
+                     string.Equals(pc.PayName, record.WorkRole, StringComparison.OrdinalIgnoreCase)) // Match WorkRole
                 )
-                .Distinct(new PaycodeDataComparer())
-                .ToList();
+                .OrderByDescending(pc => pc.PayName == record.WorkRole) // Prioritize WorkRole match
+                .ThenByDescending(pc => pc.PayName == record.PayRollEarningRole) // Secondary priority for PayRollEarningRole
+                .FirstOrDefault(); // Return only one record
                 // Only proceed if we found matching PaycodeData for both PayType and PayName
-                if (filteredPaycodes.Any())
-                {
-                    // Iterate over all PaycodeData entries in paycodeDataList and create a processed line for each one
-                    foreach (var paycodeData in filteredPaycodes)
+                if (filteredPaycodes!=null)
+                {                   
+                    //var paycodeDataList = paycodeDict[record.PayType];
+                    regularHoursColumn = "";
+                    overtimeHoursColumn = "";
+                    otherPayTypeColumn = "";
+                    hours3Code = "";
+                    earnings3Code = "";
+
+                    regularHours = null;
+                    overtimeHours = null;
+                    hours3Amount = null;
+                    earnings3Amount = null;
+                    otherHours = null;
+                    bool isConditionMatched = false; // Flag to check if any condition matches
+
+                    //if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn.Equals("Reg Hours", StringComparison.OrdinalIgnoreCase))
+                    //{
+                    //    regularHoursColumn = paycodeData.ADPColumn;
+                    //    regularHours = record.Hours;
+                    //}
+                    if(record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & !ExcludedRoles.Contains(record.PayName.Trim()) & filteredPaycodes.ADPColumn == "Reg Hours")
                     {
-                        //var paycodeDataList = paycodeDict[record.PayType];
-                        regularHoursColumn = "";
-                        overtimeHoursColumn = "";
-                        otherPayTypeColumn = "";
-                        hours3Code = "";
-                        earnings3Code = "";
-
-                        regularHours = null;
-                        overtimeHours = null;
-                        hours3Amount = null;
-                        earnings3Amount = null;
-                        otherHours = null;
-                        bool isConditionMatched = false; // Flag to check if any condition matches
-
-                        //if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn.Equals("Reg Hours", StringComparison.OrdinalIgnoreCase))
-                        //{
-                        //    regularHoursColumn = paycodeData.ADPColumn;
-                        //    regularHours = record.Hours;
-                        //}
-                        if (paycodeData.ADPColumn == "Reg Hours" & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)) & !ExcludedRoles.Contains(record.WorkRole))
+                        regularHoursColumn = filteredPaycodes.ADPColumn;
+                        regularHours = record.Hours;
+                        isConditionMatched = true;
+                    }
+                    else if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & ExcludedRoles.Contains(record.WorkRole.Trim()))
+                    {
+                        if(record.Hours !=0)
                         {
-                            regularHoursColumn = paycodeData.ADPColumn;
-                            regularHours = record.Hours;
+                            hours3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                            hours3Amount = record.Hours;
                             isConditionMatched = true;
                         }
-                        //if (record.PayType.Equals("Overtime", StringComparison.OrdinalIgnoreCase))
-                        //{
-                        //    overtimeHoursColumn = paycodeData.ADPColumn;
-                        //    overtimeHours = record.Hours;
-                        //}
-                        else if (paycodeData.ADPColumn == "O/T Hours" & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)))
+                        else
                         {
-                            overtimeHoursColumn = paycodeData.ADPColumn;
-                            overtimeHours = record.Hours;
-                            isConditionMatched = true;
-                        }
-                        else if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn == "Hours 3 Code"
-                                & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
-                                & ExcludedRoles.Contains(record.WorkRole))
-                        {
-                            hours3Code = paycodeData.ADPHoursOrAmountCode;
-                            hours3Amount = (record.Hours != 0 ? record.Hours : (record.Amount != 0 ? record.Amount : (decimal?)null));
-                            isConditionMatched = true;
-                        }
-                        else if (!record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & paycodeData.ADPColumn == "Hours 3 Code" & (payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)) || record.PayRollEarningRole.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            hours3Code = paycodeData.ADPHoursOrAmountCode;
-                            hours3Amount = (record.Hours != 0 ? record.Hours : (record.Amount != 0 ? record.Amount : (decimal?)null));
-                            isConditionMatched = true;
-                        }
-                        //else if (paycodeData.ADPColumn == "Hours 3 Amount" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
-                        //{
-                        //    hours3Amount = record.Hours;
-                        //    isConditionMatched = true;
-                        //} 
-                        else if (paycodeData.ADPColumn == "Earnings 3 Code" & payNames.Any(pn => pn.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            earnings3Code = paycodeData.ADPHoursOrAmountCode;
+                            earnings3Code = filteredPaycodes.ADPHoursOrAmountCode;
                             earnings3Amount = record.Amount;
                             isConditionMatched = true;
                         }
-                        //else if (paycodeData.ADPColumn == "Earnings 3 Amount" & record.PayName.Equals(paycodeData.PayName, StringComparison.OrdinalIgnoreCase))
-                        //{
-                        //    earnings3Amount = record.Amount;
-                        //    isConditionMatched = true;
-                        //}
-                        // Generate processed line for each paycodeData entry
-                        if (isConditionMatched)
+
+                    }                        
+                    else if (filteredPaycodes.ADPColumn == "O/T Hours" & payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        overtimeHoursColumn = filteredPaycodes.ADPColumn;
+                        overtimeHours = record.Hours;
+                        isConditionMatched = true;
+                    }                       
+                    else if (!record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & (payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)) || record.PayRollEarningRole.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        if (record.Hours != 0)
                         {
-                            // Set OtherStartDate and OtherEndDate to contain only the date part if applicable
-                            record.OtherStartDate = ExtractDatePart(record.OtherStartDate);
-                            record.OtherEndDate = ExtractDatePart(record.OtherEndDate);
-
-                            string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{regularHours},{overtimeHours},"
-                                                 + $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{record.MemoCode},{record.MemoAmount}, {record.SpecialProcCode},"
-                                                 + $"{record.OtherStartDate},{record.OtherEndDate}";
-
-                            processedLines.Add(processedLine);
+                            hours3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                            hours3Amount = record.Hours;
+                            isConditionMatched = true;
                         }
+                        else
+                        {
+                            earnings3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                            earnings3Amount = record.Amount;
+                            isConditionMatched = true;
+                        }
+                    }                        
+                    // Generate processed line for each paycodeData entry
+                    if (isConditionMatched)
+                    {
+                        // Set OtherStartDate and OtherEndDate to contain only the date part if applicable
+                        record.OtherStartDate = ExtractDatePart(record.OtherStartDate);
+                        record.OtherEndDate = ExtractDatePart(record.OtherEndDate);
+
+                        string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{regularHours},{overtimeHours},"
+                                                + $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{record.MemoCode},{record.MemoAmount}, {record.SpecialProcCode},"
+                                                + $"{record.OtherStartDate},{record.OtherEndDate}";
+
+                        processedLines.Add(processedLine);
                     }
+                    
                 }
                 else
                 {

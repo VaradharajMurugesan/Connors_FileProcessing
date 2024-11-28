@@ -2,7 +2,7 @@
   "profiles": {
     "ProcessFiles_Demo": {
       "commandName": "Project",
-      "commandLineArgs": "accrualbalanceexport AccrualBalanceExport"
+      "commandLineArgs": "payroll Payfile"
     }
   }
 }
