@@ -140,14 +140,18 @@ class Program
                 LoggerObserver.Info($"File successfully processed and moved to: {processedFilePath}");
 
                 // Step 5: Upload processed CSV back to FTP/SFTP
-                await RetryHelper.RetryAsync(() => fileTransferClient.UploadAsync(processedFilePath, Path.GetFileName(processedFilePath)));
+                //await RetryHelper.RetryAsync(() => fileTransferClient.UploadAsync(processedFilePath, Path.GetFileName(processedFilePath)));
             }
             catch (Exception ex)
             {
-                // Move file to Reprocessing folder on failure
-                string reprocessFilePath = MoveFileToFolder(downloadedFilePath, reprocessingFolder);
-                LoggerObserver.Error(ex, $"Failed to process {reprocessFilePath}: ");
-                LoggerObserver.Info($"ERROR: {ex.Message} - moved to ReprocessFiles.");
+                if (File.Exists(downloadedFilePath))
+                {
+                    // Move file to Reprocessing folder on failure
+                    string reprocessFilePath = MoveFileToFolder(downloadedFilePath, reprocessingFolder);
+                    LoggerObserver.Error(ex, $"Failed to process {reprocessFilePath}: ");
+                    LoggerObserver.Info($"ERROR: {ex.Message} - moved to ReprocessFiles.");
+                }
+                LoggerObserver.Error(ex, $"Exception occured inside the module FetchAndProcessFilesAsync");
             }
         }
         catch (Exception ex)

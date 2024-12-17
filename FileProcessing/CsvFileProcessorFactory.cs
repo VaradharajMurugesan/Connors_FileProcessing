@@ -28,6 +28,10 @@ namespace ProcessFiles_Demo.FileProcessing
             {
                 return new AccrualBalanceExportProcessor(clientSettings);
             }
+            else if (processortype.Contains("manhattanpunch", StringComparison.OrdinalIgnoreCase))
+            {
+                return new ManhattanPunchProcessor(clientSettings);
+            }
             else
             {
                 throw new ArgumentException("Unknown CSV file type.");

@@ -1,0 +1,61 @@
+LocationExternalId,LocationName,ManhattanWarehouseId,FileFilter
+1360,SC-AZ eComm Decant,006,SC-AZ eComm
+1375,SC-GA Human Resources,004,
+816929,SC-IN eComm Office Admin,007,
+709,SC-AZ Retail Inventory,006,SC-AZ Retail
+62021,SC-AZ eComm Decant,006,SC-AZ eComm
+62061,SC-AZ eComm Inventory,006,SC-AZ eComm
+62011,SC-AZ eComm Office Admin,006,SC-AZ eComm
+62051,SC-AZ eComm Packing,006,SC-AZ eComm
+62031,SC-AZ eComm Picking,006,SC-AZ eComm
+62081,SC-AZ eComm Replenishment,006,SC-AZ eComm
+72086,SC-AZ Human Resources,006,
+72046,SC-AZ Maintenance,006,
+72106,SC-AZ Retail Inventory,006,SC-AZ Retail
+72016,SC-AZ Retail Office Admin 2,006,SC-AZ Retail
+72056,SC-AZ Retail Picking,006,SC-AZ Retail
+72036,SC-AZ Retail Receiving,006,SC-AZ Retail
+72026,SC-AZ Retail Shipping,006,SC-AZ Retail
+72076,SC-AZ Transportation,006,
+72084,,,
+72044,SC-GA Maintenance,004,
+72104,SC-GA Retail Inventory,004,
+72014,SC-GA Retail Office Admin 2,004,
+72064,SC-GA Retail Overpack,004,
+72054,SC-GA Retail Picking,004,
+72034,SC-GA Retail Receiving,004,
+72024,SC-GA Retail Shipping,004,
+72074,SC-GA Transportation,004,
+62022,SC-IN eComm Decant,007,
+62062,SC-IN eComm Inventory,007,
+62012,SC-IN eComm Office Admin,007,
+62052,SC-IN eComm Packing,007,
+62032,SC-IN eComm Picking,007,
+62042,SC-IN eComm Putaway,007,
+72087,SC-IN Human Resources,007,
+72047,SC-IN Maintenance,007,
+72107,SC-IN Retail Inventory,007,
+72017,SC-IN Retail Office Admin,007,
+72057,SC-IN Retail Picking,007,
+72037,SC-IN Retail Receiving,007,
+72027,SC-IN Retail Shipping,007,
+72077,SC-IN Transportation,007,
+72083,SC-NJ Human Resources,003,
+72043,SC-NJ Maintenance,003,
+72103,SC-NJ Retail Inventory,003,
+72013,SC-NJ Retail Office Admin,003,
+72063,SC-NJ Retail Overpack,003,
+72053,SC-NJ Retail Picking,003,
+72033,SC-NJ Retail Receiving,003,
+72003,SC-NJ Retail Ship Center,003,
+72023,SC-NJ Retail Shipping,003,
+72073,SC-NJ Transportation,003,
+72085,SC-TX Human Resources,005,
+72045,SC-TX Maintenance,005,
+72105,SC-TX Retail Inventory,005,
+72015,SC-TX Retail Office Admin,005,
+72065,SC-TX Retail Overpack,005,
+72055,SC-TX Retail Picking,005,
+72035,SC-TX Retail Receiving,005,
+72025,SC-TX Retail Shipping,005,
+72075,SC-TX Transportation,005,

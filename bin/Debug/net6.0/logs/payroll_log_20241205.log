@@ -1,0 +1,48 @@
+2024-12-05 13:05:47.2852 [DEBUG] Application Starting 
+2024-12-05 13:06:00.3292 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:06:03.7073 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:06:03.7073 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:06:41.6507 [INFO] Downloaded file: EmployeeEntity-2024-322-2024-356.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:06:42.4271 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv 
+2024-12-05 13:06:42.4271 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:06:44.3763 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:06:44 PM 
+2024-12-05 13:06:44.4986 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-05 13:06:44.5051 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-05 13:06:44.5051 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-05 13:06:44.5221 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:06:44 PM 
+2024-12-05 13:06:44.5221 [INFO] Time taken to process file: 0.147007 seconds. 
+2024-12-05 13:06:44.5221 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:06:44.5332 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_130644.csv 
+2024-12-05 13:06:44.5332 [INFO] Application Completed Successfully 
+2024-12-05 13:10:33.3643 [DEBUG] Application Starting 
+2024-12-05 13:10:43.5273 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:10:46.6172 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:10:46.6172 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:11:09.1703 [INFO] Downloaded file: EmployeeEntity-2024-322-2024-356.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:11:09.9369 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv 
+2024-12-05 13:11:09.9369 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:11:11.5248 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:11:11 PM 
+2024-12-05 13:11:11.6143 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-05 13:11:11.6143 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-05 13:11:11.6143 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-05 13:11:11.6372 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:11:11 PM 
+2024-12-05 13:11:11.6372 [INFO] Time taken to process file: 0.11328 seconds. 
+2024-12-05 13:11:11.6372 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:11:11.6454 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_131111.csv 
+2024-12-05 13:11:11.6454 [INFO] Application Completed Successfully 
+2024-12-05 13:37:21.2551 [DEBUG] Application Starting 
+2024-12-05 13:37:31.5957 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:37:34.7380 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:37:34.7380 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:38:14.7605 [INFO] Downloaded file: EmployeeEntity-2024-322-2024-356.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:38:15.4776 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv 
+2024-12-05 13:38:15.4791 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-322-2024-356.csv.gz 
+2024-12-05 13:38:17.1927 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:38:17 PM 
+2024-12-05 13:38:17.2599 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-05 13:38:17.2599 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-05 13:38:17.2599 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-05 13:38:17.2833 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv at 12/5/2024 1:38:17 PM 
+2024-12-05 13:38:17.2833 [INFO] Time taken to process file: 0.0912046 seconds. 
+2024-12-05 13:38:17.2833 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-05 13:38:17.2954 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_133817.csv 
+2024-12-05 13:38:17.2954 [INFO] Application Completed Successfully 

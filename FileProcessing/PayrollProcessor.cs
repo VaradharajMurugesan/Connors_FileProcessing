@@ -37,7 +37,7 @@ namespace ProcessFiles_Demo.FileProcessing
         };
 
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
-        private Dictionary<string, EmployeeHrData> employeeHrMapping;        
+        private Dictionary<string, EmployeeHrData> employeeHrMapping;
         private Dictionary<string, PaycodeData> payCodeMap; // Updated type
         private Dictionary<string, List<PaycodeData>> paycodeDict;
         SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
@@ -47,7 +47,7 @@ namespace ProcessFiles_Demo.FileProcessing
         {
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
             string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
-            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath);
+            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
             // Load employee HR mapping from Excel (grouped by employee ID now)
             employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
             paycodeDict = LoadPaycodeMappingFromXlsx("LegionPayCodes.xlsx");
@@ -150,7 +150,7 @@ namespace ProcessFiles_Demo.FileProcessing
                 string endDateString = $"{dates[3]}-{dates[4]}-{dates[5]}";   // 2024-11-02
 
                 DateTime startDate = DateTime.ParseExact(startDateString, "yyyy-MM-dd", null);
-                DateTime endDate = DateTime.ParseExact(endDateString, "yyyy-MM-dd", null);                
+                DateTime endDate = DateTime.ParseExact(endDateString, "yyyy-MM-dd", null);
                 return (startDate, endDate);
             }
             else
@@ -161,74 +161,90 @@ namespace ProcessFiles_Demo.FileProcessing
         }
 
 
-
-        // Method to load and group paycode data from an excel file
         public Dictionary<string, List<PaycodeData>> LoadPaycodeMappingFromXlsx(string filePath)
         {
             var paycodeDict = new Dictionary<string, List<PaycodeData>>();
 
-            // Set the LicenseContext for EPPlus (required)
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            try
             {
-                // Get the first worksheet
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                int rowCount = worksheet.Dimension.Rows; // Get number of rows
+                // Set the LicenseContext for EPPlus (required)
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                // Start reading from row 2 (skipping the header)
-                for (int row = 2; row <= rowCount; row++)
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
                 {
-                    var paycode = new PaycodeData
-                    {
-                        PayType = worksheet.Cells[row, 1].Text.Trim(),
-                        PayName = worksheet.Cells[row, 2].Text.Trim(),
-                        Reference = worksheet.Cells[row, 3].Text.Trim(),
-                        ADPColumn = worksheet.Cells[row, 4].Text.Trim(),
-                        ADPHoursOrAmountCode = worksheet.Cells[row, 5].Text.Trim(),
-                        PassForHourly = worksheet.Cells[row, 6].Text.Trim(),
-                        PassForSalary = worksheet.Cells[row, 7].Text.Trim()
-                    };
+                    // Get the first worksheet
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension.Rows; // Get number of rows
 
-                    // Ensure PayType is not empty
-                    if (!string.IsNullOrWhiteSpace(paycode.PayType))
+                    // Start reading from row 2 (skipping the header)
+                    for (int row = 2; row <= rowCount; row++)
                     {
-                        // If the pay type already exists in the dictionary, add to the list
-                        if (paycodeDict.ContainsKey(paycode.PayType))
+                        try
                         {
-                            paycodeDict[paycode.PayType].Add(paycode);
+                            var paycode = new PaycodeData
+                            {
+                                PayType = worksheet.Cells[row, 1].Text.Trim(),
+                                PayName = worksheet.Cells[row, 2].Text.Trim(),
+                                Reference = worksheet.Cells[row, 3].Text.Trim(),
+                                ADPColumn = worksheet.Cells[row, 4].Text.Trim(),
+                                ADPHoursOrAmountCode = worksheet.Cells[row, 5].Text.Trim(),
+                                PassForHourly = worksheet.Cells[row, 6].Text.Trim(),
+                                PassForSalary = worksheet.Cells[row, 7].Text.Trim()
+                            };
+
+                            // Ensure PayType is not empty
+                            if (!string.IsNullOrWhiteSpace(paycode.PayType))
+                            {
+                                // If the pay type already exists in the dictionary, add to the list
+                                if (paycodeDict.ContainsKey(paycode.PayType))
+                                {
+                                    paycodeDict[paycode.PayType].Add(paycode);
+                                }
+                                else
+                                {
+                                    // If pay type doesn't exist, create a new list and add it to the dictionary
+                                    paycodeDict[paycode.PayType] = new List<PaycodeData> { paycode };
+                                }
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            // If pay type doesn't exist, create a new list and add it to the dictionary
-                            paycodeDict[paycode.PayType] = new List<PaycodeData> { paycode };
+                            // Log or handle row-specific exception
+                            LoggerObserver.OnFileFailed($"Error processing row {row}, {ex.Message}");
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // Log or handle file-level exception
+                LoggerObserver.OnFileFailed($"Error loading Excel file: {ex.Message}");
+                throw; // Optionally rethrow the exception if it should propagate
+            }
 
             return paycodeDict;
         }
+
 
         // Helper method to determine the memoAmount
         private (string memoCode, int? memoAmount, string specialProcCode, DateTime? otherStartDate, DateTime? otherEndDate) GetMemoAmount(DateTime startDate, DateTime endDate, DateTime fileStartDate, DateTime week1EndDate, DateTime week2StartDate, DateTime fileEndDate)
         {
             if (startDate.Date >= fileStartDate.Date && endDate.Date <= week1EndDate.Date)
             {
-                return ("WK",1, "",null,null); // Week 1
+                return ("WK", 1, "", null, null); // Week 1
             }
             else if (startDate.Date >= week2StartDate.Date && endDate.Date <= fileEndDate.Date)
             {
-                return ("WK",2, "",null,null); // Week 2
+                return ("WK", 2, "", null, null); // Week 2
             }
             else
             {
-                return ("",null, "E", startDate.Date, endDate.Date);
+                return ("", null, "E", startDate.Date, endDate.Date);
             }
         }
 
         public async Task ProcessAsync(string filePath, string destinationPath)
-        {            
+        {
             var (fileStartDate, fileEndDate) = ExtractDateRange(Path.GetFileNameWithoutExtension(filePath));
             // Calculate Week 1 and Week 2 date ranges
             var week1EndDate = Convert.ToDateTime(fileStartDate).AddDays(6); // End of Week 1
@@ -237,246 +253,300 @@ namespace ProcessFiles_Demo.FileProcessing
             DateTime startTime = DateTime.Now;
             string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
             LoggerObserver.LogFileProcessed($"Start processing Payroll CSV: {filePath} at {startTime}");
-
-            string destinationFileName = Path.GetFileName(filePath);
-            var destinationFilePath = Path.Combine(destinationPath, $"Payroll_{timestamp}.csv");
-
-            string header = "Co Code,Batch ID,File #,Rate Code,Temp Dept,Reg Hours,O/T Hours,Hours 3 Code,Hours 3 Amount,Earnings 3 Code,Earnings 3 Amount,Memo Code,Memo Amount,Special Proc Code,Other Begin Date,Other End Date";
-            using (var writer = new StreamWriter(destinationFilePath, false))
+            
+            try
             {
-                await writer.WriteLineAsync(header).ConfigureAwait(false);
-            }
+                
 
-            var records = new List<PayrollRecord>();
-
-            using (var reader = new StreamReader(filePath))
-            {
-                // Read and skip the header line
-                string headerLine = await reader.ReadLineAsync().ConfigureAwait(false);
-
-                string line;
-                while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
+                var records = new List<PayrollRecord>();
+                // Read the source file
+                try
                 {
-                    var payrollRecord = ParseLineToPayrollRecord(line);
-                    if (payrollRecord != null)
+                    using (var reader = new StreamReader(filePath))
                     {
-                        records.Add(payrollRecord);
-                    }
-                    else
-                    {
-                        LoggerObserver.OnFileFailed($"Malformed line: {line}");
-                    }
-                }
-            }
+                        // Read and skip the header line
+                        string headerLine = await reader.ReadLineAsync().ConfigureAwait(false);
 
-            // Sort by Employee Id and Date
-            // Step 1: Group records by EmployeeId, date range, PayType, and PayrollEarningRole
-            var initialGroupedRecords = records
-                .Where(r => !(r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))) // Check for multiple roles
-                .OrderBy(r => r.EmployeeId)
-                .ThenBy(r => ParseDateRange(r.Date).startDate)
-                .GroupBy(r =>
-                {
-                    var dateRange = ParseDateRange(r.Date);
-                    return new { r.EmployeeId, r.WorkLocation, StartDate = dateRange.startDate, EndDate = dateRange.endDate, r.PayType, r.PayRollEarningRole };
-                })
-                .Select(g =>
-                {
-                    // Get memoCode and memoAmount based on the date range
-                    var (memoCode, memoAmount, specialProcCode, otherStartDate, otherEndDate) =
-                        GetMemoAmount(g.Key.StartDate, g.Key.EndDate, Convert.ToDateTime(fileStartDate), week1EndDate, week2StartDate, Convert.ToDateTime(fileEndDate));
-
-                    return new PayrollRecord
-                    {
-                        EmployeeId = g.Key.EmployeeId,
-                        Date = g.Key.StartDate == g.Key.EndDate
-                                ? g.Key.StartDate.ToString("M/d/yyyy")
-                                : $"{g.Key.StartDate:M/d/yyyy} to {g.Key.EndDate:M/d/yyyy}",
-                        PayType = g.Key.PayType,
-                        EmployeeName = g.First().EmployeeName,
-                        HomeLocation = g.First().HomeLocation,
-                        JobTitle = g.First().JobTitle,
-                        WorkLocation = g.Key.WorkLocation,
-                        WorkRole = g.First().WorkRole,
-                        PayName = string.Join("~", g.Select(r => r.PayName)),
-                        PayRollEarningRole = g.First().PayRollEarningRole,
-                        MemoCode = memoCode,
-                        MemoAmount = memoAmount,
-                        SpecialProcCode = specialProcCode,
-                        OtherStartDate = Convert.ToString(otherStartDate),
-                        OtherEndDate = Convert.ToString(otherEndDate),
-
-                        Hours = g.Sum(r => r.Hours),
-                        Rate = g.Sum(r => r.Rate),
-                        Amount = g.Sum(r => r.Amount)
-                    };
-                })
-                .ToList();
-
-            // Step 2: Apply custom logic for Hours adjustment based on conditions
-            var finalRecords = initialGroupedRecords
-                .GroupBy(r => new { r.EmployeeId, r.Date, r.WorkLocation }) // Group by EmployeeId, Date, and WorkLocation
-                .Select(g =>
-                {
-                    decimal adjustedHours = g.Sum(r => r.Hours); // Default sum of hours
-
-                    // Condition 1: Overtime and Differential with 2SDOT
-                    var regularRecord = g.FirstOrDefault(r => r.PayType == "Regular");
-                    var differentialRecord = g.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SD");
-
-                    if (regularRecord != null && differentialRecord != null)
-                    {
-                        regularRecord.Hours = regularRecord.Hours - differentialRecord.Hours; ; // Update Hours in Overtime record
-                    }
-
-
-                    // Condition 1: Overtime and Differential with 2SDOT
-                    var overtimeRecord = g.FirstOrDefault(r => r.PayType == "Overtime");
-                    var differentialOTRecord = g.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDOT");
-
-                    if (overtimeRecord != null && differentialOTRecord != null)
-                    {                        
-                        overtimeRecord.Hours = overtimeRecord.Hours - differentialOTRecord.Hours; ; // Update Hours in Overtime record
-                    }
-
-                    // Condition 2: Double Time and Holiday Worked Doubletime
-                    var doubleTimeHours = g.Where(r => r.PayType == "Double Time" || r.PayType == "Holiday Worked Doubletime").Sum(r => r.Hours);
-
-                    // Condition 3: Differential with 2SDDT and 2SDHDT
-                    var differentialDTAndHDT = g.Where(r => r.PayType == "Differential" && (r.PayRollEarningRole == "2SDDT" || r.PayRollEarningRole == "2SDHDT")).Sum(r => r.Hours);
-
-                    if (doubleTimeHours > 0 && differentialDTAndHDT > 0)
-                    {
-                        var adjustedDoubleTimeHours = doubleTimeHours - differentialDTAndHDT;
-
-                        // Apply the adjustedDoubleTimeHours back to the Double Time record
-                        var doubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Double Time");
-                        var holidayDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Holiday Worked Doubletime");
-                        var differentialDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Differential" && (r.PayRollEarningRole == "2SDDT" || r.PayRollEarningRole == "2SDHDT"));
-                        if (doubleTimeRecord != null)
+                        string line;
+                        while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                         {
-                            doubleTimeRecord.Hours = adjustedDoubleTimeHours;                         
-
+                            var payrollRecord = ParseLineToPayrollRecord(line);
+                            if (payrollRecord != null)
+                            {
+                                records.Add(payrollRecord);
+                            }
+                            else
+                            {
+                                LoggerObserver.OnFileFailed($"Malformed line: {line}");
+                            }
                         }
-                        if (holidayDoubleTimeRecord != null)
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new IOException($"Error reading input file: {filePath}. Details: {ex.Message}", ex);
+                }
+                // Further processing (sorting, grouping, etc.)
+                try
+                {
+                    // Sort by Employee Id and Date
+                    // Step 1: Group records by EmployeeId, date range, PayType, and PayrollEarningRole
+                    var initialGroupedRecords = records
+                    .Where(r => !(r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))) // Check for multiple roles
+                    .OrderBy(r => r.EmployeeId)
+                    .ThenBy(r => ParseDateRange(r.Date).startDate)
+                    .GroupBy(r =>
+                    {
+                        var dateRange = ParseDateRange(r.Date);
+                        return new { r.EmployeeId, r.WorkLocation, StartDate = dateRange.startDate, EndDate = dateRange.endDate, r.PayType, r.PayRollEarningRole };
+                    })
+                    .Select(g =>
+                    {
+                        // Get memoCode and memoAmount based on the date range
+                        var (memoCode, memoAmount, specialProcCode, otherStartDate, otherEndDate) =
+                            GetMemoAmount(g.Key.StartDate, g.Key.EndDate, Convert.ToDateTime(fileStartDate), week1EndDate, week2StartDate, Convert.ToDateTime(fileEndDate));
+
+                        return new PayrollRecord
                         {
-                            holidayDoubleTimeRecord.Hours = adjustedDoubleTimeHours;
+                            EmployeeId = g.Key.EmployeeId,
+                            Date = g.Key.StartDate == g.Key.EndDate
+                                    ? g.Key.StartDate.ToString("M/d/yyyy")
+                                    : $"{g.Key.StartDate:M/d/yyyy} to {g.Key.EndDate:M/d/yyyy}",
+                            PayType = g.Key.PayType,
+                            EmployeeName = g.First().EmployeeName,
+                            HomeLocation = g.First().HomeLocation,
+                            JobTitle = g.First().JobTitle,
+                            WorkLocation = g.Key.WorkLocation,
+                            WorkRole = g.First().WorkRole,
+                            PayName = string.Join("~", g.Select(r => r.PayName)),
+                            PayRollEarningRole = g.First().PayRollEarningRole,
+                            MemoCode = memoCode,
+                            MemoAmount = memoAmount,
+                            SpecialProcCode = specialProcCode,
+                            OtherStartDate = Convert.ToString(otherStartDate),
+                            OtherEndDate = Convert.ToString(otherEndDate),
 
-                        }
-                        if (differentialDoubleTimeRecord != null)
-                        {                            
-                            differentialDoubleTimeRecord.Hours = differentialDTAndHDT;
-                        }
-                    }
+                            Hours = g.Sum(r => r.Hours),
+                            Rate = g.Sum(r => r.Rate),
+                            Amount = g.Sum(r => r.Amount)
+                        };
+                    })
+                    .ToList();
 
-                    // Exclude records with zero Hours
-                    return g.Where(r => r.Hours > 0 || r.Amount > 0);
-                })
-                .SelectMany(r => r) // Flatten grouped records
-                .ToList();
+                    // Step 2: Apply custom logic for Hours adjustment based on conditions
+                    var finalRecords = initialGroupedRecords
+                        .GroupBy(r => new { r.EmployeeId, r.Date, r.WorkLocation }) // Group by EmployeeId, Date, and WorkLocation
+                        .Select(g =>
+                        {
+                            decimal adjustedHours = g.Sum(r => r.Hours); // Default sum of hours
+
+                            // Condition 1: Overtime and Differential with 2SDOT
+                            var regularRecord = g.FirstOrDefault(r => r.PayType == "Regular");
+                            var differentialRecord = g.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SD");
+
+                            if (regularRecord != null && differentialRecord != null)
+                            {
+                                regularRecord.Hours = regularRecord.Hours - differentialRecord.Hours; ; // Update Hours in Overtime record
+                            }
 
 
-            // Step 3: Remove specific records based on conditions
-            finalRecords = finalRecords
-                .GroupBy(r => new { r.EmployeeId, r.Date, r.WorkLocation }) // Group by EmployeeId, Date, and WorkLocation
+                            // Condition 1: Overtime and Differential with 2SDOT
+                            var overtimeRecord = g.FirstOrDefault(r => r.PayType == "Overtime");
+                            var differentialOTRecord = g.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDOT");
 
-                .SelectMany(g =>
-                {
-                    
-                    var recordsList = g.ToList(); // Convert grouping to a list for easier manipulation
+                            if (overtimeRecord != null && differentialOTRecord != null)
+                            {
+                                overtimeRecord.Hours = overtimeRecord.Hours - differentialOTRecord.Hours; ; // Update Hours in Overtime record
+                            }
 
-                    // Condition: Remove "Holiday Worked Doubletime" if both "Double Time" and "Holiday Worked Doubletime" are present
-                    var hasDoubleTime = recordsList.Any(r => r.PayType == "Double Time");
-                    var holidayDoubleTimeRecord = recordsList.FirstOrDefault(r => r.PayType == "Holiday Worked Doubletime");
+                            // Condition 2: Double Time and Holiday Worked Doubletime
+                            var doubleTimeHours = g.Where(r => r.PayType == "Double Time" || r.PayType == "Holiday Worked Doubletime").Sum(r => r.Hours);
 
-                    if (hasDoubleTime && holidayDoubleTimeRecord != null)
+                            // Condition 3: Differential with 2SDDT and 2SDHDT
+                            var differentialDTAndHDT = g.Where(r => r.PayType == "Differential" && (r.PayRollEarningRole == "2SDDT" || r.PayRollEarningRole == "2SDHDT")).Sum(r => r.Hours);
+
+                            if (doubleTimeHours > 0 && differentialDTAndHDT > 0)
+                            {
+                                var adjustedDoubleTimeHours = doubleTimeHours - differentialDTAndHDT;
+
+                                // Apply the adjustedDoubleTimeHours back to the Double Time record
+                                var doubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Double Time");
+                                var holidayDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Holiday Worked Doubletime");
+                                var differentialDoubleTimeRecord = g.FirstOrDefault(r => r.PayType == "Differential" && (r.PayRollEarningRole == "2SDDT" || r.PayRollEarningRole == "2SDHDT"));
+                                if (doubleTimeRecord != null)
+                                {
+                                    doubleTimeRecord.Hours = adjustedDoubleTimeHours;
+
+                                }
+                                if (holidayDoubleTimeRecord != null)
+                                {
+                                    holidayDoubleTimeRecord.Hours = adjustedDoubleTimeHours;
+
+                                }
+                                if (differentialDoubleTimeRecord != null)
+                                {
+                                    differentialDoubleTimeRecord.Hours = differentialDTAndHDT;
+                                }
+                            }
+
+                            // Exclude records with zero Hours
+                            return g.Where(r => r.Hours > 0 || r.Amount > 0);
+                        })
+                        .SelectMany(r => r) // Flatten grouped records
+                        .ToList();
+
+
+                    // Step 3: Remove specific records based on conditions
+                    finalRecords = finalRecords
+                        .GroupBy(r => new { r.EmployeeId, r.Date, r.WorkLocation }) // Group by EmployeeId, Date, and WorkLocation
+
+                        .SelectMany(g =>
+                        {
+
+                            var recordsList = g.ToList(); // Convert grouping to a list for easier manipulation
+
+                            // Condition: Remove "Holiday Worked Doubletime" if both "Double Time" and "Holiday Worked Doubletime" are present
+                            var hasDoubleTime = recordsList.Any(r => r.PayType == "Double Time");
+                            var holidayDoubleTimeRecord = recordsList.FirstOrDefault(r => r.PayType == "Holiday Worked Doubletime");
+
+                            if (hasDoubleTime && holidayDoubleTimeRecord != null)
+                            {
+                                // Remove "Holiday Worked Doubletime" record
+                                recordsList.Remove(holidayDoubleTimeRecord);
+                            }
+
+                            // Condition: Remove "2SDHDT" if both "2SDDT" and "2SDHDT" are present in Differential records
+                            var hasDifferentialDT = recordsList.Any(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDDT");
+                            var differentialHDTRecord = recordsList.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDHDT");
+
+                            if (hasDifferentialDT && differentialHDTRecord != null)
+                            {
+                                // Remove "2SDHDT" record
+                                recordsList.Remove(differentialHDTRecord);
+                            }
+
+                            return recordsList; // Return the modified list for this group
+                        })
+                        .ToList();
+
+
+                    // Add back the ungrouped "Regular" and "Store Guard" records
+                    var ungroupedRecords = records
+                    .Where(r => r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))
+                    .Select(r =>
                     {
-                        // Remove "Holiday Worked Doubletime" record
-                        recordsList.Remove(holidayDoubleTimeRecord);
-                    }
+                        // Extract the date range from the record's date
+                        var dateRange = ParseDateRange(r.Date);
 
-                    // Condition: Remove "2SDHDT" if both "2SDDT" and "2SDHDT" are present in Differential records
-                    var hasDifferentialDT = recordsList.Any(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDDT");
-                    var differentialHDTRecord = recordsList.FirstOrDefault(r => r.PayType == "Differential" && r.PayRollEarningRole == "2SDHDT");
+                        // Get memoCode, memoAmount, and other date-based fields based on the date range
+                        var (memoCode, memoAmount, specialProcCode, otherStartDate, otherEndDate) =
+                            GetMemoAmount(dateRange.startDate, dateRange.endDate, Convert.ToDateTime(fileStartDate), week1EndDate, week2StartDate, Convert.ToDateTime(fileEndDate));
 
-                    if (hasDifferentialDT && differentialHDTRecord != null)
+                        return new PayrollRecord
+                        {
+                            EmployeeId = r.EmployeeId,
+                            Date = dateRange.startDate == dateRange.endDate
+                                ? dateRange.startDate.ToString("M/d/yyyy")
+                                : $"{dateRange.startDate:M/d/yyyy} to {dateRange.endDate:M/d/yyyy}",
+                            PayType = r.PayType,
+                            EmployeeName = r.EmployeeName,
+                            HomeLocation = r.HomeLocation,
+                            JobTitle = r.JobTitle,
+                            WorkLocation = r.WorkLocation,
+                            WorkRole = r.WorkRole,
+                            PayName = r.PayName,
+                            PayRollEarningRole = r.PayRollEarningRole,
+                            Hours = r.Hours,
+                            Rate = r.Rate,
+                            Amount = r.Amount,
+                            MemoCode = memoCode,
+                            MemoAmount = memoAmount,
+                            SpecialProcCode = specialProcCode,
+                            OtherStartDate = Convert.ToString(otherStartDate),
+                            OtherEndDate = Convert.ToString(otherEndDate),
+                        };
+                    })
+                    .ToList();
+
+
+                    // Combine grouped and ungrouped records
+                    finalRecords.AddRange(ungroupedRecords);
+                    // Group by Employee Id
+                    //var groupedRecords = sortedRecords.GroupBy(r => r.EmployeeId);
+                    // Get the first record from the list
+                    var firstRecord = finalRecords.First();
+
+                    // Extract the EmployeeId from the first record
+                    var firstEmployeeId = firstRecord.EmployeeId;
+
+                    // Fetch the matching CompanyId from employeeHrMapping
+                    string companyCode = employeeHrMapping.TryGetValue(firstEmployeeId, out var employeeHrData)
+                                         ? employeeHrData.CompanyId
+                                         : "UNKNOWN";
+
+                    string destinationFileName = Path.GetFileName(filePath);
+                    var destinationFilePath = Path.Combine(destinationPath, $"EPI_{companyCode}_{timestamp}_payfile.csv");
+
+                    string header = "Co Code,Batch ID,File #,Rate Code,Temp Dept,Reg Hours,O/T Hours,Hours 3 Code,Hours 3 Amount,Earnings 3 Code,Earnings 3 Amount,Memo Code,Memo Amount,Special Proc Code,Other Begin Date,Other End Date";
+
+                    // Validate input paths
+                    if (!File.Exists(filePath))
                     {
-                        // Remove "2SDHDT" record
-                        recordsList.Remove(differentialHDTRecord);
+                        throw new FileNotFoundException($"Input file not found: {filePath}");
                     }
 
-                    return recordsList; // Return the modified list for this group
-                })
-                .ToList();
+                    if (!Directory.Exists(destinationPath))
+                    {
+                        throw new DirectoryNotFoundException($"Destination path does not exist: {destinationPath}");
+                    }
+                    // Initialize the CSV with the header
+                    try
+                    {
+                        using (var writer = new StreamWriter(destinationFilePath, false))
+                        {
+                            await writer.WriteLineAsync(header).ConfigureAwait(false);
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        throw new IOException($"Error writing header to destination file: {destinationFilePath}.", ex);
+                    }
 
+                    foreach (var employeeGroup in finalRecords)
+                    {
+                        var lineBuffer = new List<string>();
 
-            // Add back the ungrouped "Regular" and "Store Guard" records
-            var ungroupedRecords = records
-            .Where(r => r.PayType == "Regular" && ExcludedRoles.Contains(r.WorkRole))
-            .Select(r =>
-            {
-                // Extract the date range from the record's date
-                var dateRange = ParseDateRange(r.Date);
+                        //foreach (var record in employeeGroup)
+                        //{
+                        var processedLines = await ProcessPayrollLineAsync(employeeGroup);
+                        if (processedLines != null && processedLines.Any())
+                        {
+                            lineBuffer.AddRange(processedLines);
+                        }
+                        //}
 
-                // Get memoCode, memoAmount, and other date-based fields based on the date range
-                var (memoCode, memoAmount, specialProcCode, otherStartDate, otherEndDate) =
-                    GetMemoAmount(dateRange.startDate, dateRange.endDate, Convert.ToDateTime(fileStartDate), week1EndDate, week2StartDate, Convert.ToDateTime(fileEndDate));
-
-                return new PayrollRecord
-                {
-                    EmployeeId = r.EmployeeId,
-                    Date = dateRange.startDate == dateRange.endDate
-                        ? dateRange.startDate.ToString("M/d/yyyy")
-                        : $"{dateRange.startDate:M/d/yyyy} to {dateRange.endDate:M/d/yyyy}",
-                    PayType = r.PayType,
-                    EmployeeName = r.EmployeeName,
-                    HomeLocation = r.HomeLocation,
-                    JobTitle = r.JobTitle,
-                    WorkLocation = r.WorkLocation,
-                    WorkRole = r.WorkRole,
-                    PayName = r.PayName,
-                    PayRollEarningRole = r.PayRollEarningRole,
-                    Hours = r.Hours,
-                    Rate = r.Rate,
-                    Amount = r.Amount,
-                    MemoCode = memoCode,
-                    MemoAmount = memoAmount,
-                    SpecialProcCode = specialProcCode,
-                    OtherStartDate = Convert.ToString(otherStartDate),
-                    OtherEndDate = Convert.ToString(otherEndDate),
-                };
-            })
-            .ToList();
-
-
-            // Combine grouped and ungrouped records
-            finalRecords.AddRange(ungroupedRecords);
-            // Group by Employee Id
-            //var groupedRecords = sortedRecords.GroupBy(r => r.EmployeeId);
-
-            foreach (var employeeGroup in finalRecords)
-            {
-                var lineBuffer = new List<string>();
-
-                //foreach (var record in employeeGroup)
-                //{
-                var processedLines = await ProcessPayrollLineAsync(employeeGroup);
-                if (processedLines != null && processedLines.Any())
-                {
-                    lineBuffer.AddRange(processedLines);
+                        if (lineBuffer.Any())
+                        {
+                            await WriteBatchAsync(destinationFilePath, lineBuffer).ConfigureAwait(false);
+                        }
+                    }                    
                 }
-                //}
-
-                if (lineBuffer.Any())
+                catch (Exception ex)
                 {
-                    await WriteBatchAsync(destinationFilePath, lineBuffer).ConfigureAwait(false);
+                    LoggerObserver.OnFileFailed($"Error processing payroll data. Details: {ex.Message}");
+                    throw;
                 }
+
+                DateTime endTime = DateTime.Now;
+                LoggerObserver.LogFileProcessed($"Finished processing Payroll CSV: {filePath} at {endTime}");
+                TimeSpan duration = endTime - startTime;
+                LoggerObserver.LogFileProcessed($"Time taken to process file: {duration.TotalSeconds} seconds.");
             }
-
-            DateTime endTime = DateTime.Now;
-            LoggerObserver.LogFileProcessed($"Finished processing Payroll CSV: {filePath} at {endTime}");
-            TimeSpan duration = endTime - startTime;
-            LoggerObserver.LogFileProcessed($"Time taken to process file: {duration.TotalSeconds} seconds.");
+            catch (Exception ex)
+            {
+                LoggerObserver.Error(ex, $"Critical error during processing Payroll CSV: {filePath}");
+                throw; // Rethrow for higher-level handling if needed
+            }
         }
 
         private DateTime ParseDate(string dateStr)
@@ -564,6 +634,7 @@ namespace ProcessFiles_Demo.FileProcessing
             }
             catch (Exception ex)
             {
+                LoggerObserver.Error(ex, $"Exception occure on line: {line}");
                 return null;
             }
         }
@@ -619,14 +690,14 @@ namespace ProcessFiles_Demo.FileProcessing
         private async Task<List<string>> ProcessPayrollLineAsync(PayrollRecord record)
         {
             var processedLines = new List<string>();
-            string memoCode=string.Empty;
+            string memoCode = string.Empty;
             int? memoAmount = null;
             string specialProcCode = string.Empty;
             string rateCode = string.Empty;
-           DateTime ? startDate = null;
+            DateTime? startDate = null;
             DateTime? endDate = null;
             // Lookup HR data using grouping by location first, then by employeeId
-            EmployeeHrData hrData = null;           
+            EmployeeHrData hrData = null;
 
             if (employeeHrMapping.ContainsKey(record.EmployeeId))
             {
@@ -650,7 +721,7 @@ namespace ProcessFiles_Demo.FileProcessing
                 // Extract and parse the start date from the range
                 record.MemoCode = "";
                 record.MemoAmount = null;
-            }           
+            }
 
             // Initialize fields with default or empty values
             string regHours = "0.00";
@@ -699,8 +770,8 @@ namespace ProcessFiles_Demo.FileProcessing
                 .ThenByDescending(pc => pc.PayName == record.PayRollEarningRole) // Secondary priority for PayRollEarningRole
                 .FirstOrDefault(); // Return only one record
                 // Only proceed if we found matching PaycodeData for both PayType and PayName
-                if (filteredPaycodes!=null)
-                {                   
+                if (filteredPaycodes != null)
+                {
                     //var paycodeDataList = paycodeDict[record.PayType];
                     regularHoursColumn = "";
                     overtimeHoursColumn = "";
@@ -720,7 +791,7 @@ namespace ProcessFiles_Demo.FileProcessing
                     //    regularHoursColumn = paycodeData.ADPColumn;
                     //    regularHours = record.Hours;
                     //}
-                    if(record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & !ExcludedRoles.Contains(record.PayName.Trim()) & filteredPaycodes.ADPColumn == "Reg Hours")
+                    if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & !ExcludedRoles.Contains(record.PayName.Trim()) & filteredPaycodes.ADPColumn == "Reg Hours")
                     {
                         regularHoursColumn = filteredPaycodes.ADPColumn;
                         regularHours = record.Hours;
@@ -728,7 +799,7 @@ namespace ProcessFiles_Demo.FileProcessing
                     }
                     else if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & ExcludedRoles.Contains(record.WorkRole.Trim()))
                     {
-                        if(record.Hours !=0)
+                        if (record.Hours != 0)
                         {
                             hours3Code = filteredPaycodes.ADPHoursOrAmountCode;
                             hours3Amount = record.Hours;
@@ -741,13 +812,13 @@ namespace ProcessFiles_Demo.FileProcessing
                             isConditionMatched = true;
                         }
 
-                    }                        
+                    }
                     else if (filteredPaycodes.ADPColumn == "O/T Hours" & payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
                     {
                         overtimeHoursColumn = filteredPaycodes.ADPColumn;
                         overtimeHours = record.Hours;
                         isConditionMatched = true;
-                    }                       
+                    }
                     else if (!record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) & (payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)) || record.PayRollEarningRole.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
                     {
                         if (record.Hours != 0)
@@ -762,7 +833,7 @@ namespace ProcessFiles_Demo.FileProcessing
                             earnings3Amount = record.Amount;
                             isConditionMatched = true;
                         }
-                    }                        
+                    }
                     // Generate processed line for each paycodeData entry
                     if (isConditionMatched)
                     {
@@ -776,14 +847,17 @@ namespace ProcessFiles_Demo.FileProcessing
 
                         processedLines.Add(processedLine);
                     }
-                    
+
                 }
                 else
                 {
                     LoggerObserver.OnFileFailed($"No Paycode found for PayType: {record.PayType} for Employee ID {record.EmployeeId}");
                 }
             }
-
+            else
+            {
+                LoggerObserver.OnFileFailed($"No Paycode found for PayType: {record.PayType} for Employee ID {record.EmployeeId}");
+            }
             return processedLines;
         }
 

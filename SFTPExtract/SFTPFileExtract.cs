@@ -11,7 +11,7 @@ namespace ProcessFiles_Demo.SFTPExtract
 {
     public class SFTPFileExtract
     {
-        public string DownloadAndExtractFile(JObject clientSettings, string remoteDirectoryPath, string localDirectoryPath)
+        public string DownloadAndExtractFile(JObject clientSettings, string remoteDirectoryPath, string localDirectoryPath, string fileNamePrefix)
         {
             // Delete any existing EmployeeAttributeEntity files in the mapping folder
             DeleteExistingMappingFiles(localDirectoryPath);
@@ -28,7 +28,7 @@ namespace ProcessFiles_Demo.SFTPExtract
 
                 // Step 1: List files in the remote directory and find the latest "EmployeeAttributeEntity" .gz file
                 var files = sftp.ListDirectory(remoteDirectoryPath)
-                                .Where(f => f.Name.StartsWith("EmployeeEntity") && f.Name.EndsWith(".gz") && !f.IsDirectory)
+                                .Where(f => f.Name.StartsWith(fileNamePrefix) && f.Name.EndsWith(".gz") && !f.IsDirectory)
                                 .OrderByDescending(f => f.LastWriteTime)
                                 .ToList();
 

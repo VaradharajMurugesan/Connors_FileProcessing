@@ -1,0 +1,93 @@
+2024-12-11 13:32:53.6671 [DEBUG] Application Starting 
+2024-12-11 13:33:03.7009 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:33:06.8129 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:33:07.1087 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133307.csv:  System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:33:07.2167 [INFO] ERROR: File not found at the specified location: path/to/privatekey.asc - moved to ReprocessFiles. 
+2024-12-11 13:33:07.2167 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:33:07.2188 [INFO] Application Completed Successfully 
+2024-12-11 13:33:29.0520 [DEBUG] Application Starting 
+2024-12-11 13:33:57.1588 [INFO] Downloaded file: EmployeeEntity-2024-329-2024-363.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:33:57.9454 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv 
+2024-12-11 13:33:57.9454 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:35:48.1293 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133307.csv at 12/11/2024 1:35:48 PM 
+2024-12-11 13:35:48.2542 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-11 13:35:48.2542 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-11 13:35:48.2542 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-11 13:35:48.2810 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133307.csv at 12/11/2024 1:35:48 PM 
+2024-12-11 13:35:48.2810 [INFO] Time taken to process file: 0.1529176 seconds. 
+2024-12-11 13:35:48.2810 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133307.csv 
+2024-12-11 13:35:48.2810 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133307_20241211_133548.csv 
+2024-12-11 13:35:57.9467 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:36:01.1271 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:36:01.3700 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133601.csv:  System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:36:01.4194 [INFO] ERROR: File not found at the specified location: path/to/privatekey.asc - moved to ReprocessFiles. 
+2024-12-11 13:36:01.4194 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:36:01.4194 [INFO] Application Completed Successfully 
+2024-12-11 13:38:18.5983 [DEBUG] Application Starting 
+2024-12-11 13:38:33.4897 [INFO] Downloaded file: EmployeeEntity-2024-329-2024-363.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:38:34.3815 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv 
+2024-12-11 13:38:34.3815 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:40:09.2159 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133601.csv at 12/11/2024 1:40:09 PM 
+2024-12-11 13:40:09.3650 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-11 13:40:09.3650 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-11 13:40:09.3842 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-11 13:40:09.4164 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133601.csv at 12/11/2024 1:40:09 PM 
+2024-12-11 13:40:09.4164 [INFO] Time taken to process file: 0.2013005 seconds. 
+2024-12-11 13:40:09.4164 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133601.csv 
+2024-12-11 13:40:09.4266 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_133601_20241211_134009.csv 
+2024-12-11 13:40:20.6428 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:40:23.6390 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:40:24.1782 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134024.csv:  System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:40:24.2656 [INFO] ERROR: File not found at the specified location: path/to/privatekey.asc - moved to ReprocessFiles. 
+2024-12-11 13:40:24.2656 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:40:24.2656 [INFO] Application Completed Successfully 
+2024-12-11 13:45:39.9311 [DEBUG] Application Starting 
+2024-12-11 13:45:56.0233 [INFO] Downloaded file: EmployeeEntity-2024-329-2024-363.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:45:56.7794 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv 
+2024-12-11 13:45:56.7794 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-329-2024-363.csv.gz 
+2024-12-11 13:48:03.0778 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134024.csv at 12/11/2024 1:48:03 PM 
+2024-12-11 13:48:03.1664 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-11 13:48:03.1664 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-11 13:48:03.1664 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-11 13:48:03.1871 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134024.csv at 12/11/2024 1:48:03 PM 
+2024-12-11 13:48:03.1871 [INFO] Time taken to process file: 0.1102984 seconds. 
+2024-12-11 13:48:03.1871 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134024.csv 
+2024-12-11 13:48:03.1871 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134024_20241211_134803.csv 
+2024-12-11 13:48:12.5491 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:48:15.4825 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_2024-10-20-2024-11-02_2024-11-04.csv 
+2024-12-11 13:48:15.8227 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv:  System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:48:15.9203 [INFO] ERROR: File not found at the specified location: path/to/privatekey.asc - moved to ReprocessFiles. 
+2024-12-11 13:48:15.9203 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync System.IO.FileNotFoundException: File not found at the specified location: path/to/privatekey.asc
+   at DidiSoft.BC.BaseLib.ReadFileOrAsciiString(String inputFile, String variableName)
+   at DidiSoft.Pgp.PGPLib.DecryptFile(String encryptedFile, String privateKeyFile, String privateKeyPassword, String outputFileName)
+   at ProcessFiles_Demo.Decryption.Decrypt.DecryptFile(String inputFilePath, String outputFilePath, String privateKeyPath, String passPhrase) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Decryption\Decrypt.cs:line 16
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 121
+2024-12-11 13:48:15.9203 [INFO] Application Completed Successfully 
