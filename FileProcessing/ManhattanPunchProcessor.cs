@@ -130,14 +130,14 @@ namespace ProcessFiles_Demo.FileProcessing
             // Process each group of records
             foreach (var group in groupedTimeClockData)
             {
-                foreach (var eventType in new[] { "Create", "Delete" })
+                foreach (var eventType in new[] { "Create", "Delete", "ApproveReject" })
                 {
                     if (group.Records.Any(r => r.EventType == eventType))
                     {
                         XmlElement tasData = xmlDoc.CreateElement("TASData");
                         timeAndAttendance.AppendChild(tasData);
 
-                        if (eventType == "Create")
+                        if (eventType == "Create" || eventType == "ApproveReject")
                         {
                             XmlElement mergeRange = xmlDoc.CreateElement("MergeRange");
                             tasData.AppendChild(mergeRange);
@@ -328,6 +328,7 @@ namespace ProcessFiles_Demo.FileProcessing
                 }
 
                 // Read and process CSV records in a memory-efficient way
+                // Read and process CSV records in a memory-efficient way
                 var records = File.ReadLines(filePath)
                                   .Skip(1) // Skip header row
                                   .Select(line =>
@@ -339,11 +340,11 @@ namespace ProcessFiles_Demo.FileProcessing
                                           EmployeeExternalId = int.Parse(parts[7]),
                                           ClockType = parts[9],
                                           ClockTimeBeforeChange = string.IsNullOrWhiteSpace(parts[10])
-                                                                  ? (DateTime?)null
-                                                                  : DateTime.Parse(parts[10], CultureInfo.InvariantCulture),
+                                                                      ? (DateTime?)null
+                                                                      : DateTime.Parse(parts[10], CultureInfo.InvariantCulture),
                                           ClockTimeAfterChange = string.IsNullOrWhiteSpace(parts[17])
-                                                                  ? (DateTime?)null
-                                                                  : DateTime.Parse(parts[17], CultureInfo.InvariantCulture),
+                                                                      ? (DateTime?)null
+                                                                      : DateTime.Parse(parts[17], CultureInfo.InvariantCulture),
                                           ClockWorkRoleAfterChange = parts[21],
                                           EventType = parts[24],
                                       };
@@ -365,8 +366,15 @@ namespace ProcessFiles_Demo.FileProcessing
 
                                       return clockRecord; // Return the ClockRecord with joined LocationData
                                   })
-                                  .GroupBy(r => new { r.EmployeeExternalId, r.EventType }) // Group records by Employee ID and Event Type
-                                  .ToList(); // ToList() to materialize the grouped results
+                                  // Group "Create" and "ApproveReject" together, others separately
+                                  .GroupBy(r => new
+                                  {
+                                      r.EmployeeExternalId,
+                                      EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
+                                                        ? "Create_ApproveReject"
+                                                        : r.EventType
+                                  })
+                                  .ToList();// ToList() to materialize the grouped results
 
 
                 // Prepare a list of ShiftGroups to pass to XML generation
