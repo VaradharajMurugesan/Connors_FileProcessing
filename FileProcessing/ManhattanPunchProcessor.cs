@@ -19,10 +19,6 @@ namespace ProcessFiles_Demo.FileProcessing
     {
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<string, ManhattanLocationData> LocationMapping;
-        private Dictionary<string, string> accrualMemoCodeMapping;
-        private Dictionary<string, List<PaycodeData>> paycodeDict;
-        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
-        ExtractLocationEntityData extractLocationEntityData = new ExtractLocationEntityData();
         private readonly HashSet<string> payrollProcessedFileNumbers;
         private bool mealBreakFlag = false;
 
@@ -32,10 +28,7 @@ namespace ProcessFiles_Demo.FileProcessing
             var payroll_clientSettings = ClientSettingsLoader.LoadClientSettings("payroll");
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
             mealBreakFlag = bool.TryParse(clientSettings["Flags"]["MealBrakRequired"]?.ToString(), out bool flag) && flag;
-            //string remoteMappingFilePath = clientSettings["Folders"]["remoteLocationEntityPath"].ToString();
-            //string locationEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "LocationEntity");
-            // Load employee HR mapping from Excel (grouped by employee ID now)
-            LocationMapping = LoadLocationMapping("location mapping.csv");                
+            LocationMapping = LoadLocationMapping("location mapping.csv");
         }
 
         public Dictionary<string, ManhattanLocationData> LoadLocationMapping(string filePath)
@@ -89,193 +82,33 @@ namespace ProcessFiles_Demo.FileProcessing
             return files.OrderByDescending(f => f.LastWriteTime).FirstOrDefault()?.FullName;
         }
 
-        // Helper method to create XML elements
-        static XmlElement CreateElement(XmlDocument xmlDoc, string name, string value)
-        {
-            XmlElement element = xmlDoc.CreateElement(name);
-            element.InnerText = value;
-            return element;
-        }
-
         public string GenerateManhattanPunchXML(IEnumerable<ShiftGroup> groupedTimeClockData)
         {
             // Create XML Document
             XmlDocument xmlDoc = new XmlDocument();
-
-            // Create root element <tXML>
             XmlElement root = xmlDoc.CreateElement("tXML");
             xmlDoc.AppendChild(root);
 
-            // Create Header element
-            XmlElement header = xmlDoc.CreateElement("Header");
-            root.AppendChild(header);
+            // Add header elements
+            AddHeaderElements(xmlDoc, root);
 
-            header.AppendChild(CreateElement(xmlDoc, "Source", "Host"));
-            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT23095"));
-            header.AppendChild(CreateElement(xmlDoc, "Message_Type", "TAS"));
-            header.AppendChild(CreateElement(xmlDoc, "Company_ID", "01"));
-            header.AppendChild(CreateElement(xmlDoc, "Msg_Locale", "English (United States)"));
-
-            // Create Message element
             XmlElement message = xmlDoc.CreateElement("Message");
             root.AppendChild(message);
-
-            // Create TimeAndAttendance element
             XmlElement timeAndAttendance = xmlDoc.CreateElement("TimeAndAttendance");
             message.AppendChild(timeAndAttendance);
 
-            // Initialize a counter for TranNumber
             int tranNumber = 1;
 
             // Process each group of records
             foreach (var group in groupedTimeClockData)
             {
-                foreach (var eventType in new[] { "Create", "Delete", "ApproveReject" })
+                if (group.Records.Any(r => r.EventType == "Create"))
                 {
-                    if (group.Records.Any(r => r.EventType == eventType))
-                    {
-                        XmlElement tasData = xmlDoc.CreateElement("TASData");
-                        timeAndAttendance.AppendChild(tasData);
-
-                        if (eventType == "Create" || eventType == "ApproveReject")
-                        {
-                            XmlElement mergeRange = xmlDoc.CreateElement("MergeRange");
-                            tasData.AppendChild(mergeRange);
-
-                            mergeRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
-                            mergeRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.FirstOrDefault().ManhattanWarehouseId));
-                            mergeRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
-                            DateTime? empClockIn = null;
-                            DateTime? empClockOut = null;
-                            DateTime? BreakClockIn = null;
-                            DateTime? BreakClockOut = null;
-
-                            // Check if there is any record with EventType "ApproveReject" in ShiftEnd
-                            var approveRejectRecord_ShiftBegin = group.Records
-                                .FirstOrDefault(r => r.ClockType == "ShiftBegin" && r.EventType == "ApproveReject");
-
-                            if (approveRejectRecord_ShiftBegin != null)
-                            {
-                                // If "ApproveReject" record is found, fetch its ClockTimeAfterChange
-                                empClockIn = approveRejectRecord_ShiftBegin.ClockTimeAfterChange;
-                            }
-                            else
-                            {
-                                // If no "ApproveReject" record, fetch the max ClockTimeAfterChange for ShiftEnd
-                                empClockIn = group.Records
-                                    .Where(r => r.ClockType == "ShiftBegin")
-                                    .Min(r => r.ClockTimeAfterChange);
-                            }
-
-                            // Check if there is any record with EventType "ApproveReject" in ShiftEnd
-                            var approveRejectRecord_ShiftEnd= group.Records
-                                .FirstOrDefault(r => r.ClockType == "ShiftEnd" && r.EventType == "ApproveReject");
-
-                            if (approveRejectRecord_ShiftEnd != null)
-                            {
-                                // If "ApproveReject" record is found, fetch its ClockTimeAfterChange
-                                empClockOut = approveRejectRecord_ShiftEnd.ClockTimeAfterChange;
-                            }
-                            else
-                            {
-                                // If no "ApproveReject" record, fetch the max ClockTimeAfterChange for ShiftEnd
-                                empClockOut = group.Records
-                                    .Where(r => r.ClockType == "ShiftEnd")
-                                    .Max(r => r.ClockTimeAfterChange);
-                            }
-
-
-                            // Check if there is any record with EventType "ApproveReject" in ShiftEnd
-                            var approveRejectRecord_BreakBegin = group.Records
-                                .FirstOrDefault(r => r.ClockType == "MealBreakBegin" && r.EventType == "ApproveReject");
-
-                            if (approveRejectRecord_BreakBegin != null)
-                            {
-                                // If "ApproveReject" record is found, fetch its ClockTimeAfterChange
-                                BreakClockIn = approveRejectRecord_BreakBegin.ClockTimeAfterChange;
-                            }
-                            else
-                            {
-                                // If no "ApproveReject" record, fetch the max ClockTimeAfterChange for ShiftEnd
-                                BreakClockIn = group.Records
-                                    .Where(r => r.ClockType == "MealBreakBegin")
-                                    .Min(r => r.ClockTimeAfterChange);
-                            }
-
-                            // Check if there is any record with EventType "ApproveReject" in ShiftEnd
-                            var approveRejectRecord_BreakEnd = group.Records
-                                .FirstOrDefault(r => r.ClockType == "MealBreakEnd" && r.EventType == "ApproveReject");
-
-                            if (approveRejectRecord_BreakEnd != null)
-                            {
-                                // If "ApproveReject" record is found, fetch its ClockTimeAfterChange
-                                BreakClockOut = approveRejectRecord_BreakEnd.ClockTimeAfterChange;
-                            }
-                            else
-                            {
-                                // If no "ApproveReject" record, fetch the max ClockTimeAfterChange for ShiftEnd
-                                BreakClockOut = group.Records
-                                    .Where(r => r.ClockType == "MealBreakEnd")
-                                    .Max(r => r.ClockTimeAfterChange);
-                            }
-
-                            DateTime? startDateForMerge = empClockIn?.AddHours(-2) ?? empClockOut?.AddHours(-2);
-                            DateTime? endDateForMerge = empClockOut?.AddHours(2) ?? empClockIn?.AddHours(2);
-
-                            mergeRange.AppendChild(CreateElement(xmlDoc, "StartDateForMerge", startDateForMerge?.ToString("o")));
-                            mergeRange.AppendChild(CreateElement(xmlDoc, "EndDateForMerge", endDateForMerge?.ToString("o")));
-
-                            XmlElement mergeClockInClockOut = xmlDoc.CreateElement("MergeClockInClockOut");
-                            mergeRange.AppendChild(mergeClockInClockOut);
-
-                            if (empClockIn.HasValue)
-                            {
-                                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockIn", empClockIn.Value.ToString("o")));
-                            }
-
-                            if (empClockOut.HasValue)
-                            {
-                                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockOut", empClockOut.Value.ToString("o")));
-                            }
-
-                            if (mealBreakFlag && (BreakClockIn.HasValue || BreakClockOut.HasValue))
-                            {
-                                XmlElement mergeBreakStartBreakEnd = xmlDoc.CreateElement("MergeBreakStartBreakEnd");
-                                mergeRange.AppendChild(mergeBreakStartBreakEnd);
-
-                                if (BreakClockIn.HasValue)
-                                {
-                                    mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakStartTime", BreakClockIn.Value.ToString("o")));
-                                }
-
-                                if (BreakClockOut.HasValue)
-                                {
-                                    mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakEndTime", BreakClockOut.Value.ToString("o")));
-                                }
-
-                                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "Activity", "UNPAIDBRK"));
-                            }
-
-                        }
-                        else if (eventType == "Delete")
-                        {
-                            XmlElement deleteClockInRange = xmlDoc.CreateElement("DeleteClockInRange");
-                            tasData.AppendChild(deleteClockInRange);
-
-                            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
-                            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.FirstOrDefault().ManhattanWarehouseId));
-                            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
-
-                            DateTime? startDateForDel = group.Records.Min(r => r.ClockTimeBeforeChange);
-                            DateTime? endDateForDel = group.Records.Max(r => r.ClockTimeBeforeChange);
-
-                            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "StartDateForDel", startDateForDel?.ToString("o")));
-                            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EndDateForDel", endDateForDel?.ToString("o")));
-                        }
-
-                        // Increment the TranNumber for the next group
-                        tranNumber++;
-                    }
+                    ProcessCreateEvent(xmlDoc, timeAndAttendance, ref tranNumber, group);
+                }
+                else if (group.Records.Any(r => r.EventType == "Delete"))
+                {
+                    ProcessDeleteEvent(xmlDoc, timeAndAttendance, ref tranNumber, group);
                 }
             }
 
@@ -284,7 +117,160 @@ namespace ProcessFiles_Demo.FileProcessing
             return xmlDoc.OuterXml;
         }
 
+        // Helper method to add header elements
+        private void AddHeaderElements(XmlDocument xmlDoc, XmlElement root)
+        {
+            XmlElement header = xmlDoc.CreateElement("Header");
+            root.AppendChild(header);
 
+            header.AppendChild(CreateElement(xmlDoc, "Source", "Host"));
+            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT23095"));
+            header.AppendChild(CreateElement(xmlDoc, "Message_Type", "TAS"));
+            header.AppendChild(CreateElement(xmlDoc, "Company_ID", "01"));
+            header.AppendChild(CreateElement(xmlDoc, "Msg_Locale", "English (United States)"));
+        }
+
+        // Helper method to process the "Create" event
+        private void ProcessCreateEvent(XmlDocument xmlDoc, XmlElement timeAndAttendance, ref int tranNumber, ShiftGroup group)
+        {
+            XmlElement tasData = xmlDoc.CreateElement("TASData");
+            timeAndAttendance.AppendChild(tasData);
+            XmlElement mergeRange = xmlDoc.CreateElement("MergeRange");
+            tasData.AppendChild(mergeRange);
+
+            mergeRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.First().ManhattanWarehouseId));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
+
+            DateTime? empClockIn = GetClockInTime(group, "ShiftBegin");
+            DateTime? empClockOut = GetClockOutTime(group, "ShiftEnd");
+            DateTime? breakClockIn = GetBreakClockInTime(group, "MealBreakBegin");
+            DateTime? breakClockOut = GetBreakClockOutTime(group, "MealBreakEnd");
+
+            DateTime? startDateForMerge = empClockIn?.AddHours(-2) ?? empClockOut?.AddHours(-2);
+            DateTime? endDateForMerge = empClockOut?.AddHours(2) ?? empClockIn?.AddHours(2);
+
+            mergeRange.AppendChild(CreateElement(xmlDoc, "StartDateForMerge", startDateForMerge?.ToString("o")));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "EndDateForMerge", endDateForMerge?.ToString("o")));
+
+            XmlElement mergeClockInClockOut = xmlDoc.CreateElement("MergeClockInClockOut");
+            mergeRange.AppendChild(mergeClockInClockOut);
+
+            AppendClockInOutTimes(xmlDoc, mergeClockInClockOut, empClockIn, empClockOut);
+
+            if (mealBreakFlag && (breakClockIn.HasValue || breakClockOut.HasValue))
+            {
+                AddBreakTimes(xmlDoc, mergeRange, breakClockIn, breakClockOut);
+            }
+
+            tranNumber++;
+        }
+
+        // Helper method to process the "Delete" event
+        private void ProcessDeleteEvent(XmlDocument xmlDoc, XmlElement timeAndAttendance, ref int tranNumber, ShiftGroup group)
+        {
+            XmlElement tasData = xmlDoc.CreateElement("TASData");
+            timeAndAttendance.AppendChild(tasData);
+            XmlElement deleteClockInRange = xmlDoc.CreateElement("DeleteClockInRange");
+            tasData.AppendChild(deleteClockInRange);
+
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.First().ManhattanWarehouseId));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
+
+            DateTime? startDateForDel = group.Records.Min(r => r.ClockTimeBeforeChange);
+            DateTime? endDateForDel = group.Records.Max(r => r.ClockTimeBeforeChange);
+
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "StartDateForDel", startDateForDel?.ToString("o")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EndDateForDel", endDateForDel?.ToString("o")));
+
+            tranNumber++;
+        }
+
+        // Helper method to get clock-in time (either from "ApproveReject" or the earliest "ShiftBegin" time)
+        private DateTime? GetClockInTime(ShiftGroup group, string clockType)
+        {
+            var record = group.Records.FirstOrDefault(r => r.ClockType == clockType && r.EventType == "ApproveReject");
+            if (record != null)
+            {
+                return record.ClockTimeAfterChange;
+            }
+            return group.Records.Where(r => r.ClockType == clockType).Min(r => r.ClockTimeAfterChange);
+        }
+
+        // Helper method to get clock-out time (either from "ApproveReject" or the latest "ShiftEnd" time)
+        private DateTime? GetClockOutTime(ShiftGroup group, string clockType)
+        {
+            var record = group.Records.FirstOrDefault(r => r.ClockType == clockType && r.EventType == "ApproveReject");
+            if (record != null)
+            {
+                return record.ClockTimeAfterChange;
+            }
+            return group.Records.Where(r => r.ClockType == clockType).Max(r => r.ClockTimeAfterChange);
+        }
+
+        // Helper method to get break time (either from "ApproveReject" or the earliest "MealBreakBegin" or latest "MealBreakEnd")
+        private DateTime? GetBreakClockInTime(ShiftGroup group, string clockType)
+        {
+            var record = group.Records.FirstOrDefault(r => r.ClockType == clockType && r.EventType == "ApproveReject");
+            if (record != null)
+            {
+                return record.ClockTimeAfterChange;
+            }
+            return group.Records.Where(r => r.ClockType == clockType).Min(r => r.ClockTimeAfterChange);
+        }
+
+        // Helper method to get break time (either from "ApproveReject" or the earliest "MealBreakBegin" or latest "MealBreakEnd")
+        private DateTime? GetBreakClockOutTime(ShiftGroup group, string clockType)
+        {
+            var record = group.Records.FirstOrDefault(r => r.ClockType == clockType && r.EventType == "ApproveReject");
+            if (record != null)
+            {
+                return record.ClockTimeAfterChange;
+            }
+            return group.Records.Where(r => r.ClockType == clockType).Max(r => r.ClockTimeAfterChange);
+        }
+
+        // Helper method to append clock-in and clock-out times
+        private void AppendClockInOutTimes(XmlDocument xmlDoc, XmlElement mergeClockInClockOut, DateTime? empClockIn, DateTime? empClockOut)
+        {
+            if (empClockIn.HasValue)
+            {
+                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockIn", empClockIn.Value.ToString("o")));
+            }
+
+            if (empClockOut.HasValue)
+            {
+                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockOut", empClockOut.Value.ToString("o")));
+            }
+        }
+
+        // Helper method to add break times to the XML
+        private void AddBreakTimes(XmlDocument xmlDoc, XmlElement mergeRange, DateTime? breakClockIn, DateTime? breakClockOut)
+        {
+            XmlElement mergeBreakStartBreakEnd = xmlDoc.CreateElement("MergeBreakStartBreakEnd");
+            mergeRange.AppendChild(mergeBreakStartBreakEnd);
+
+            if (breakClockIn.HasValue)
+            {
+                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakStartTime", breakClockIn.Value.ToString("o")));
+            }
+
+            if (breakClockOut.HasValue)
+            {
+                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakEndTime", breakClockOut.Value.ToString("o")));
+            }
+
+            mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "Activity", "UNPAIDBRK"));
+        }
+
+        // Helper method to create XML elements
+        private XmlElement CreateElement(XmlDocument xmlDoc, string name, string value)
+        {
+            XmlElement element = xmlDoc.CreateElement(name);
+            element.InnerText = value;
+            return element;
+        }
 
         // Function to split records into groups based on a time gap
         static IEnumerable<ShiftGroup> SplitByTimeGap(IEnumerable<ClockRecord> records, TimeSpan maxGap)
@@ -327,61 +313,14 @@ namespace ProcessFiles_Demo.FileProcessing
                     throw new FileNotFoundException($"The file does not exist: {filePath}");
                 }
 
-                // Read and process CSV records in a memory-efficient way
-                // Read and process CSV records in a memory-efficient way
-                var records = File.ReadLines(filePath)
-                                  .Skip(1) // Skip header row
-                                  .Select(line =>
-                                  {
-                                      var parts = line.Split(',');
-                                      var clockRecord = new ClockRecord
-                                      {
-                                          LocationExternalId = parts[2],
-                                          EmployeeExternalId = int.Parse(parts[7]),
-                                          ClockType = parts[9],
-                                          ClockTimeBeforeChange = string.IsNullOrWhiteSpace(parts[10])
-                                                                      ? (DateTime?)null
-                                                                      : DateTime.Parse(parts[10], CultureInfo.InvariantCulture),
-                                          ClockTimeAfterChange = string.IsNullOrWhiteSpace(parts[17])
-                                                                      ? (DateTime?)null
-                                                                      : DateTime.Parse(parts[17], CultureInfo.InvariantCulture),
-                                          ClockWorkRoleAfterChange = parts[21],
-                                          EventType = parts[24],
-                                      };
-
-                                      // Perform the join here with LocationMapping
-                                      var locationData = LocationMapping
-                                          .FirstOrDefault(x => x.Key == clockRecord.LocationExternalId).Value;
-
-                                      // If location data is found, assign it to the clock record
-                                      if (locationData != null)
-                                      {
-                                          clockRecord.LocationName = locationData.LocationName;  // Assign LocationName from the dictionary
-                                          clockRecord.ManhattanWarehouseId = locationData.ManhattanWarehouseId;  // Assign ManhattanWarehouseID from the dictionary
-                                      }
-                                      else
-                                      {
-                                          LoggerObserver.LogFileProcessed($"Location mapping not found for LocationExternalId: {clockRecord.LocationExternalId}");
-                                      }
-
-                                      return clockRecord; // Return the ClockRecord with joined LocationData
-                                  })
-                                  // Group "Create" and "ApproveReject" together, others separately
-                                  .GroupBy(r => new
-                                  {
-                                      r.EmployeeExternalId,
-                                      EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
-                                                        ? "Create_ApproveReject"
-                                                        : r.EventType
-                                  })
-                                  .ToList();// ToList() to materialize the grouped results
-
+                // Read and process CSV records lazily and asynchronously
+                var groupedRecords = await GetGroupedRecordsAsync(filePath);
 
                 // Prepare a list of ShiftGroups to pass to XML generation
                 var allGroups = new List<ShiftGroup>();
 
-                // Process each employee's records
-                foreach (var employeeGroup in records)
+                // Process each employee's records (grouped by EmployeeExternalId and EventTypeGroup)
+                foreach (var employeeGroup in groupedRecords)
                 {
                     // Split the employee's records into groups based on a 14-hour time gap
                     var groupedByTimeGap = SplitByTimeGap(employeeGroup.OrderBy(r => r.ClockTimeAfterChange), TimeSpan.FromHours(14));
@@ -418,15 +357,66 @@ namespace ProcessFiles_Demo.FileProcessing
             }
         }
 
-        private async Task WriteBatchAsync(string destinationFilePath, List<string> lineBuffer)
+        private async Task<IEnumerable<IGrouping<object, ClockRecord>>> GetGroupedRecordsAsync(string filePath)
         {
-            using (var writer = new StreamWriter(destinationFilePath, true))
+            var records = new List<ClockRecord>();
+
+            // Process the file asynchronously line by line using StreamReader
+            using (var reader = new StreamReader(filePath))
             {
-                foreach (var line in lineBuffer)
+                // Skip the header row
+                await reader.ReadLineAsync();
+
+                string line;
+                while ((line = await reader.ReadLineAsync()) != null)
                 {
-                    await writer.WriteLineAsync(line).ConfigureAwait(false);
+                    var parts = line.Split(',');
+
+                    var clockRecord = new ClockRecord
+                    {
+                        LocationExternalId = parts[2],
+                        EmployeeExternalId = int.Parse(parts[7]),
+                        ClockType = parts[9],
+                        ClockTimeBeforeChange = string.IsNullOrWhiteSpace(parts[10])
+                                                    ? (DateTime?)null
+                                                    : DateTime.Parse(parts[10], CultureInfo.InvariantCulture),
+                        ClockTimeAfterChange = string.IsNullOrWhiteSpace(parts[17])
+                                                    ? (DateTime?)null
+                                                    : DateTime.Parse(parts[17], CultureInfo.InvariantCulture),
+                        ClockWorkRoleAfterChange = parts[21],
+                        EventType = parts[24],
+                    };
+
+                    // Perform the join here with LocationMapping
+                    var locationData = LocationMapping
+                        .FirstOrDefault(x => x.Key == clockRecord.LocationExternalId).Value;
+
+                    if (locationData != null)
+                    {
+                        clockRecord.LocationName = locationData.LocationName;
+                        clockRecord.ManhattanWarehouseId = locationData.ManhattanWarehouseId;
+                    }
+                    else
+                    {
+                        LoggerObserver.LogFileProcessed($"Location mapping not found for LocationExternalId: {clockRecord.LocationExternalId}");
+                    }
+
+                    records.Add(clockRecord);
                 }
             }
+
+            // Group records by EmployeeExternalId and EventTypeGroup
+            var groupedRecords = records
+                .GroupBy(r => new
+                {
+                    r.EmployeeExternalId,
+                    EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
+                                    ? "Create_ApproveReject"
+                                    : r.EventType
+                });
+
+            return groupedRecords;
         }
+
     }
 }

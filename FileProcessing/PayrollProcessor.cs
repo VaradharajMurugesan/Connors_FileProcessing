@@ -253,10 +253,10 @@ namespace ProcessFiles_Demo.FileProcessing
             DateTime startTime = DateTime.Now;
             string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
             LoggerObserver.LogFileProcessed($"Start processing Payroll CSV: {filePath} at {startTime}");
-            
+
             try
             {
-                
+
 
                 var records = new List<PayrollRecord>();
                 // Read the source file
@@ -468,11 +468,30 @@ namespace ProcessFiles_Demo.FileProcessing
                     })
                     .ToList();
 
-
                     // Combine grouped and ungrouped records
                     finalRecords.AddRange(ungroupedRecords);
-                    // Group by Employee Id
-                    //var groupedRecords = sortedRecords.GroupBy(r => r.EmployeeId);
+                    // Update RateCode based on SalariedFlag using the existing employeeHRMapping dictionary
+                    foreach (var record in finalRecords)
+                    {
+                        // Check if the EmployeeId exists in the dictionary
+                        if (employeeHrMapping.TryGetValue(record.EmployeeId, out var hrData))
+                        {
+                            // Update RateCode if Salaried is true
+                            if (hrData.Salaried)
+                            {
+                                record.RateCode = 2; // Set RateCode to 2 for salaried employees                                                     
+                                record.MemoCode = "";
+                                record.MemoAmount = null;
+                            }
+                            record.CompanyCode = hrData.CompanyId;
+                        }
+                        else
+                        {
+                            // Log if EmployeeId is not present in the dictionary
+                            LoggerObserver.OnFileFailed($"HR data not found for employee: {record.EmployeeId}");
+                        }
+                    }
+
                     // Get the first record from the list
                     var firstRecord = finalRecords.First();
 
@@ -483,6 +502,152 @@ namespace ProcessFiles_Demo.FileProcessing
                     string companyCode = employeeHrMapping.TryGetValue(firstEmployeeId, out var employeeHrData)
                                          ? employeeHrData.CompanyId
                                          : "UNKNOWN";
+                    var processedLines = finalRecords
+                    .Select(record =>
+                    {
+                        // Initialize fields
+                        string memoCode = record.MemoCode;
+                        int? memoAmount = record.MemoAmount;
+                        string specialProcCode = record.SpecialProcCode;
+                        string tempDept = DetermineTempDept(record.HomeLocation, record.WorkLocation);
+                        string regHours = "0.00";
+                        string otHours = "0.00";
+                        string hours3Code = "";
+                        string earnings3Code = "";
+                        decimal? regularHours = null;
+                        decimal? overtimeHours = null;
+                        decimal? hours3Amount = null;
+                        decimal? earnings3Amount = null;
+
+                        // Pay type logic
+                        var payNames = record.PayName.Split('~');
+                        if (paycodeDict.ContainsKey(record.PayType))
+                        {
+                            var filteredPaycodes = paycodeDict[record.PayType]
+                                .Where(pc =>
+                                    payNames.Any(pn => string.Equals(pn.Trim(), pc.PayName, StringComparison.OrdinalIgnoreCase)) ||
+                                    string.Equals(pc.PayName, record.PayRollEarningRole, StringComparison.OrdinalIgnoreCase) ||
+                                    string.Equals(pc.PayName, record.WorkRole, StringComparison.OrdinalIgnoreCase))
+                                .OrderByDescending(pc => pc.PayName == record.WorkRole)
+                                .ThenByDescending(pc => pc.PayName == record.PayRollEarningRole)
+                                .FirstOrDefault();
+
+                            if (filteredPaycodes != null)
+                            {
+                                if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) &&
+                                    !ExcludedRoles.Contains(record.PayName.Trim()) &&
+                                    filteredPaycodes.ADPColumn == "Reg Hours")
+                                {
+                                    regularHours = record.Hours;
+                                }
+                                else if (record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) &&
+                                         ExcludedRoles.Contains(record.WorkRole.Trim()))
+                                {
+                                    if (record.Hours != 0)
+                                    {
+                                        hours3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                                        hours3Amount = record.Hours;
+                                    }
+                                    else
+                                    {
+                                        earnings3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                                        earnings3Amount = record.Amount;
+                                    }
+                                }
+                                else if (filteredPaycodes.ADPColumn == "O/T Hours" &&
+                                         payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    overtimeHours = record.Hours;
+                                }
+                                else if (!record.PayType.Equals("Regular", StringComparison.OrdinalIgnoreCase) &&
+                                         (payNames.Any(pn => pn.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)) ||
+                                          record.PayRollEarningRole.Equals(filteredPaycodes.PayName, StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    if (record.Hours != 0)
+                                    {
+                                        hours3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                                        hours3Amount = record.Hours;
+                                    }
+                                    else
+                                    {
+                                        earnings3Code = filteredPaycodes.ADPHoursOrAmountCode;
+                                        earnings3Amount = record.Amount;
+                                    }
+                                }
+
+                                // Final line generation
+                                return $"{record.CompanyCode},{"Legion"},{record.EmployeeId},{record.RateCode},{tempDept},{regularHours},{overtimeHours}," +
+                                       $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{memoCode},{memoAmount},{specialProcCode}," +
+                                       $"{ExtractDatePart(record.OtherStartDate)},{ExtractDatePart(record.OtherEndDate)}, {record.PayType}";
+                            }
+                        }
+
+                        // Return null if no matching paycode is found
+                        return null;
+                    })
+                    .Where(line => !string.IsNullOrEmpty(line)) // Filter out null or empty lines
+                    .ToList();
+
+                    // Step 2: Apply Grouping and Summing
+                    var groupedLines = processedLines
+                        .Select(line => line.Split(',')) // Split each line into fields
+                        .GroupBy(fields => new
+                        {
+                            CoCode = fields[0],
+                            BatchId = fields[1],
+                            FileNumber = fields[2],
+                            RateCode = fields[3],
+                            TempDept = fields[4],
+                            hours3Code = fields[7],
+                            earnings3Code= fields[9],
+                            MemoCode = fields[11],
+                            MemoAmount = fields[12],
+                            SpecialProcCode = fields[13],
+                            OtherBeginDate = fields[14],
+                            OtherEndDate = fields[15],
+                            payType = fields[16],
+                        })
+                        .Select(group => new
+                        {
+                            group.Key.CoCode,
+                            group.Key.BatchId,
+                            group.Key.FileNumber,
+                            group.Key.RateCode,
+                            group.Key.TempDept,
+                            RegHours = group.Sum(fields => decimal.TryParse(fields[5], out var value) ? value : 0),
+                            OTHours = group.Sum(fields => decimal.TryParse(fields[6], out var value) ? value : 0),
+                            //Hours3Code = group.FirstOrDefault()?.ElementAtOrDefault(7),
+                            group.Key.hours3Code,
+                            Hours3Amount = group.Sum(fields => decimal.TryParse(fields[8], out var value) ? value : 0),
+                            //Earnings3Code = group.FirstOrDefault()?.ElementAtOrDefault(9),
+                            group.Key.earnings3Code,
+                            Earnings3Amount = group.Sum(fields => decimal.TryParse(fields[10], out var value) ? value : 0),
+                            group.Key.MemoCode,
+                            group.Key.MemoAmount,
+                            group.Key.SpecialProcCode,
+                            group.Key.OtherBeginDate,
+                            group.Key.OtherEndDate
+                        })
+                        .ToList();
+
+                    // Step 3: Convert grouped lines to string format with zero value fields set to empty
+                    var finalLines = groupedLines.Select(group =>
+                    {
+                        // Check and replace zero values with empty strings
+                        var regHours = group.RegHours == 0 ? "" : group.RegHours.ToString();
+                        var otHours = group.OTHours == 0 ? "" : group.OTHours.ToString();
+                        var hours3Amount = group.Hours3Amount == 0 ? "" : group.Hours3Amount.ToString();
+                        var earnings3Amount = group.Earnings3Amount == 0 ? "" : group.Earnings3Amount.ToString();
+
+                        // Construct the final line
+                        return $"{group.CoCode},{group.BatchId},{group.FileNumber},{group.RateCode},{group.TempDept}," +
+                               $"{regHours},{otHours}," +
+                               $"{group.hours3Code},{hours3Amount}," +
+                               $"{group.earnings3Code},{earnings3Amount}," +
+                               $"{group.MemoCode},{group.MemoAmount}," +
+                               $"{group.SpecialProcCode},{group.OtherBeginDate},{group.OtherEndDate}";
+                    }).ToList();
+
 
                     string destinationFileName = Path.GetFileName(filePath);
                     var destinationFilePath = Path.Combine(destinationPath, $"EPI_{companyCode}_{timestamp}_payfile.csv");
@@ -499,37 +664,24 @@ namespace ProcessFiles_Demo.FileProcessing
                     {
                         throw new DirectoryNotFoundException($"Destination path does not exist: {destinationPath}");
                     }
-                    // Initialize the CSV with the header
+
+                    // Write the processed lines to the destination file
                     try
                     {
                         using (var writer = new StreamWriter(destinationFilePath, false))
                         {
                             await writer.WriteLineAsync(header).ConfigureAwait(false);
+                            foreach (var line in finalLines)
+                            {
+                                await writer.WriteLineAsync(line).ConfigureAwait(false);
+                            }
                         }
                     }
                     catch (IOException ex)
                     {
-                        throw new IOException($"Error writing header to destination file: {destinationFilePath}.", ex);
-                    }
+                        throw new IOException($"Error writing to destination file: {destinationFilePath}.", ex);
+                    } 
 
-                    foreach (var employeeGroup in finalRecords)
-                    {
-                        var lineBuffer = new List<string>();
-
-                        //foreach (var record in employeeGroup)
-                        //{
-                        var processedLines = await ProcessPayrollLineAsync(employeeGroup);
-                        if (processedLines != null && processedLines.Any())
-                        {
-                            lineBuffer.AddRange(processedLines);
-                        }
-                        //}
-
-                        if (lineBuffer.Any())
-                        {
-                            await WriteBatchAsync(destinationFilePath, lineBuffer).ConfigureAwait(false);
-                        }
-                    }                    
                 }
                 catch (Exception ex)
                 {
@@ -693,35 +845,11 @@ namespace ProcessFiles_Demo.FileProcessing
             string memoCode = string.Empty;
             int? memoAmount = null;
             string specialProcCode = string.Empty;
-            string rateCode = string.Empty;
             DateTime? startDate = null;
             DateTime? endDate = null;
             // Lookup HR data using grouping by location first, then by employeeId
             EmployeeHrData hrData = null;
 
-            if (employeeHrMapping.ContainsKey(record.EmployeeId))
-            {
-                var locationGroup = employeeHrMapping[record.EmployeeId];
-                hrData = employeeHrMapping.ContainsKey(record.EmployeeId)
-                ? employeeHrMapping[record.EmployeeId]
-                : null;
-            }
-
-            if (hrData == null)
-            {
-                // Log error if HR data is not found
-                LoggerObserver.OnFileFailed($"HR data not found for employee: {record.EmployeeId}");
-                return null;
-            }
-
-            if (hrData.Salaried)
-            {
-                // Set 2 for salaried employee
-                rateCode = hrData.Salaried ? "2" : "";
-                // Extract and parse the start date from the range
-                record.MemoCode = "";
-                record.MemoAmount = null;
-            }
 
             // Initialize fields with default or empty values
             string regHours = "0.00";
@@ -731,7 +859,7 @@ namespace ProcessFiles_Demo.FileProcessing
             string earningCode = ""; //payCodeData?.Code ?? "E999"; // Default earning code
 
             // Lookup company code based on location
-            string companyCode = hrData.CompanyId; //Assuming this will be generated based on the file name //companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
+            //string companyCode = hrData.CompanyId; //Assuming this will be generated based on the file name //companyCodeMap.ContainsKey(hrData.locationName) ? companyCodeMap[hrData.locationName] : "Unknown";
 
 
             // Determine Temp Dept: Use Work Location if different from Home Location
@@ -841,7 +969,7 @@ namespace ProcessFiles_Demo.FileProcessing
                         record.OtherStartDate = ExtractDatePart(record.OtherStartDate);
                         record.OtherEndDate = ExtractDatePart(record.OtherEndDate);
 
-                        string processedLine = $"{companyCode},{"Legion"},{record.EmployeeId},{rateCode},{tempDept},{regularHours},{overtimeHours},"
+                        string processedLine = $"{record.CompanyCode},{"Legion"},{record.EmployeeId},{record.RateCode},{tempDept},{regularHours},{overtimeHours},"
                                                 + $"{hours3Code},{hours3Amount},{earnings3Code},{earnings3Amount},{record.MemoCode},{record.MemoAmount}, {record.SpecialProcCode},"
                                                 + $"{record.OtherStartDate},{record.OtherEndDate}";
 

@@ -1,0 +1,384 @@
+2024-12-26 08:54:11.5471 [DEBUG] Application Starting 
+2024-12-26 08:54:28.7634 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 08:54:29.5243 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 08:54:29.5243 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 08:54:31.3406 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 8:54:31 AM 
+2024-12-26 08:54:31.4182 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 8:54:31 AM 
+2024-12-26 08:54:31.4182 [INFO] Time taken to process file: 0.0786869 seconds. 
+2024-12-26 08:54:31.4182 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 08:54:42.5195 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_085442.csv 
+2024-12-26 08:55:00.5684 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 08:55:04.6016 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 08:55:04.6125 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 08:55:22.3295 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 08:55:22.9852 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 08:55:22.9852 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 08:55:23.6463 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:55:23 AM 
+2024-12-26 08:55:23.8084 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:55:23 AM 
+2024-12-26 08:55:23.8084 [INFO] Time taken to process file: 0.1621241 seconds. 
+2024-12-26 08:55:23.8084 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 08:55:26.9078 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_085526.csv 
+2024-12-26 08:55:26.9078 [INFO] Application Completed Successfully 
+2024-12-26 11:58:39.5219 [DEBUG] Application Starting 
+2024-12-26 11:58:54.4529 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 11:58:55.0532 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 11:58:55.0532 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 11:58:56.2336 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 11:58:56 AM 
+2024-12-26 11:58:56.2776 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 11:58:56 AM 
+2024-12-26 11:58:56.2776 [INFO] Time taken to process file: 0.0445151 seconds. 
+2024-12-26 11:58:56.2776 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 11:58:56.2833 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_115856.csv 
+2024-12-26 11:59:06.9334 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 11:59:10.8670 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 11:59:10.8670 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 11:59:23.4337 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 11:59:24.0652 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 11:59:24.0652 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 11:59:24.5411 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 11:59:24 AM 
+2024-12-26 11:59:24.6462 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 11:59:24 AM 
+2024-12-26 11:59:24.6462 [INFO] Time taken to process file: 0.1050632 seconds. 
+2024-12-26 11:59:24.6462 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 11:59:24.6462 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_115924.csv 
+2024-12-26 11:59:24.6462 [INFO] Application Completed Successfully 
+2024-12-26 12:04:18.2466 [DEBUG] Application Starting 
+2024-12-26 12:04:34.0176 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:04:34.6803 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:04:34.6803 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:04:35.5148 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241223_141517.csv at 12/26/2024 12:04:35 PM 
+2024-12-26 12:36:28.2050 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241223_141517.csv at 12/26/2024 12:36:28 PM 
+2024-12-26 12:36:28.2050 [INFO] Time taken to process file: 1912.6906106 seconds. 
+2024-12-26 12:36:28.2050 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241223_141517.csv 
+2024-12-26 12:36:28.2173 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241223_141517_20241226_123628.csv 
+2024-12-26 12:36:39.7835 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:36:49.7601 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:36:49.7764 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:37:08.7397 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:37:09.5745 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:37:09.5745 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:37:10.3410 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:37:10 PM 
+2024-12-26 12:37:10.5073 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:37:10 PM 
+2024-12-26 12:37:10.5073 [INFO] Time taken to process file: 0.1662804 seconds. 
+2024-12-26 12:37:10.5089 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:37:10.5089 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_123710.csv 
+2024-12-26 12:37:10.5089 [INFO] Application Completed Successfully 
+2024-12-26 12:42:22.8741 [DEBUG] Application Starting 
+2024-12-26 12:42:43.4337 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:42:44.0640 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:42:44.0640 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:42:45.2459 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_133817.csv at 12/26/2024 12:42:45 PM 
+2024-12-26 12:42:45.2830 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_133817.csv at 12/26/2024 12:42:45 PM 
+2024-12-26 12:42:45.2830 [INFO] Time taken to process file: 0.0375446 seconds. 
+2024-12-26 12:42:45.2830 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_133817.csv 
+2024-12-26 12:42:45.2830 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241205_133817_20241226_124245.csv 
+2024-12-26 12:42:55.0311 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:42:59.0626 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:42:59.0743 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:43:17.8352 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:43:18.5471 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:43:18.5471 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:43:19.4551 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:43:19 PM 
+2024-12-26 12:43:19.6842 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:43:19 PM 
+2024-12-26 12:43:19.6842 [INFO] Time taken to process file: 0.229153 seconds. 
+2024-12-26 12:43:19.6842 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:43:19.6842 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_124319.csv 
+2024-12-26 12:43:19.6842 [INFO] Application Completed Successfully 
+2024-12-26 12:50:30.0931 [DEBUG] Application Starting 
+2024-12-26 12:50:42.9367 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:50:43.6908 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:50:43.6908 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:50:45.8934 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 12:50:45 PM 
+2024-12-26 12:50:45.9621 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 772335 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 772335
+2024-12-26 12:50:45.9700 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 796646 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 796646
+2024-12-26 12:50:45.9700 [ERROR] No Paycode found for PayType: Other Pay for Employee ID 819309 System.Exception: No Paycode found for PayType: Other Pay for Employee ID 819309
+2024-12-26 12:50:46.0038 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 12:50:46 PM 
+2024-12-26 12:50:46.0038 [INFO] Time taken to process file: 0.1110806 seconds. 
+2024-12-26 12:50:46.0038 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 12:50:46.0155 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_125046.csv 
+2024-12-26 12:50:55.5717 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:50:59.4686 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:50:59.4686 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:51:17.3735 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:51:18.0618 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 12:51:18.0618 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 12:51:18.8548 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:51:18 PM 
+2024-12-26 12:51:20.4282 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 12:51:20 PM 
+2024-12-26 12:51:20.4282 [INFO] Time taken to process file: 1.5733478 seconds. 
+2024-12-26 12:51:20.4282 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 12:51:20.4401 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_125120.csv 
+2024-12-26 12:51:20.4401 [INFO] Application Completed Successfully 
+2024-12-26 13:07:09.6570 [DEBUG] Application Starting 
+2024-12-26 13:07:19.4675 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:07:23.0799 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:07:23.0799 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:07:39.6201 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:07:40.2543 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 13:07:40.2543 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:07:41.3987 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 1:07:41 PM 
+2024-12-26 13:07:41.5341 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 1:07:41 PM 
+2024-12-26 13:07:41.5341 [INFO] Time taken to process file: 0.1358635 seconds. 
+2024-12-26 13:07:41.5341 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:07:41.5425 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_130741.csv 
+2024-12-26 13:07:41.5425 [INFO] Application Completed Successfully 
+2024-12-26 13:14:03.0265 [DEBUG] Application Starting 
+2024-12-26 13:14:19.6922 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:14:20.4080 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 13:14:20.4080 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:14:22.6229 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 1:14:22 PM 
+2024-12-26 13:14:22.7185 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 1:14:22 PM 
+2024-12-26 13:14:22.7185 [INFO] Time taken to process file: 0.096419 seconds. 
+2024-12-26 13:14:22.7185 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 13:14:22.7274 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_131422.csv 
+2024-12-26 13:14:34.2065 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:14:38.2302 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:14:38.2302 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:14:55.0679 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:14:55.6818 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 13:14:55.6818 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 13:14:56.4373 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 1:14:56 PM 
+2024-12-26 13:14:56.6676 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 1:14:56 PM 
+2024-12-26 13:14:56.6676 [INFO] Time taken to process file: 0.2302459 seconds. 
+2024-12-26 13:14:56.6676 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 13:14:56.6676 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_131456.csv 
+2024-12-26 13:14:56.6676 [INFO] Application Completed Successfully 
+2024-12-26 15:05:37.5260 [DEBUG] Application Starting 
+2024-12-26 15:05:47.5623 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:05:51.1946 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:05:51.1996 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:06:08.0998 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:06:08.7140 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:06:08.7149 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:06:09.8611 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:06:09 PM 
+2024-12-26 15:06:10.4522 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:06:10 PM 
+2024-12-26 15:06:10.4522 [INFO] Time taken to process file: 0.5916404 seconds. 
+2024-12-26 15:06:10.4522 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:06:10.4522 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_150610.csv 
+2024-12-26 15:06:10.4522 [INFO] Application Completed Successfully 
+2024-12-26 15:28:17.1274 [DEBUG] Application Starting 
+2024-12-26 15:29:50.1984 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:29:50.8897 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:29:50.8897 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:29:53.0513 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 3:29:53 PM 
+2024-12-26 15:29:53.1508 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 3:29:53 PM 
+2024-12-26 15:29:53.1508 [INFO] Time taken to process file: 0.1014561 seconds. 
+2024-12-26 15:29:53.1508 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 15:29:53.1508 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_152953.csv 
+2024-12-26 15:30:02.2853 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:30:06.4846 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:30:06.4979 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:30:22.8062 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:30:23.4714 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:30:23.4714 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:30:24.4141 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:30:24 PM 
+2024-12-26 15:30:24.6547 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:30:24 PM 
+2024-12-26 15:30:24.6547 [INFO] Time taken to process file: 0.2405688 seconds. 
+2024-12-26 15:30:24.6547 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:30:24.6547 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_153024.csv 
+2024-12-26 15:30:24.6547 [INFO] Application Completed Successfully 
+2024-12-26 15:36:49.9216 [DEBUG] Application Starting 
+2024-12-26 15:37:09.4534 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:37:10.1063 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:37:10.1063 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:37:11.1136 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 3:37:11 PM 
+2024-12-26 15:37:40.8434 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv at 12/26/2024 3:37:40 PM 
+2024-12-26 15:37:40.8434 [INFO] Time taken to process file: 29.7302263 seconds. 
+2024-12-26 15:37:40.8434 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815.csv 
+2024-12-26 15:37:40.8536 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_20241211_134815_20241226_153740.csv 
+2024-12-26 15:37:50.3321 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:37:54.1998 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:37:54.2486 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:38:11.6989 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:38:12.3091 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:38:12.3091 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:38:13.2328 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:38:13 PM 
+2024-12-26 15:38:13.5414 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 3:38:13 PM 
+2024-12-26 15:38:13.5414 [INFO] Time taken to process file: 0.3086052 seconds. 
+2024-12-26 15:38:13.5414 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:38:13.5414 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_153813.csv 
+2024-12-26 15:38:13.5414 [INFO] Application Completed Successfully 
+2024-12-26 15:50:45.1696 [DEBUG] Application Starting 
+2024-12-26 15:51:03.3875 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:51:04.0173 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 15:51:04.0173 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 15:51:05.0001 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 3:51:04 PM 
+2024-12-26 15:51:05.0357 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 3:51:05 PM 
+2024-12-26 15:51:05.0357 [INFO] Time taken to process file: 0.0361271 seconds. 
+2024-12-26 15:51:05.0357 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv 
+2024-12-26 15:51:05.0411 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024_20241226_155105.csv 
+2024-12-26 15:51:16.5958 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:51:20.7521 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:51:20.7603 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 15:59:37.7022 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_155937.csv:  Renci.SshNet.Common.SshConnectionException: An established connection was aborted by the server.
+   at Renci.SshNet.Session.WaitOnHandle(WaitHandle waitHandle, TimeSpan timeout)
+   at Renci.SshNet.NoneAuthenticationMethod.Authenticate(Session session)
+   at Renci.SshNet.ClientAuthentication.Authenticate(IConnectionInfoInternal connectionInfo, ISession session)
+   at Renci.SshNet.ConnectionInfo.Authenticate(ISession session, IServiceFactory serviceFactory)
+   at Renci.SshNet.Session.Connect()
+   at Renci.SshNet.BaseClient.CreateAndConnectSession()
+   at Renci.SshNet.BaseClient.Connect()
+   at ProcessFiles_Demo.SFTPExtract.SFTPFileExtract.DownloadAndExtractFile(JObject clientSettings, String remoteDirectoryPath, String localDirectoryPath, String fileNamePrefix) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\SFTPExtract\SFTPFileExtract.cs:line 27
+   at ProcessFiles_Demo.FileProcessing.PayrollFileProcessor..ctor(JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\FileProcessing\PayrollProcessor.cs:line 50
+   at ProcessFiles_Demo.FileProcessing.CsvFileProcessorFactory.GetProcessor(String processortype, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\FileProcessing\CsvFileProcessorFactory.cs:line 25
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 133
+2024-12-26 15:59:38.0755 [INFO] ERROR: An established connection was aborted by the server. - moved to ReprocessFiles. 
+2024-12-26 15:59:38.0755 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync Renci.SshNet.Common.SshConnectionException: An established connection was aborted by the server.
+   at Renci.SshNet.Session.WaitOnHandle(WaitHandle waitHandle, TimeSpan timeout)
+   at Renci.SshNet.NoneAuthenticationMethod.Authenticate(Session session)
+   at Renci.SshNet.ClientAuthentication.Authenticate(IConnectionInfoInternal connectionInfo, ISession session)
+   at Renci.SshNet.ConnectionInfo.Authenticate(ISession session, IServiceFactory serviceFactory)
+   at Renci.SshNet.Session.Connect()
+   at Renci.SshNet.BaseClient.CreateAndConnectSession()
+   at Renci.SshNet.BaseClient.Connect()
+   at ProcessFiles_Demo.SFTPExtract.SFTPFileExtract.DownloadAndExtractFile(JObject clientSettings, String remoteDirectoryPath, String localDirectoryPath, String fileNamePrefix) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\SFTPExtract\SFTPFileExtract.cs:line 27
+   at ProcessFiles_Demo.FileProcessing.PayrollFileProcessor..ctor(JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\FileProcessing\PayrollProcessor.cs:line 50
+   at ProcessFiles_Demo.FileProcessing.CsvFileProcessorFactory.GetProcessor(String processortype, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\FileProcessing\CsvFileProcessorFactory.cs:line 25
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\Program.cs:line 133
+2024-12-26 15:59:38.0755 [INFO] Application Completed Successfully 
+2024-12-26 16:01:27.7471 [DEBUG] Application Starting 
+2024-12-26 16:01:45.1658 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:01:45.7979 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:01:45.7979 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:01:46.8238 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_155937.csv at 12/26/2024 4:01:46 PM 
+2024-12-26 16:01:46.9598 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_155937.csv at 12/26/2024 4:01:46 PM 
+2024-12-26 16:01:46.9598 [INFO] Time taken to process file: 0.1364577 seconds. 
+2024-12-26 16:01:46.9598 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_155937.csv 
+2024-12-26 16:01:46.9598 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_155937_20241226_160146.csv 
+2024-12-26 16:01:58.0004 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:02:01.7431 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:02:01.7431 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:02:20.2788 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:02:20.9393 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:02:20.9393 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:02:22.0477 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:02:22 PM 
+2024-12-26 16:02:22.3548 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:02:22 PM 
+2024-12-26 16:02:22.3548 [INFO] Time taken to process file: 0.3070919 seconds. 
+2024-12-26 16:02:22.3548 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:02:22.3668 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_160222.csv 
+2024-12-26 16:02:22.3668 [INFO] Application Completed Successfully 
+2024-12-26 16:03:20.2915 [DEBUG] Application Starting 
+2024-12-26 16:03:38.7056 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:03:39.3130 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:03:39.3130 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:03:40.4619 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 4:03:40 PM 
+2024-12-26 16:03:40.4917 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 4:03:40 PM 
+2024-12-26 16:03:40.4917 [INFO] Time taken to process file: 0.0303147 seconds. 
+2024-12-26 16:03:40.4917 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv 
+2024-12-26 16:03:40.4962 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024_20241226_160340.csv 
+2024-12-26 16:03:51.1280 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:03:55.4913 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:03:55.4913 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:04:08.6637 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:04:09.3808 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:04:09.3808 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:04:10.2483 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:04:10 PM 
+2024-12-26 16:04:10.4597 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:04:10 PM 
+2024-12-26 16:04:10.4597 [INFO] Time taken to process file: 0.2114075 seconds. 
+2024-12-26 16:04:10.4597 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:04:10.4597 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_160410.csv 
+2024-12-26 16:04:10.4597 [INFO] Application Completed Successfully 
+2024-12-26 16:05:38.5331 [DEBUG] Application Starting 
+2024-12-26 16:05:56.9725 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:05:58.0352 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:05:58.0352 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:05:58.9687 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 4:05:58 PM 
+2024-12-26 16:05:58.9972 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 4:05:58 PM 
+2024-12-26 16:05:58.9972 [INFO] Time taken to process file: 0.0289291 seconds. 
+2024-12-26 16:05:58.9972 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv 
+2024-12-26 16:05:58.9972 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024_20241226_160559.csv 
+2024-12-26 16:06:08.4964 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:06:12.2803 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:06:12.2803 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:06:26.7286 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:06:27.3529 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 16:06:27.3529 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 16:06:27.6649 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:06:27 PM 
+2024-12-26 16:06:27.8535 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 4:06:27 PM 
+2024-12-26 16:06:27.8535 [INFO] Time taken to process file: 0.1885642 seconds. 
+2024-12-26 16:06:27.8582 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 16:06:27.8582 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_160627.csv 
+2024-12-26 16:06:27.8582 [INFO] Application Completed Successfully 
+2024-12-26 19:51:04.8508 [DEBUG] Application Starting 
+2024-12-26 19:51:16.2187 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:51:23.1644 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:51:23.1644 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:51:46.5446 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:51:47.1931 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 19:51:47.1931 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:51:48.2826 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 7:51:48 PM 
+2024-12-26 19:53:04.4221 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 7:53:04 PM 
+2024-12-26 19:53:04.4221 [INFO] Time taken to process file: 76.1401699 seconds. 
+2024-12-26 19:53:04.4221 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:53:04.4221 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_195304.csv 
+2024-12-26 19:53:04.4221 [INFO] Application Completed Successfully 
+2024-12-26 19:55:59.8821 [DEBUG] Application Starting 
+2024-12-26 19:56:19.6252 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:56:20.3395 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 19:56:20.3395 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:56:21.3803 [INFO] Start processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 7:56:21 PM 
+2024-12-26 19:56:21.4336 [INFO] Finished processing Payroll CSV: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv at 12/26/2024 7:56:21 PM 
+2024-12-26 19:56:21.4336 [INFO] Time taken to process file: 0.0537742 seconds. 
+2024-12-26 19:56:21.4336 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ReprocessFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024.csv 
+2024-12-26 19:56:21.4336 [INFO] D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_2024-10-20-2024-11-02_2024-11-04_2024_20241226_195621.csv 
+2024-12-26 19:56:32.6098 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:56:36.3503 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:56:36.3503 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:56:48.7652 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:56:49.4251 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 19:56:49.4265 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 19:56:50.2312 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 7:56:50 PM 
+2024-12-26 19:56:50.4335 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 7:56:50 PM 
+2024-12-26 19:56:50.4335 [INFO] Time taken to process file: 0.2022135 seconds. 
+2024-12-26 19:56:50.4335 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 19:56:50.4335 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_195650.csv 
+2024-12-26 19:56:50.4335 [INFO] Application Completed Successfully 
+2024-12-26 20:09:26.1902 [DEBUG] Application Starting 
+2024-12-26 20:09:39.4455 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:09:46.4136 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:09:46.4136 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:10:00.4434 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:10:01.3096 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 20:10:01.3096 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:10:03.1391 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:10:03 PM 
+2024-12-26 20:10:03.4008 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:10:03 PM 
+2024-12-26 20:10:03.4008 [INFO] Time taken to process file: 0.2625968 seconds. 
+2024-12-26 20:10:03.4008 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:10:03.4008 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_201003.csv 
+2024-12-26 20:10:03.4008 [INFO] Application Completed Successfully 
+2024-12-26 20:14:31.5242 [DEBUG] Application Starting 
+2024-12-26 20:14:44.9940 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:14:49.9325 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:14:49.9360 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:15:03.7258 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:15:04.4264 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 20:15:04.4264 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:15:05.4075 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:15:05 PM 
+2024-12-26 20:15:05.5505 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:15:05 PM 
+2024-12-26 20:15:05.5505 [INFO] Time taken to process file: 0.1434831 seconds. 
+2024-12-26 20:15:05.5505 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:15:05.5505 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_201505.csv 
+2024-12-26 20:15:05.5505 [INFO] Application Completed Successfully 
+2024-12-26 20:19:44.5135 [DEBUG] Application Starting 
+2024-12-26 20:19:54.3805 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:19:58.1725 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:19:58.1887 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:20:12.9161 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:20:13.5836 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 20:20:13.5836 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:20:15.5760 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:20:15 PM 
+2024-12-26 20:20:15.8953 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:20:15 PM 
+2024-12-26 20:20:15.8953 [INFO] Time taken to process file: 0.3220985 seconds. 
+2024-12-26 20:20:15.8953 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:20:15.9072 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_202015.csv 
+2024-12-26 20:20:15.9072 [INFO] Application Completed Successfully 
+2024-12-26 20:32:07.0013 [DEBUG] Application Starting 
+2024-12-26 20:32:18.8510 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/payroll/Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:32:22.6246 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:32:22.6438 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:32:42.1499 [INFO] Downloaded file: EmployeeEntity-2024-343-2025-11.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:32:42.8539 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv 
+2024-12-26 20:32:42.8539 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/Mapping\EmployeeEntity-2024-343-2025-11.csv.gz 
+2024-12-26 20:32:44.7018 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:32:44 PM 
+2024-12-26 20:32:45.0279 [INFO] Finished processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv at 12/26/2024 8:32:45 PM 
+2024-12-26 20:32:45.0279 [INFO] Time taken to process file: 0.3271832 seconds. 
+2024-12-26 20:32:45.0279 [INFO] C:\Users\varadharaj\AppData\Local\Temp\Payfile_FEL_2024-11-17-2024-11-30-2024.csv 
+2024-12-26 20:32:45.0396 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\Payroll/ProcessedFiles\Payfile_FEL_2024-11-17-2024-11-30-2024_20241226_203245.csv 
+2024-12-26 20:32:45.0396 [INFO] Application Completed Successfully 

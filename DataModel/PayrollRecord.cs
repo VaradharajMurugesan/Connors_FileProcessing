@@ -27,5 +27,7 @@ namespace ProcessFiles_Demo.DataModel
         public string SpecialProcCode { get; set; }
         public string OtherStartDate { get; set; }
         public string OtherEndDate { get; set; }
+        public decimal? RateCode { get; set; }
+        public string CompanyCode { get; set; }
     }
 }
