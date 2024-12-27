@@ -2,7 +2,7 @@
   "profiles": {
     "ProcessFiles_Demo": {
       "commandName": "Project",
-      "commandLineArgs": "payroll Payfile_FEL"
+      "commandLineArgs": "manhattanpunch TimeClockChangeEntity"
     }
   }
 }

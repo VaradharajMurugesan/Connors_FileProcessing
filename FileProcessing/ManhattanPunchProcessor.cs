@@ -19,9 +19,11 @@ namespace ProcessFiles_Demo.FileProcessing
     {
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<string, ManhattanLocationData> LocationMapping;
+        private Dictionary<string, LocationEntityData> TimeZoneMapping;
         private readonly HashSet<string> payrollProcessedFileNumbers;
         private bool mealBreakFlag = false;
-
+        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
+        ExtractLocationEntityData extractLocation = new ExtractLocationEntityData();
 
         public ManhattanPunchProcessor(JObject clientSettings)
         {
@@ -29,6 +31,9 @@ namespace ProcessFiles_Demo.FileProcessing
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
             mealBreakFlag = bool.TryParse(clientSettings["Flags"]["MealBrakRequired"]?.ToString(), out bool flag) && flag;
             LocationMapping = LoadLocationMapping("location mapping.csv");
+            string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
+            string LocationEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "LocationEntity");
+            TimeZoneMapping = extractLocation.LoadGroupedLocationMappingFromCsv(LocationEntityMappingPath);
         }
 
         public Dictionary<string, ManhattanLocationData> LoadLocationMapping(string filePath)
@@ -359,20 +364,80 @@ namespace ProcessFiles_Demo.FileProcessing
 
         private async Task<IEnumerable<IGrouping<object, ClockRecord>>> GetGroupedRecordsAsync(string filePath)
         {
-            var records = new List<ClockRecord>();
+            // Use lazy loading to read and process the file line by line
+            IEnumerable<ClockRecord> records = ReadClockRecordsFromFile(filePath);
 
-            // Process the file asynchronously line by line using StreamReader
+            // Perform LINQ to join with LocationMapping and TimeZoneMapping
+            var joinedRecords = records.Select(clockRecord =>
+            {
+                // Fetch LocationName and ManhattanWarehouseId from LocationMapping
+                if (LocationMapping.TryGetValue(clockRecord.LocationExternalId, out var locationData))
+                {
+                    clockRecord.LocationName = locationData.LocationName;
+                    clockRecord.ManhattanWarehouseId = locationData.ManhattanWarehouseId; // Assuming WarehouseId is correct field name
+                }
+                else
+                {
+                    LoggerObserver.LogFileProcessed($"Location mapping not found for LocationExternalId: {clockRecord.LocationExternalId}");
+                }
+
+                // Fetch TimeZone from TimeZoneMapping and convert UTC times to local times
+                if (TimeZoneMapping.TryGetValue(clockRecord.LocationExternalId, out var timeZoneData))
+                {
+                    if (!string.IsNullOrWhiteSpace(timeZoneData.TimeZone))
+                    {
+                        try
+                        {
+                            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneData.TimeZone);
+                            clockRecord.ClockTimeBeforeChange = ConvertToLocalTime(clockRecord.ClockTimeBeforeChange, timeZoneInfo);
+                            clockRecord.ClockTimeAfterChange = ConvertToLocalTime(clockRecord.ClockTimeAfterChange, timeZoneInfo);
+                        }
+                        catch (TimeZoneNotFoundException)
+                        {
+                            LoggerObserver.LogFileProcessed($"Invalid TimeZone: {timeZoneData.TimeZone} for LocationExternalId: {clockRecord.LocationExternalId}");
+                        }
+                        catch (InvalidTimeZoneException)
+                        {
+                            LoggerObserver.LogFileProcessed($"Invalid TimeZone data: {timeZoneData.TimeZone} for LocationExternalId: {clockRecord.LocationExternalId}");
+                        }
+                    }
+                }
+                else
+                {
+                    LoggerObserver.LogFileProcessed($"TimeZone mapping not found for LocationExternalId: {clockRecord.LocationExternalId}");
+                }
+
+                return clockRecord;
+            });
+
+            // Group records by EmployeeExternalId and EventTypeGroup using LINQ
+            var groupedRecords = joinedRecords
+                .GroupBy(r => new
+                {
+                    r.EmployeeExternalId,
+                    EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
+                                        ? "Create_ApproveReject"
+                                        : r.EventType
+                });
+
+            return groupedRecords;
+        }
+
+        // Lazy load ClockRecords from the file
+        private IEnumerable<ClockRecord> ReadClockRecordsFromFile(string filePath)
+        {
             using (var reader = new StreamReader(filePath))
             {
-                // Skip the header row
-                await reader.ReadLineAsync();
+                // Skip the header
+                reader.ReadLine();
 
                 string line;
-                while ((line = await reader.ReadLineAsync()) != null)
+                while ((line = reader.ReadLine()) != null)
                 {
                     var parts = line.Split(',');
 
-                    var clockRecord = new ClockRecord
+                    // Yield each record as it is read and parsed
+                    yield return new ClockRecord
                     {
                         LocationExternalId = parts[2],
                         EmployeeExternalId = int.Parse(parts[7]),
@@ -384,39 +449,24 @@ namespace ProcessFiles_Demo.FileProcessing
                                                     ? (DateTime?)null
                                                     : DateTime.Parse(parts[17], CultureInfo.InvariantCulture),
                         ClockWorkRoleAfterChange = parts[21],
-                        EventType = parts[24],
+                        EventType = parts[24]
                     };
-
-                    // Perform the join here with LocationMapping
-                    var locationData = LocationMapping
-                        .FirstOrDefault(x => x.Key == clockRecord.LocationExternalId).Value;
-
-                    if (locationData != null)
-                    {
-                        clockRecord.LocationName = locationData.LocationName;
-                        clockRecord.ManhattanWarehouseId = locationData.ManhattanWarehouseId;
-                    }
-                    else
-                    {
-                        LoggerObserver.LogFileProcessed($"Location mapping not found for LocationExternalId: {clockRecord.LocationExternalId}");
-                    }
-
-                    records.Add(clockRecord);
                 }
             }
-
-            // Group records by EmployeeExternalId and EventTypeGroup
-            var groupedRecords = records
-                .GroupBy(r => new
-                {
-                    r.EmployeeExternalId,
-                    EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
-                                    ? "Create_ApproveReject"
-                                    : r.EventType
-                });
-
-            return groupedRecords;
         }
+
+        // Helper method to convert UTC time to local time based on TimeZoneInfo
+        private DateTime? ConvertToLocalTime(DateTime? utcTime, TimeZoneInfo timeZoneInfo)
+        {
+            if (utcTime.HasValue)
+            {
+                return TimeZoneInfo.ConvertTimeFromUtc(utcTime.Value, timeZoneInfo);
+            }
+            return null;
+        }
+
+
+
 
     }
 }

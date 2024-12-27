@@ -581,7 +581,7 @@ namespace ProcessFiles_Demo.FileProcessing
                                        $"{ExtractDatePart(record.OtherStartDate)},{ExtractDatePart(record.OtherEndDate)}, {record.PayType}";
                             }
                         }
-
+                        LoggerObserver.OnFileFailed($"No Paycode found for PayType: {record.PayType} for Employee ID {record.EmployeeId}");
                         // Return null if no matching paycode is found
                         return null;
                     })
