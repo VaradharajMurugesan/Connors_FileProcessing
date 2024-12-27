@@ -155,8 +155,8 @@ namespace ProcessFiles_Demo.FileProcessing
             DateTime? startDateForMerge = empClockIn?.AddHours(-2) ?? empClockOut?.AddHours(-2);
             DateTime? endDateForMerge = empClockOut?.AddHours(2) ?? empClockIn?.AddHours(2);
 
-            mergeRange.AppendChild(CreateElement(xmlDoc, "StartDateForMerge", startDateForMerge?.ToString("o")));
-            mergeRange.AppendChild(CreateElement(xmlDoc, "EndDateForMerge", endDateForMerge?.ToString("o")));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "StartDateForMerge", startDateForMerge?.ToString("MM/dd/yyyy HH:mm:ss")));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "EndDateForMerge", endDateForMerge?.ToString("MM/dd/yyyy HH:mm:ss")));
 
             XmlElement mergeClockInClockOut = xmlDoc.CreateElement("MergeClockInClockOut");
             mergeRange.AppendChild(mergeClockInClockOut);
@@ -186,8 +186,8 @@ namespace ProcessFiles_Demo.FileProcessing
             DateTime? startDateForDel = group.Records.Min(r => r.ClockTimeBeforeChange);
             DateTime? endDateForDel = group.Records.Max(r => r.ClockTimeBeforeChange);
 
-            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "StartDateForDel", startDateForDel?.ToString("o")));
-            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EndDateForDel", endDateForDel?.ToString("o")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "StartDateForDel", startDateForDel?.ToString("MM/dd/yyyy HH:mm:ss")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EndDateForDel", endDateForDel?.ToString("MM/dd/yyyy HH:mm:ss")));
 
             tranNumber++;
         }
@@ -241,12 +241,12 @@ namespace ProcessFiles_Demo.FileProcessing
         {
             if (empClockIn.HasValue)
             {
-                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockIn", empClockIn.Value.ToString("o")));
+                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockIn", empClockIn.Value.ToString("MM/dd/yyyy HH:mm:ss")));
             }
 
             if (empClockOut.HasValue)
             {
-                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockOut", empClockOut.Value.ToString("o")));
+                mergeClockInClockOut.AppendChild(CreateElement(xmlDoc, "EmpClockOut", empClockOut.Value.ToString("MM/dd/yyyy HH:mm:ss")));
             }
         }
 
@@ -258,12 +258,12 @@ namespace ProcessFiles_Demo.FileProcessing
 
             if (breakClockIn.HasValue)
             {
-                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakStartTime", breakClockIn.Value.ToString("o")));
+                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakStartTime", breakClockIn.Value.ToString("MM/dd/yyyy HH:mm:ss")));
             }
 
             if (breakClockOut.HasValue)
             {
-                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakEndTime", breakClockOut.Value.ToString("o")));
+                mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "BreakEndTime", breakClockOut.Value.ToString("MM/dd/yyyy HH:mm:ss")));
             }
 
             mergeBreakStartBreakEnd.AppendChild(CreateElement(xmlDoc, "Activity", "UNPAIDBRK"));
@@ -464,9 +464,6 @@ namespace ProcessFiles_Demo.FileProcessing
             }
             return null;
         }
-
-
-
 
     }
 }
