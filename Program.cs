@@ -23,67 +23,95 @@ class Program
 
     static async Task Main(string[] args)
     {
-
         try
         {
-            // Set the processType variable before loading the configuration 
-            // Default to empty if no argument is passed
-            // Ensure processType and fileNameStartsWith are set based on provided arguments
-            string processorType = args.Length > 0 ? args[0] : string.Empty; // Default to empty if no argument is passed
-            string fileNameStartsWith = args.Length > 1 ? args[1] : string.Empty; // Default to empty if second argument is not passed
+            // Set the processType variable based on the arguments
+            string processorType = args.Length > 0 ? args[0] : string.Empty;
+            string fileNameStartsWith = args.Length > 1 ? args[1] : string.Empty;
             AppDomain.CurrentDomain.SetData("ProcessorType", processorType);
 
             LoggerObserver.Debug("Application Starting");
-            
-            // Load client settings
-            var clientSettings = ClientSettingsLoader.LoadClientSettings(processorType);
 
-            // Extract FTP/SFTP settings
-            string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
-            string host = clientSettings["FTPSettings"]["Host"].ToString();
-            int port = (int)clientSettings["FTPSettings"]["Port"];
-            string username = clientSettings["FTPSettings"]["Username"].ToString();
-            string password = clientSettings["FTPSettings"]["Password"].ToString();
+            // Define a list of processor types to handle
+            var processorTypes = new List<string>();
 
-            // Extract folder paths
-            string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
-            string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
-            string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
-            string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
-            string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
-            string mappingFilesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+            if (processorType.Equals("payroll", StringComparison.OrdinalIgnoreCase))
+            {
+                // Add both payroll and accrualbalanceexport to the processing queue
+                processorTypes.Add("payroll");
+                processorTypes.Add("accrualbalanceexport");
+            }
+            else
+            {
+                // For other processor types, only add the specified processorType
+                processorTypes.Add(processorType);
+            }
 
-            // Ensure directories exist
-            Directory.CreateDirectory(reprocessingFolder);
-            Directory.CreateDirectory(failedFolder);
-            Directory.CreateDirectory(processedFolder);
-            Directory.CreateDirectory(outputFolder);
-            Directory.CreateDirectory(decryptedFolderOutput);
-            Directory.CreateDirectory(mappingFilesFolder);
+            foreach (var type in processorTypes)
+            {
+                // Determine the appropriate fileNameStartsWith value for each processorType
+                string currentFileNameStartsWith = fileNameStartsWith;
 
-            // Initialize file transfer client
-            var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
+                if (type.Equals("accrualbalanceexport", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Set fileNameStartsWith explicitly for accrualbalanceexport
+                    currentFileNameStartsWith = "AccrualBalanceExport"; // Replace "accrualfile" with the correct prefix if needed
+                }
 
-            // 1. Process any files in the Reprocessing folder first
-            await ProcessReprocessingFilesAsync(fileTransferClient, processorType, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+                LoggerObserver.Info($"Starting processing for processor type: {type} with fileNameStartsWith: {currentFileNameStartsWith}");
 
-            // 2. Fetch and process files from FTP/SFTP
-            await FetchAndProcessFilesAsync(fileTransferClient, processorType, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings, fileNameStartsWith);
+                // Load client settings
+                var clientSettings = ClientSettingsLoader.LoadClientSettings(type);
+
+                // Extract FTP/SFTP settings
+                string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
+                string host = clientSettings["FTPSettings"]["Host"].ToString();
+                int port = (int)clientSettings["FTPSettings"]["Port"];
+                string username = clientSettings["FTPSettings"]["Username"].ToString();
+                string password = clientSettings["FTPSettings"]["Password"].ToString();
+
+                // Extract folder paths
+                string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
+                string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
+                string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
+                string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
+                string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
+                string mappingFilesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+
+                // Ensure directories exist
+                Directory.CreateDirectory(reprocessingFolder);
+                Directory.CreateDirectory(failedFolder);
+                Directory.CreateDirectory(processedFolder);
+                Directory.CreateDirectory(outputFolder);
+                Directory.CreateDirectory(decryptedFolderOutput);
+                Directory.CreateDirectory(mappingFilesFolder);
+
+                // Initialize file transfer client
+                var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
+
+                // Process reprocessing files
+                await ProcessReprocessingFilesAsync(fileTransferClient, type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+
+                // Fetch and process files from FTP/SFTP
+                await FetchAndProcessFilesAsync(fileTransferClient, type, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings, currentFileNameStartsWith);
+
+                LoggerObserver.Info($"Processing completed for processor type: {type}");
+            }
+
 
             LoggerObserver.Info("Application Completed Successfully");
         }
         catch (Exception ex)
         {
-            // Log setup errors
             LoggerObserver.Error(ex, "Application terminated unexpectedly");
             throw;
         }
         finally
         {
-            // Ensure to flush and stop internal timers/threads before application-exit
             LogManager.Shutdown();
         }
     }
+
 
     private static async Task FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, string processorType, string processedFolder, string reprocessingFolder, string outputFolder, string decryptedFolderOutput, JObject clientSettings, string fileNameStartsWith)
     {

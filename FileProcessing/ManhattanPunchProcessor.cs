@@ -7,6 +7,7 @@ using ProcessFiles_Demo.Logging;
 using ProcessFiles_Demo.SFTPExtract;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -318,8 +319,10 @@ namespace ProcessFiles_Demo.FileProcessing
                     throw new FileNotFoundException($"The file does not exist: {filePath}");
                 }
 
+                ReadClockRecordsFromFileAndInsertToDatabase(filePath);
+
                 // Read and process CSV records lazily and asynchronously
-                var groupedRecords = await GetGroupedRecordsAsync(filePath);
+                var groupedRecords = await GetGroupedRecordsFromDatabaseAsync();//await GetGroupedRecordsAsync(filePath);
 
                 // Prepare a list of ShiftGroups to pass to XML generation
                 var allGroups = new List<ShiftGroup>();
@@ -359,6 +362,259 @@ namespace ProcessFiles_Demo.FileProcessing
             {
                 LoggerObserver.Error(ex, "An unexpected error occurred during processing.");
                 throw; // Re-throw the exception to ensure proper visibility of critical errors
+            }
+        }
+
+        private async Task<IEnumerable<IGrouping<object, ClockRecord>>> GetGroupedRecordsFromDatabaseAsync()
+        {
+            string connectionString = "Data Source=fivebelow_integration.db";
+
+            // Change the type to IEnumerable<IGrouping<object, ClockRecord>>
+            IEnumerable<IGrouping<object, ClockRecord>> groupedRecords = null;
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                // Fetch records from the clock_record table
+                var query = @"
+                    WITH CurrentRecords AS (
+                        SELECT *
+                        FROM clock_record
+                        WHERE is_current = 1
+                    ),
+                    OldRecords AS (
+                        SELECT *
+                        FROM clock_record
+                        WHERE is_current = 0
+                    ),
+                    TimeDifferences AS (
+                        SELECT 
+                            cr.employee_external_id,
+                            cr.clock_time_after_change AS ClockTime1,
+                            orr.clock_time_after_change AS ClockTime2,
+                            ABS(STRFTIME('%s', orr.clock_time_after_change) - STRFTIME('%s', cr.clock_time_after_change)) / 3600 AS HourDifference
+                        FROM CurrentRecords cr
+                        INNER JOIN OldRecords orr
+                            ON cr.employee_external_id = orr.employee_external_id
+                            AND ABS(STRFTIME('%s', orr.clock_time_after_change) - STRFTIME('%s', cr.clock_time_after_change)) / 3600 <= 14
+                    )
+                    SELECT DISTINCT 
+                        r.*
+                    FROM clock_record r
+                    LEFT JOIN (
+                        SELECT 
+                            cr.employee_external_id,
+                            cr.clock_time_after_change AS ClockTime
+                        FROM CurrentRecords cr
+                        UNION ALL
+                        SELECT 
+                            td.employee_external_id,
+                            td.ClockTime2 AS ClockTime
+                        FROM TimeDifferences td
+                    ) filtered_records
+                        ON r.employee_external_id = filtered_records.employee_external_id
+                        AND r.clock_time_after_change = filtered_records.ClockTime
+                    WHERE r.is_current = 1 
+                       OR (r.employee_external_id IN (SELECT employee_external_id FROM CurrentRecords)
+                           AND r.is_current = 0
+                           AND r.clock_time_after_change IN (SELECT ClockTime2 FROM TimeDifferences))
+                    ORDER BY r.employee_external_id, r.clock_time_after_change;
+
+                ";
+
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        var records = new List<ClockRecord>();
+
+                        // Parse the results into a list of ClockRecord objects
+                        while (await reader.ReadAsync())
+                        {
+                            var clockRecord = new ClockRecord
+                            {
+                                LocationExternalId = reader["location_external_id"]?.ToString(),
+                                EmployeeExternalId = Convert.ToInt32(reader["employee_external_id"]),
+                                ClockType = reader["clock_type"]?.ToString(),
+                                ClockTimeBeforeChange = reader["clock_time_before_change"] == DBNull.Value
+                                    ? (DateTime?)null
+                                    : DateTime.Parse(reader["clock_time_before_change"].ToString()),
+                                ClockTimeAfterChange = reader["clock_time_after_change"] == DBNull.Value
+                                    ? (DateTime?)null
+                                    : DateTime.Parse(reader["clock_time_after_change"].ToString()),
+                                ClockWorkRoleAfterChange = reader["clock_work_role_after_change"]?.ToString(),
+                                EventType = reader["event_type"]?.ToString(),
+                                //LocationName = reader["location_name"]?.ToString(),
+                                //ManhattanWarehouseId = reader["manhattan_warehouse_id"]?.ToString()
+                            };
+
+                            // Perform any additional mappings (e.g., LocationMapping and TimeZoneMapping)
+                            if (LocationMapping.TryGetValue(clockRecord.LocationExternalId, out var locationData))
+                            {
+                                clockRecord.LocationName = locationData.LocationName;
+                                clockRecord.ManhattanWarehouseId = locationData.ManhattanWarehouseId;
+                            }
+
+                            if (TimeZoneMapping.TryGetValue(clockRecord.LocationExternalId, out var timeZoneData) && !string.IsNullOrWhiteSpace(timeZoneData.TimeZone))
+                            {
+                                try
+                                {
+                                    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneData.TimeZone);
+                                    clockRecord.ClockTimeBeforeChange = ConvertToLocalTime(clockRecord.ClockTimeBeforeChange, timeZoneInfo);
+                                    clockRecord.ClockTimeAfterChange = ConvertToLocalTime(clockRecord.ClockTimeAfterChange, timeZoneInfo);
+                                }
+                                catch (TimeZoneNotFoundException)
+                                {
+                                    LoggerObserver.LogFileProcessed($"Invalid TimeZone: {timeZoneData.TimeZone} for LocationExternalId: {clockRecord.LocationExternalId}");
+                                }
+                                catch (InvalidTimeZoneException)
+                                {
+                                    LoggerObserver.LogFileProcessed($"Invalid TimeZone data: {timeZoneData.TimeZone} for LocationExternalId: {clockRecord.LocationExternalId}");
+                                }
+                            }
+
+                            records.Add(clockRecord);
+                        }
+
+                        // Group records by EmployeeExternalId and EventTypeGroup
+                        groupedRecords = records
+                            .GroupBy(r => new
+                            {
+                                r.EmployeeExternalId,
+                                EventTypeGroup = (r.EventType == "Create" || r.EventType == "ApproveReject")
+                                    ? "Create_ApproveReject"
+                                    : r.EventType
+                            });
+                    }
+                }
+            }
+
+            return groupedRecords;
+        }
+
+
+
+
+        public void ReadClockRecordsFromFileAndInsertToDatabase(string filePath)
+        {
+            string connectionString = "Data Source=fivebelow_integration.db";
+            const int batchSize = 1000;
+
+            // List to hold the result set as ClockRecord objects
+            var clockRecords = new List<ClockRecord>();
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var resetCommand = new SQLiteCommand("UPDATE clock_record SET is_current = 0", connection))
+                {
+                    resetCommand.ExecuteNonQuery();
+                }
+
+                SQLiteTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    var insertCommand = @"
+                        INSERT INTO clock_record (
+                        location_external_id,
+                        employee_external_id,
+                        clock_type,
+                        clock_time_before_change,
+                        clock_time_after_change,
+                        clock_work_role_after_change,
+                        event_type,
+                        location_name,
+                        manhattan_warehouse_id,
+                        is_current
+                        )
+                        SELECT
+                            @LocationExternalId,
+                            @EmployeeExternalId,
+                            @ClockType,
+                            @ClockTimeBeforeChange,
+                            @ClockTimeAfterChange,
+                            @ClockWorkRoleAfterChange,
+                            @EventType,
+                            @LocationName,
+                            @ManhattanWarehouseId,
+                            @IsCurrent
+                        WHERE NOT EXISTS (
+                            SELECT 1 FROM clock_record
+                            WHERE location_external_id = @LocationExternalId
+                              AND employee_external_id = @EmployeeExternalId  
+                              AND clock_type = @ClockType                       
+                              AND event_type = @EventType
+                              AND location_name = @LocationName
+                              AND (
+                                  (clock_time_after_change = @ClockTimeAfterChange OR (clock_time_after_change IS NULL AND @ClockTimeAfterChange IS NULL))
+                              )
+                              AND (
+                                  (clock_time_before_change = @ClockTimeBeforeChange OR (clock_time_before_change IS NULL AND @ClockTimeBeforeChange IS NULL))
+                              )
+                        );
+                    ";
+
+                    using (var command = new SQLiteCommand(insertCommand, connection, transaction))
+                    {
+                        using (var reader = new StreamReader(filePath))
+                        {
+                            reader.ReadLine(); // Skip header
+                            int batchCount = 0;
+                            string line;
+
+                            while ((line = reader.ReadLine()) != null)
+                            {
+                                var parts = line.Split(',');
+
+                                command.Parameters.Clear();
+                                command.Parameters.AddWithValue("@LocationExternalId", parts[2]?.Trim());
+                                command.Parameters.AddWithValue("@EmployeeExternalId", int.Parse(parts[7]?.Trim()));
+                                command.Parameters.AddWithValue("@ClockType", parts[9]?.Trim());
+                                command.Parameters.AddWithValue("@ClockTimeBeforeChange", string.IsNullOrWhiteSpace(parts[10])
+                                    ? null
+                                    : DateTime.Parse(parts[10], CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss"));
+                                command.Parameters.AddWithValue("@ClockTimeAfterChange", string.IsNullOrWhiteSpace(parts[17])
+                                    ? null
+                                    : DateTime.Parse(parts[17], CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss"));
+                                command.Parameters.AddWithValue("@ClockWorkRoleAfterChange", parts[21]?.Trim());
+                                command.Parameters.AddWithValue("@EventType", parts[24]?.Trim());
+                                command.Parameters.AddWithValue("@LocationName", parts[3]?.Trim());
+                                command.Parameters.AddWithValue("@ManhattanWarehouseId", parts[4]?.Trim());
+                                command.Parameters.AddWithValue("@IsCurrent", 1);
+
+                                command.ExecuteNonQuery();
+                                batchCount++;
+
+                                if (batchCount >= batchSize)
+                                {
+                                    transaction.Commit();
+                                    transaction.Dispose();
+                                    transaction = connection.BeginTransaction();
+                                    batchCount = 0;
+                                }
+                            }
+
+                            if (batchCount > 0)
+                            {
+                                transaction.Commit();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error occurred: {ex.Message}");
+                    transaction.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    transaction.Dispose();
+                }
             }
         }
 

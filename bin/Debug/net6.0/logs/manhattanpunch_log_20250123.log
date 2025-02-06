@@ -1,0 +1,13 @@
+2025-01-23 14:25:35.7054 [DEBUG] Application Starting 
+2025-01-23 14:25:48.2055 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342_test3.csv 
+2025-01-23 14:25:51.0340 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342_test3.csv 
+2025-01-23 14:25:51.0383 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342_test3.csv 
+2025-01-23 14:26:02.8020 [INFO] Downloaded file: LocationEntity-2025-5-2025-39.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-5-2025-39.csv.gz 
+2025-01-23 14:26:03.4531 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-5-2025-39.csv 
+2025-01-23 14:26:03.4531 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-5-2025-39.csv.gz 
+2025-01-23 14:26:03.4878 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342_test3.csv at 1/23/2025 2:26:03 PM 
+2025-01-23 14:26:03.7364 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342_test3.csv at 1/23/2025 2:26:03 PM 
+2025-01-23 14:26:03.7364 [INFO] Time taken to process the file: 0.25 seconds. 
+2025-01-23 14:26:03.7364 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342_test3.csv 
+2025-01-23 14:26:03.7364 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_test3_20250123_142603.csv 
+2025-01-23 14:26:03.7364 [INFO] Application Completed Successfully 
