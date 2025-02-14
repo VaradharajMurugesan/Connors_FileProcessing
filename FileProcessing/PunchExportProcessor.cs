@@ -7,6 +7,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using ProcessFiles_Demo.Logging;
 using OfficeOpenXml;
+using ProcessFiles_Demo.SFTPExtract;
+using ProcessFiles_Demo.DataModel;
+using Newtonsoft.Json.Linq;
 
 namespace ProcessFiles_Demo.FileProcessing
 {
@@ -14,9 +17,11 @@ namespace ProcessFiles_Demo.FileProcessing
     {
         private Dictionary<int, string> timeZoneMap;
         private Dictionary<string, TimeZoneInfo> timeZoneCache;
-        private Dictionary<string, string> employeeLocationMap;
+        private Dictionary<string, EmployeeHrData> employeeHrMapping;
+        ExtractEmployeeEntityData extractEmployeeEntityData = new ExtractEmployeeEntityData();
+        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
 
-        public PunchExportProcessor()
+        public PunchExportProcessor(JObject clientSettings)
         {
             // Load Time Zone mappings from JSON file
             string json = File.ReadAllText("timezones.json");
@@ -25,42 +30,14 @@ namespace ProcessFiles_Demo.FileProcessing
             // Initialize cache for TimeZoneInfo objects
             timeZoneCache = new Dictionary<string, TimeZoneInfo>();
 
-            // Load employee-location mapping
-            employeeLocationMap = LoadEmployeeLocationMap("2024.09.26 Employee_Location mapping.xlsx");
+            string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+            string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
+            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
+            // Load employee HR mapping from Excel (grouped by employee ID now)
+            employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
         }
 
-        private Dictionary<string, string> LoadEmployeeLocationMap(string filePath)
-        {
-            // Set the LicenseContext for EPPlus
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var map = new Dictionary<string, string>();
-
-            // Load the Excel package
-            using (var package = new ExcelPackage(new FileInfo(filePath)))
-            {
-                // Get the first worksheet in the file
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-
-                int rowCount = worksheet.Dimension.Rows;
-                int colEmployeeId = 1;   // Assuming Employee Number is in column 1
-                int colLocation = 2;     // Assuming Labor Level 2 (Location) is in column 2
-
-                // Loop through rows and read Employee Number and Location
-                for (int row = 2; row <= rowCount; row++) // Starting from row 2, skipping header
-                {
-                    string employeeId = worksheet.Cells[row, colEmployeeId].Text.Trim();
-                    string location = worksheet.Cells[row, colLocation].Text.Trim();
-
-                    if (!string.IsNullOrWhiteSpace(employeeId) && !string.IsNullOrWhiteSpace(location))
-                    {
-                        map[employeeId] = location;
-                    }
-                }
-            }
-
-            return map;
-        }
-
+        
         public async Task ProcessAsync(string filePath, string destinationPath)
         {
             DateTime startTime = DateTime.Now;
@@ -84,7 +61,7 @@ namespace ProcessFiles_Demo.FileProcessing
                 while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                 {
                     var columns = line.Split(',');
-                    if (columns.Length > 6)
+                    if (columns.Length >= 5)
                     {
                         string timeZoneId = columns[6].Trim(); // Get Time Zone ID
                         string employeeId = columns[0].Trim(); // Get Employee ID
@@ -184,7 +161,7 @@ namespace ProcessFiles_Demo.FileProcessing
         private async Task<string> ProcessLineWithTimeZoneAsync(string line, TimeZoneInfo timeZoneInfo, string nextLine, Dictionary<string, string> lastPunchTypes)
         {
             var columns = line.Split(',');
-            if (columns.Length < 8) // Ensure the line has enough columns
+            if (columns.Length < 6) // Ensure the line has enough columns
             {
                 LoggerObserver.OnFileFailed($"Malformed line: {line}");
                 return null;
@@ -196,7 +173,11 @@ namespace ProcessFiles_Demo.FileProcessing
             string punchType = columns[5]; // Column index for Punch Type
 
             // Fetch location from employee-location mapping
-            string location = employeeLocationMap.ContainsKey(employeeId) ? employeeLocationMap[employeeId] : "Unknown";
+            //string location = employeeLocationMap.ContainsKey(employeeId) ? employeeLocationMap[employeeId] : "Unknown";
+            // Fetch locationId from employeeHrMapping, default to "Unknown" if not found
+            string location = employeeHrMapping.TryGetValue(employeeId, out var hrData)
+                ? hrData?.LocationExternalId ?? "Unknown"
+                : "Unknown";
 
             // Define the possible formats with both yyyy and yy
             string[] formats = { "M/d/yyyy H:mm", "M/d/yy H:mm", "M/d/yyyy h:mm tt", "M/d/yy h:mm tt" };
@@ -229,7 +210,7 @@ namespace ProcessFiles_Demo.FileProcessing
             string clockInType = GetClockInType(punchType, nextPunchType, lastPunchTypes, employeeId);
 
             // External ID is a combination of Employee ID, Location, Date/time
-            string externalId = $"{employeeId}-{location}-{dateTimeStr}".Replace(" ","").Replace("/","-");
+            string externalId = $"{employeeId}-{location}-{dateTimeStr}".Replace(" ", "").Replace("/", "-");
 
             // Store the current punch type as the last punch type for this employee
             lastPunchTypes[employeeId] = punchType;
@@ -267,7 +248,7 @@ namespace ProcessFiles_Demo.FileProcessing
         // Method to convert DateTime to a specific time zone
         private DateTime ConvertToTimeZone(DateTime dateTime, TimeZoneInfo timeZone)
         {
-            return TimeZoneInfo.ConvertTime(dateTime, timeZone);
+            return TimeZoneInfo.ConvertTimeToUtc(dateTime, timeZone);
         }
 
         // Method to map punch type to ClockInType with conditions
@@ -279,7 +260,7 @@ namespace ProcessFiles_Demo.FileProcessing
 
             // Handle ClockInType based on the current and last punch types
             if (punchType == "Out Punch" & (nextPunchType == null || lastPunchType == null))
-            {               
+            {
                 return "ShiftEnd"; // Default for "Out Punch"
             }
 

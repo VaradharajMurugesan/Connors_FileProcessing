@@ -1,0 +1,123 @@
+2025-02-13 01:18:37.0243 [DEBUG] Application Starting 
+2025-02-13 01:18:37.1808 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 01:18:48.1166 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 01:18:53.3426 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:18:53.3500 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:18:54.7173 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:18:54 AM 
+2025-02-13 01:23:00.9997 [DEBUG] Application Starting 
+2025-02-13 01:23:01.1431 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 01:23:13.4230 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 01:23:18.4537 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:23:18.4537 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:23:19.7097 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:23:19 AM 
+2025-02-13 01:24:54.0524 [DEBUG] Application Starting 
+2025-02-13 01:24:54.2011 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 01:25:04.5312 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 01:25:09.4064 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:25:09.4190 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:25:11.0979 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:25:11 AM 
+2025-02-13 01:25:48.9260 [DEBUG] Application Starting 
+2025-02-13 01:25:49.0721 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 01:26:01.8790 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 01:26:07.1605 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:26:07.1670 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:26:08.1281 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:26:08 AM 
+2025-02-13 01:32:48.8002 [DEBUG] Application Starting 
+2025-02-13 01:32:48.8781 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 01:33:01.5098 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 01:33:06.5071 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:33:06.5071 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:33:07.5949 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:33:07 AM 
+2025-02-13 01:33:39.7237 [INFO] Finished processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:33:39 AM 
+2025-02-13 01:33:39.7237 [INFO] Time taken to process file: 32.1294014 seconds. 
+2025-02-13 01:33:39.7237 [INFO] C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 01:33:39.7237 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport 2025.02.11_20250213_013339.csv 
+2025-02-13 01:33:39.7237 [INFO] Processing completed for processor type: punchexport 
+2025-02-13 01:33:39.7395 [INFO] Application Completed Successfully 
+2025-02-13 13:58:45.2345 [DEBUG] Application Starting 
+2025-02-13 13:58:45.4155 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 13:58:56.0541 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 13:59:03.5838 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 13:59:03.5935 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 13:59:24.3877 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 13:59:25.0080 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 13:59:25.0080 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 13:59:26.1979 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:59:26 PM 
+2025-02-13 13:59:38.1978 [INFO] Finished processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 1:59:38 PM 
+2025-02-13 13:59:38.1978 [INFO] Time taken to process file: 12.0009822 seconds. 
+2025-02-13 13:59:38.1978 [INFO] C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 13:59:38.2259 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport 2025.02.11_20250213_135938.csv 
+2025-02-13 13:59:38.2259 [INFO] Processing completed for processor type: punchexport 
+2025-02-13 13:59:38.2259 [INFO] Application Completed Successfully 
+2025-02-13 19:04:32.6185 [DEBUG] Application Starting 
+2025-02-13 19:04:32.7187 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 19:04:45.0908 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 19:04:49.9376 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:04:49.9376 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:05:09.8646 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:05:10.7141 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 19:05:10.7141 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:05:11.1136 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 7:05:11 PM 
+2025-02-13 19:08:51.4721 [DEBUG] Application Starting 
+2025-02-13 19:08:51.5950 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 19:09:01.4435 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 19:09:06.1944 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:09:06.1992 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:09:19.1471 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:09:19.8254 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 19:09:19.8254 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:09:20.5266 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 7:09:20 PM 
+2025-02-13 19:09:43.4186 [INFO] Finished processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 7:09:43 PM 
+2025-02-13 19:09:43.4205 [INFO] Time taken to process file: 22.8930434 seconds. 
+2025-02-13 19:09:43.4205 [INFO] C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:09:43.4205 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport 2025.02.11_20250213_190943.csv 
+2025-02-13 19:09:43.4205 [INFO] Processing completed for processor type: punchexport 
+2025-02-13 19:09:43.4205 [INFO] Application Completed Successfully 
+2025-02-13 19:13:24.5563 [DEBUG] Application Starting 
+2025-02-13 19:13:24.7748 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 19:13:34.5828 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 19:13:39.1985 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:13:39.2108 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 19:13:53.7932 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:13:54.4582 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 19:13:54.4582 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 19:13:55.2453 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 7:13:55 PM 
+2025-02-13 21:56:28.2336 [DEBUG] Application Starting 
+2025-02-13 21:56:28.4165 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 21:56:38.0990 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 21:56:42.4442 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 21:56:42.4480 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 21:56:54.8664 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 21:56:55.4895 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 21:56:55.4895 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 21:56:55.9651 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 9:56:55 PM 
+2025-02-13 22:04:25.8183 [DEBUG] Application Starting 
+2025-02-13 22:04:25.9395 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 22:04:35.8824 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 22:04:40.2415 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:04:40.2445 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:04:52.8393 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 22:04:53.6196 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 22:04:53.6196 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 22:04:54.6654 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 10:04:54 PM 
+2025-02-13 22:06:16.4147 [INFO] Finished processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 10:06:16 PM 
+2025-02-13 22:06:16.4171 [INFO] Time taken to process file: 81.7508527 seconds. 
+2025-02-13 22:06:16.4171 [INFO] C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:06:16.4360 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport 2025.02.11_20250213_220616.csv 
+2025-02-13 22:06:16.4360 [INFO] Processing completed for processor type: punchexport 
+2025-02-13 22:06:16.4360 [INFO] Application Completed Successfully 
+2025-02-13 22:10:29.5427 [DEBUG] Application Starting 
+2025-02-13 22:10:29.7084 [INFO] Starting processing for processor type: punchexport with fileNameStartsWith: PunchExport 
+2025-02-13 22:10:39.5794 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/punchexport/PunchExport 2025.02.11.csv 
+2025-02-13 22:10:44.1974 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:10:44.1974 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:10:58.7942 [INFO] Downloaded file: EmployeeEntity-2025-26-2025-60.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 22:10:59.4593 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv 
+2025-02-13 22:10:59.4619 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/Mapping\EmployeeEntity-2025-26-2025-60.csv.gz 
+2025-02-13 22:11:00.4418 [INFO] Start processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 10:11:00 PM 
+2025-02-13 22:11:04.4791 [INFO] Finished processing Punch Export CSV: C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv at 2/13/2025 10:11:04 PM 
+2025-02-13 22:11:04.4791 [INFO] Time taken to process file: 4.0385532 seconds. 
+2025-02-13 22:11:04.4791 [INFO] C:\Users\varadharaj\AppData\Local\Temp\PunchExport 2025.02.11.csv 
+2025-02-13 22:11:04.4964 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\ProcessFiles_Demo\bin\Debug\net6.0\PunchExport/ProcessedFiles\PunchExport 2025.02.11_20250213_221104.csv 
+2025-02-13 22:11:04.4964 [INFO] Processing completed for processor type: punchexport 
+2025-02-13 22:11:04.4964 [INFO] Application Completed Successfully 

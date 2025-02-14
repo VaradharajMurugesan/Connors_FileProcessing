@@ -46,6 +46,7 @@
     "130501": "Australia Central Standard Time",
     "134641": "Australia Western Standard Time",
     "134661": "Caucasus Standard Time",
-    "134041": "Eastern Daylight Time",
-    "134071": "Central Daylight Time"
+    "134041": "Pacific Standard Time",
+    "134040": "Pacific Standard Time",
+    "134071": "Central Standard Time"
 }

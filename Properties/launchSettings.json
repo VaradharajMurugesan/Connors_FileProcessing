@@ -2,7 +2,7 @@
   "profiles": {
     "ProcessFiles_Demo": {
       "commandName": "Project",
-      "commandLineArgs": "manhattanpunch TimeClockChangeEntity"
+      "commandLineArgs": "punchexport PunchExport"
     }
   }
 }

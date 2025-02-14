@@ -14,7 +14,7 @@ namespace ProcessFiles_Demo.FileProcessing
             // Determine the type of file and return the appropriate processor
             if (processortype.Contains("punchexport", StringComparison.OrdinalIgnoreCase))
             {
-                return new PunchExportProcessor();
+                return new PunchExportProcessor(clientSettings);
             }
             else if (processortype.Contains("paycodeexport", StringComparison.OrdinalIgnoreCase))
             {
