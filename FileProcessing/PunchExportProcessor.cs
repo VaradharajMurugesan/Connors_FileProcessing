@@ -33,11 +33,11 @@ namespace ProcessFiles_Demo.FileProcessing
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
             string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
             string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
-            // Load employee HR mapping from Excel (grouped by employee ID now)
+
+            // Load employee HR mapping from CSV
             employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
         }
 
-        
         public async Task ProcessAsync(string filePath, string destinationPath)
         {
             DateTime startTime = DateTime.Now;
@@ -47,15 +47,13 @@ namespace ProcessFiles_Demo.FileProcessing
             const int batchSize = 1000;
             string destinationFileName = Path.GetFileName(filePath);
             var destinationFilePath = Path.Combine(destinationPath, $"Clockin_{timestamp}.csv");
-
             var lineBuffer = new List<string>(batchSize);
-            var groupedLines = new Dictionary<string, Dictionary<string, List<string>>>(); // Group by Time Zone and Employee ID
+            var groupedRecords = new Dictionary<string, List<string>>();
 
-            // Asynchronously read lines and group them by Time Zone ID and Employee ID
+            // Read and group records
             using (var reader = new StreamReader(filePath))
             {
-                // Read and skip the header line
-                string headerLine = await reader.ReadLineAsync().ConfigureAwait(false);
+                string headerLine = await reader.ReadLineAsync().ConfigureAwait(false); // Read header
 
                 string line;
                 while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
@@ -63,21 +61,16 @@ namespace ProcessFiles_Demo.FileProcessing
                     var columns = line.Split(',');
                     if (columns.Length >= 5)
                     {
-                        string timeZoneId = columns[6].Trim(); // Get Time Zone ID
-                        string employeeId = columns[0].Trim(); // Get Employee ID
+                        string employeeId = columns[0].Trim();
+                        string timeZoneId = columns[6].Trim();
+                        string key = $"{timeZoneId}-{employeeId}";
 
-                        // Initialize group if not already present
-                        if (!groupedLines.ContainsKey(timeZoneId))
+                        if (!groupedRecords.ContainsKey(key))
                         {
-                            groupedLines[timeZoneId] = new Dictionary<string, List<string>>();
+                            groupedRecords[key] = new List<string>();
                         }
 
-                        if (!groupedLines[timeZoneId].ContainsKey(employeeId))
-                        {
-                            groupedLines[timeZoneId][employeeId] = new List<string>();
-                        }
-
-                        groupedLines[timeZoneId][employeeId].Add(line);
+                        groupedRecords[key].Add(line);
                     }
                     else
                     {
@@ -88,46 +81,40 @@ namespace ProcessFiles_Demo.FileProcessing
 
             using (var writer = new StreamWriter(destinationFilePath))
             {
-                // Write header to destination file
                 await writer.WriteLineAsync("employeeid,locationId,clockintime,clockintype,deleted,externalId,role").ConfigureAwait(false);
-
                 // Dictionary to maintain the last punch type for each employee
                 var lastPunchTypes = new Dictionary<string, string>();
-
-                // Process each group of lines grouped by Time Zone ID and Employee ID
-                foreach (var timeZoneGroup in groupedLines)
+                foreach (var group in groupedRecords)
                 {
-                    string timeZoneIdStr = timeZoneGroup.Key;
+                    string timeZoneIdStr = group.Key.Split('-')[0];
 
-                    // Parse Time Zone ID to integer
                     if (!int.TryParse(timeZoneIdStr, out int timeZoneId))
                     {
                         LoggerObserver.OnFileFailed($"Invalid TimeZoneID: {timeZoneIdStr}");
-                        continue; // Skip this group if Time Zone ID is invalid
+                        continue;
                     }
 
                     TimeZoneInfo timeZoneInfo = GetTimeZoneInfo(timeZoneId);
                     if (timeZoneInfo == null)
-                    {
-                        continue; // Skip processing for invalid or unfound time zones
-                    }
+                        continue;
 
-                    foreach (var employeeGroup in timeZoneGroup.Value)
-                    {
-                        // Sort the punches for this employee by check-in time
-                        var sortedLines = employeeGroup.Value
-                            .OrderBy(line =>
-                            {
-                                var columns = line.Split(',');
-                                return DateTime.TryParse(columns[1], out var dateTime) ? dateTime : DateTime.MinValue;
-                            })
-                            .ToList();
-
-                        // Process each sorted line
-                        for (int i = 0; i < sortedLines.Count; i++)
+                    var sortedRecords = group.Value
+                        .OrderBy(line =>
                         {
-                            string currentLine = sortedLines[i];
-                            var processedLine = await ProcessLineWithTimeZoneAsync(currentLine, timeZoneInfo, i < sortedLines.Count - 1 ? sortedLines[i + 1] : null, lastPunchTypes);
+                            var cols = line.Split(',');
+                            return DateTime.TryParse(cols[1], out var dt) ? dt : DateTime.MinValue;
+                        })
+                        .ToList();
+
+                    List<List<string>> groupedBy24Hours = GroupRecordsBy24Hours(sortedRecords, timeZoneInfo);
+
+                    foreach (var recordGroup in groupedBy24Hours)
+                    {
+
+                        for (int i = 0; i < recordGroup.Count; i++)
+                        {
+                            string currentLine = recordGroup[i];
+                            var processedLine = await ProcessLineWithTimeZoneAsync(currentLine, timeZoneInfo, i < recordGroup.Count - 1 ? recordGroup[i + 1] : null, lastPunchTypes);
                             if (processedLine != null)
                             {
                                 lineBuffer.Add(processedLine);
@@ -138,10 +125,9 @@ namespace ProcessFiles_Demo.FileProcessing
                                 await WriteBatchAsync(writer, lineBuffer).ConfigureAwait(false);
                                 lineBuffer.Clear(); // Clear the buffer after writing
                             }
-                        }
+                        }                        
                     }
                 }
-
                 // Write any remaining lines in the buffer
                 if (lineBuffer.Any())
                 {
@@ -152,8 +138,66 @@ namespace ProcessFiles_Demo.FileProcessing
             DateTime endTime = DateTime.Now;
             LoggerObserver.LogFileProcessed($"Finished processing Punch Export CSV: {filePath} at {endTime}");
             TimeSpan duration = endTime - startTime;
-            LoggerObserver.LogFileProcessed($"Time taken to process file: {duration.TotalSeconds} seconds.");
+            LoggerObserver.LogFileProcessed($"Time taken: {duration.TotalSeconds} seconds.");
         }
+
+        private List<List<string>> GroupRecordsBy24Hours(List<string> records, TimeZoneInfo timeZoneInfo)
+        {
+            var groupedRecords = new List<List<string>>();
+            List<string> currentGroup = new List<string>();
+            DateTime? firstRecordTimeInGroup = null;
+
+            foreach (var record in records)
+            {
+                var cols = record.Split(',');
+                if (!DateTime.TryParse(cols[1], out DateTime recordTime))
+                    continue;
+
+                DateTime adjustedTime = ConvertToTimeZone(recordTime, timeZoneInfo);
+
+                // Check the punch type (assuming it's in the 3rd column)
+                string punchType = cols[5].ToLower(); // Convert punchType to lowercase for comparison
+
+                // If punchType is "out", split the group irrespective of the 24 hours gap
+                if (punchType == "new shift" && currentGroup.Any())
+                {
+                    groupedRecords.Add(new List<string>(currentGroup));
+                    currentGroup.Clear();
+                    firstRecordTimeInGroup = adjustedTime; // Reassign firstRecordTimeInGroup to the first record of the new group
+                }
+
+                // If it's the first record or within 24 hours of the first record, add it to the current group
+                if (!firstRecordTimeInGroup.HasValue || (adjustedTime - firstRecordTimeInGroup.Value).TotalHours <= 16)
+                {
+                    currentGroup.Add(record);
+                }
+                else
+                {
+                    // If 24 hours have passed, finalize the current group and start a new one
+                    groupedRecords.Add(new List<string>(currentGroup));
+                    currentGroup.Clear();
+                    currentGroup.Add(record); // First record of the new group
+
+                    // Reassign firstRecordTimeInGroup to the first record of the new group
+                    firstRecordTimeInGroup = adjustedTime;
+                }
+
+                // If it's the first record in the group, set the firstRecordTimeInGroup
+                if (!firstRecordTimeInGroup.HasValue)
+                {
+                    firstRecordTimeInGroup = adjustedTime;
+                }
+            }
+
+            // Add any remaining records in the current group
+            if (currentGroup.Any())
+            {
+                groupedRecords.Add(currentGroup);
+            }
+
+            return groupedRecords;
+        }
+
 
 
 
@@ -245,12 +289,10 @@ namespace ProcessFiles_Demo.FileProcessing
             return timeZoneCache[timeZoneIdName];
         }
 
-        // Method to convert DateTime to a specific time zone
         private DateTime ConvertToTimeZone(DateTime dateTime, TimeZoneInfo timeZone)
         {
             return TimeZoneInfo.ConvertTimeToUtc(dateTime, timeZone);
         }
-
         // Method to map punch type to ClockInType with conditions
         // Updated method to determine ClockInType with last punch type tracking
         private string GetClockInType(string punchType, string nextPunchType, Dictionary<string, string> lastPunchTypes, string employeeId)
@@ -298,7 +340,8 @@ namespace ProcessFiles_Demo.FileProcessing
             return punchType == "30 Min Meal" ||
                    punchType == "CA 30 Min Meal at LT 5 Hrs" ||
                    punchType == "CA Less Than a 30 Minute Meal" ||
-                   punchType == "CA 30 Min Meal at GT 5 Hrs";
+                   punchType == "CA 30 Min Meal at GT 5 Hrs" ||
+                   punchType == "CA 2nd 30 Min Meal by 10 Hrs";
         }
 
         // Helper method to check if the punch type is a meal break end type
@@ -307,15 +350,9 @@ namespace ProcessFiles_Demo.FileProcessing
             return punchType == "30 Min Meal" ||
                    punchType == "CA 30 Min Meal at LT 5 Hrs" ||
                    punchType == "CA Less Than a 30 Minute Meal" ||
-                   punchType == "CA 30 Min Meal at GT 5 Hrs";
+                   punchType == "CA 30 Min Meal at GT 5 Hrs" ||
+                   punchType == "CA 2nd 30 Min Meal by 10 Hrs"; 
         }
-
-        // Helper method to check if two DateTime values are on the same day
-        private bool IsSameDay(DateTime dt1, DateTime dt2)
-        {
-            return dt1.Date == dt2.Date;
-        }
-
         // Write a batch of lines to the file asynchronously
         private async Task WriteBatchAsync(StreamWriter writer, List<string> lines)
         {
