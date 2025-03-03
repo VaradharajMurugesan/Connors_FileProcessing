@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\ProcessFiles_Demo\\ProcessFiles_Demo.csproj": {}
+    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\ProcessFiles_Demo.csproj": {}
   },
   "projects": {
-    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\ProcessFiles_Demo\\ProcessFiles_Demo.csproj": {
+    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\ProcessFiles_Demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\ProcessFiles_Demo\\ProcessFiles_Demo.csproj",
+        "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\ProcessFiles_Demo.csproj",
         "projectName": "ProcessFiles_Demo",
-        "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\ProcessFiles_Demo\\ProcessFiles_Demo.csproj",
+        "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\ProcessFiles_Demo.csproj",
         "packagesPath": "C:\\Users\\varadharaj\\.nuget\\packages\\",
-        "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\ProcessFiles_Demo\\obj\\",
+        "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,35 @@ namespace ProcessFiles_Demo.DataModel
 {
     public class ClockRecord
     {
-        public string LocationExternalId { get; set; } // External Location ID        
-        public int EmployeeExternalId { get; set; } // External Employee ID
-        public string ClockType { get; set; } // Type of clock event (e.g., ShiftBegin, MealBreakBegin)
-        public DateTime? ClockTimeBeforeChange { get; set; } // Clock time before the change (nullable)        
-        public DateTime? ClockTimeAfterChange { get; set; } // Clock time after the change
-        public string ClockWorkRoleAfterChange { get; set; } // Work Role description after the change
-        public string EventType { get; set; } // Type of event (e.g., Create, ApproveReject)
-        public string LocationName { get; set; } // Location Name
+        public int Id { get; set; }
+        public string TimeClockChangeId { get; set; }
+        public string LocationId { get; set; }
+        public int LocationExternalId { get; set; }
+        public DateTime LastModifiedDt { get; set; }
+        public string LastModifiedByEmployeeId { get; set; }
+        public int LastModifiedByExternalEmployeeId { get; set; }
+        public string EmployeeId { get; set; }
+        public int EmployeeExternalId { get; set; }
+        public string TimeClockId { get; set; }
+        public string ClockType { get; set; }
+        public DateTime? ClockTimeBeforeChange { get; set; }
+        public string ClockLocationIdBeforeChange { get; set; }
+        public int ClockLocationBeforeChange { get; set; }
+        public string ClockWorkRoleIdBeforeChange { get; set; }
+        public string ClockWorkRoleBeforeChange { get; set; }
+        public string ClockSourceBeforeChange { get; set; }
+        public string ClockNoteBeforeChange { get; set; }
+        public DateTime? ClockTimeAfterChange { get; set; }
+        public string ClockLocationIdAfterChange { get; set; }
+        public int ClockLocationAfterChange { get; set; }
+        public string ClockWorkRoleIdAfterChange { get; set; }
+        public string ClockWorkRoleAfterChange { get; set; }
+        public string ClockSourceAfterChange { get; set; }
+        public string ClockNoteAfterChange { get; set; }
+        public string EventType { get; set; }
+        public bool IsCurrent { get; set; }
+        public string InsertBatchId { get; set; }
+        public DateTime InsertLoadDt { get; set; }
         public string ManhattanWarehouseId { get; set; } // Manhattan Warehouse ID
     }
 

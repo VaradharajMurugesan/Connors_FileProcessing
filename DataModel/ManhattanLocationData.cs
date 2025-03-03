@@ -8,9 +8,7 @@ namespace ProcessFiles_Demo.DataModel
 {
     public class ManhattanLocationData
     {
-        public string LocationExternalId { get; set; } // Location External Identifier
-        public string LocationName { get; set; } // Location Name
-        public string ManhattanWarehouseId { get; set; } // Manhattan Warehouse ID
-        public string? FileFilter { get; set; } // File / Filter to be determined
+        public int location_id { get; set; } // Location External Identifier
+        public string warehouse_id { get; set; } // Manhattan Warehouse ID
     }
 }

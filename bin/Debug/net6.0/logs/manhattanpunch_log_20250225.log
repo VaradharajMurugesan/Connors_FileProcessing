@@ -1,0 +1,90 @@
+2025-02-25 20:10:07.2668 [DEBUG] Application Starting 
+2025-02-25 20:10:07.4427 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-02-25 20:10:17.0896 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-02-25 20:10:20.6847 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-02-25 20:10:20.6847 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-02-25 20:10:33.1321 [INFO] Downloaded file: LocationEntity-2025-40-2025-74.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-40-2025-74.csv.gz 
+2025-02-25 20:10:33.5419 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-40-2025-74.csv 
+2025-02-25 20:10:33.5419 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-40-2025-74.csv.gz 
+2025-02-25 20:10:33.6566 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 2/25/2025 8:10:33 PM 
+2025-02-25 20:10:34.5922 [ERROR] An unexpected error occurred during processing. code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+2025-02-25 20:10:45.0270 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 2/25/2025 8:10:45 PM 
+2025-02-25 20:10:45.1877 [ERROR] An unexpected error occurred during processing. code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+2025-02-25 20:10:55.5426 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 2/25/2025 8:10:55 PM 
+2025-02-25 20:10:55.6230 [ERROR] An unexpected error occurred during processing. code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+2025-02-25 20:11:05.7621 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 2/25/2025 8:11:05 PM 
+2025-02-25 20:11:05.8388 [ERROR] An unexpected error occurred during processing. code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+2025-02-25 20:11:06.3583 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ReprocessFiles\TimeClockChangeEntity-2024-308-2024-342_20250225_201106.csv:  code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+   at ProcessFiles_Demo.Commands.ProcessFileCommand.ExecuteAsync() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Commands\ProcessFileCommand.cs:line 31
+   at Polly.AsyncPolicy.<>c__DisplayClass40_0.<<ImplementationAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Polly.Retry.AsyncRetryEngine.ImplementationAsync[TResult](Func`3 action, Context context, CancellationToken cancellationToken, ExceptionPredicates shouldRetryExceptionPredicates, ResultPredicates`1 shouldRetryResultPredicates, Func`5 onRetryAsync, Int32 permittedRetryCount, IEnumerable`1 sleepDurationsEnumerable, Func`4 sleepDurationProvider, Boolean continueOnCapturedContext)
+   at Polly.AsyncPolicy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext)
+   at ProcessFiles_Demo.Helpers.RetryHelper.RetryAsync(Func`1 action, Int32 maxRetryAttempts) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Helpers\RetryHelper.cs:line 24
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Program.cs:line 163
+2025-02-25 20:11:06.3583 [INFO] ERROR: SQL logic error
+no such table: clock_record - moved to ReprocessFiles. 
+2025-02-25 20:11:06.3704 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync code = Error (1), message = System.Data.SQLite.SQLiteException (0x87AF001F): SQL logic error
+no such table: clock_record
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, SQLiteCommand command, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ReadClockRecordsFromFileAndInsertToDatabase(String filePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 514
+   at ProcessFiles_Demo.FileProcessing.ManhattanPunchProcessor.ProcessAsync(String filePath, String destinationPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 322
+   at ProcessFiles_Demo.Commands.ProcessFileCommand.ExecuteAsync() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Commands\ProcessFileCommand.cs:line 31
+   at Polly.AsyncPolicy.<>c__DisplayClass40_0.<<ImplementationAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Polly.Retry.AsyncRetryEngine.ImplementationAsync[TResult](Func`3 action, Context context, CancellationToken cancellationToken, ExceptionPredicates shouldRetryExceptionPredicates, ResultPredicates`1 shouldRetryResultPredicates, Func`5 onRetryAsync, Int32 permittedRetryCount, IEnumerable`1 sleepDurationsEnumerable, Func`4 sleepDurationProvider, Boolean continueOnCapturedContext)
+   at Polly.AsyncPolicy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext)
+   at ProcessFiles_Demo.Helpers.RetryHelper.RetryAsync(Func`1 action, Int32 maxRetryAttempts) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Helpers\RetryHelper.cs:line 24
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Program.cs:line 163
+2025-02-25 20:11:06.3704 [INFO] Processing completed for processor type: manhattanpunch 
+2025-02-25 20:11:06.3704 [INFO] Application Completed Successfully 
