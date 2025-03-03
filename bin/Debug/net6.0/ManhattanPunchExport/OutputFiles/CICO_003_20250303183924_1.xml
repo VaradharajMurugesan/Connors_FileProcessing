@@ -1,0 +1,26 @@
+<tXML>
+  <Header>
+    <Source>Host</Source>
+    <Batch_ID>BT23095</Batch_ID>
+    <Message_Type>TAS</Message_Type>
+    <Company_ID>01</Company_ID>
+    <Msg_Locale>English (United States)</Msg_Locale>
+  </Header>
+  <Message>
+    <TimeAndAttendance>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000001</TranNumber>
+          <Warehouse>003</Warehouse>
+          <EmployeeUserId>795960</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 14:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 23:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 16:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 21:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+    </TimeAndAttendance>
+  </Message>
+</tXML>

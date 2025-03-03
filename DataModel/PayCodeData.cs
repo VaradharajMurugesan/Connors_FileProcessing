@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.DataModel
+namespace FileTransform.DataModel
 {
     public class PaycodeData
     {

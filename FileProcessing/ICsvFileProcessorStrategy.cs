@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     public interface ICsvFileProcessorStrategy
     {

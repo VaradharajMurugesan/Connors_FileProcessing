@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using OfficeOpenXml;
-using ProcessFiles_Demo.Logging;
-using ProcessFiles_Demo.DataModel;
+using FileTransform.Logging;
+using FileTransform.DataModel;
 using CsvHelper;
-using ProcessFiles_Demo.SFTPExtract;
+using FileTransform.SFTPExtract;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
-using ProcessFiles_Demo.Helpers;
+using FileTransform.Helpers;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     public class AccrualBalanceExportProcessor : ICsvFileProcessorStrategy
     {

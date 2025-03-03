@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "ProcessFiles_Demo": {
+    "FileTransform": {
       "commandName": "Project",
       "commandLineArgs": "manhattanpunch TimeClockChangeEntity"
     }

@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
-using ProcessFiles_Demo.Client;
-using ProcessFiles_Demo.Commands;
-using ProcessFiles_Demo.FileProcessing;
-using ProcessFiles_Demo.Helpers;
-using ProcessFiles_Demo.Logging;
-using ProcessFiles_Demo.Decryption;
+using FileTransform.Client;
+using FileTransform.Commands;
+using FileTransform.FileProcessing;
+using FileTransform.Helpers;
+using FileTransform.Logging;
+using FileTransform.Decryption;
 using NLog;
 using NLog.Config;
 using NLog.Targets;

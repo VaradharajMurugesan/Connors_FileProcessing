@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     public class JsonFileProcessorStrategy : ICsvFileProcessorStrategy
     {

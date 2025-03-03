@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.Client
+namespace FileTransform.Client
 {
     public static class FileTransferClientFactory
     {

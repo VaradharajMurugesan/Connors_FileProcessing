@@ -1,16 +1,16 @@
 ﻿using CsvHelper;
 using DidX.BouncyCastle.Bcpg.Sig;
-using ProcessFiles_Demo.Logging;
+using FileTransform.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProcessFiles_Demo.DataModel;
-using ProcessFiles_Demo.Helpers;
+using FileTransform.DataModel;
+using FileTransform.Helpers;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     public class ExtractLocationEntityData
     {

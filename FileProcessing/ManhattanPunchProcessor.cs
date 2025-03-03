@@ -1,10 +1,10 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using Newtonsoft.Json.Linq;
-using ProcessFiles_Demo.DataModel;
-using ProcessFiles_Demo.Helpers;
-using ProcessFiles_Demo.Logging;
-using ProcessFiles_Demo.SFTPExtract;
+using FileTransform.DataModel;
+using FileTransform.Helpers;
+using FileTransform.Logging;
+using FileTransform.SFTPExtract;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Dapper;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     internal class ManhattanPunchProcessor : ICsvFileProcessorStrategy
     {
@@ -75,50 +75,71 @@ namespace ProcessFiles_Demo.FileProcessing
 
         public void GenerateManhattanPunchXML(IEnumerable<ShiftGroup> groupedTimeClockData)
         {
-            // Group records by ManhattanWarehouseId first
-            var warehouseGroups = groupedTimeClockData.GroupBy(g => g.Records.First().ManhattanWarehouseId);
-
-            foreach (var warehouseGroup in warehouseGroups)
+            try
             {
-                // Create a new XML Document for each warehouse
-                XmlDocument xmlDoc = new XmlDocument();
-                XmlElement root = xmlDoc.CreateElement("tXML");
-                xmlDoc.AppendChild(root);
+                // Group records by ManhattanWarehouseId first
+                var warehouseGroups = groupedTimeClockData.GroupBy(g => g.Records.First().ManhattanWarehouseId);
 
-                // Add header elements
-                AddHeaderElements(xmlDoc, root);
-
-                XmlElement message = xmlDoc.CreateElement("Message");
-                root.AppendChild(message);
-                XmlElement timeAndAttendance = xmlDoc.CreateElement("TimeAndAttendance");
-                message.AppendChild(timeAndAttendance);
-
-                int tranNumber = 1;
-
-                // Process each employee's shift group within the warehouse
-                foreach (var shiftGroup in warehouseGroup)
+                foreach (var warehouseGroup in warehouseGroups)
                 {
-                    if (shiftGroup.Records.Any(r => r.EventType == "Create"))
+                    try
                     {
-                        ProcessCreateEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
+                        // Create a new XML Document for each warehouse
+                        XmlDocument xmlDoc = new XmlDocument();
+                        XmlElement root = xmlDoc.CreateElement("tXML");
+                        xmlDoc.AppendChild(root);
+
+                        // Add header elements
+                        AddHeaderElements(xmlDoc, root);
+
+                        XmlElement message = xmlDoc.CreateElement("Message");
+                        root.AppendChild(message);
+                        XmlElement timeAndAttendance = xmlDoc.CreateElement("TimeAndAttendance");
+                        message.AppendChild(timeAndAttendance);
+
+                        int tranNumber = 1;
+
+                        // Process each employee's shift group within the warehouse
+                        foreach (var shiftGroup in warehouseGroup)
+                        {
+                            try
+                            {
+                                if (shiftGroup.Records.Any(r => r.EventType == "Create"))
+                                {
+                                    ProcessCreateEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
+                                }
+                                else if (shiftGroup.Records.Any(r => r.EventType == "Delete"))
+                                {
+                                    ProcessDeleteEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                LoggerObserver.Error(ex, $"Error processing shift group for WarehouseID: {warehouseGroup.Key}");
+                            }
+                        }
+
+                        // Generate file name based on ManhattanWarehouseId
+                        string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, 1);
+                        string fullFilePath = Path.Combine(outputPath, fileName);
+
+                        // Save the XML to a file
+                        xmlDoc.Save(fullFilePath);
+                        LoggerObserver.LogFileProcessed($"Generated XML file: {fileName}");
                     }
-                    else if (shiftGroup.Records.Any(r => r.EventType == "Delete"))
+                    catch (Exception ex)
                     {
-                        ProcessDeleteEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
+                        LoggerObserver.Error(ex, $"Error generating XML for WarehouseID: {warehouseGroup.Key}");
                     }
                 }
-
-                // Generate file name based on ManhattanWarehouseId
-                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, 1);
-                string fullFilePath = Path.Combine(outputPath, fileName);
-
-                // Save the XML to a file
-                xmlDoc.Save(fullFilePath);
-
-                Console.WriteLine($"Generated XML file: {fileName}");
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.Error(ex, "An unexpected error occurred while generating Manhattan Punch XML.");
             }
         }
+
 
 
         // Helper method to add header elements

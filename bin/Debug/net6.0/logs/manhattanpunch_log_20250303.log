@@ -1,0 +1,39 @@
+2025-03-03 18:34:58.4190 [DEBUG] Application Starting 
+2025-03-03 18:34:58.6576 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-03 18:35:05.6634 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:35:08.7578 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:35:08.7711 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:35:18.4245 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:35:18.7443 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-03 18:35:18.7443 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:35:18.9485 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/3/2025 6:35:18 PM 
+2025-03-03 18:35:21.3394 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-03 18:36:09.6152 [DEBUG] Application Starting 
+2025-03-03 18:36:09.8022 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-03 18:36:16.9755 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:36:20.2772 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:36:20.2960 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:36:30.3663 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:36:30.7083 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-03 18:36:30.7083 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:36:30.9177 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/3/2025 6:36:30 PM 
+2025-03-03 18:36:33.3742 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-03 18:38:48.6699 [DEBUG] Application Starting 
+2025-03-03 18:38:48.7893 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-03 18:38:56.8447 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:39:00.6367 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:39:00.6483 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:39:11.5184 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:39:11.8510 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-03 18:39:11.8510 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-03 18:39:12.0047 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/3/2025 6:39:12 PM 
+2025-03-03 18:39:13.8687 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-03 18:39:21.8169 [INFO] Generated XML file: CICO_006_20250303183914_1.xml 
+2025-03-03 18:39:24.0320 [INFO] Generated XML file: CICO_004_20250303183923_1.xml 
+2025-03-03 18:39:25.0811 [INFO] Generated XML file: CICO_003_20250303183924_1.xml 
+2025-03-03 18:39:25.0811 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/3/2025 6:39:25 PM 
+2025-03-03 18:39:25.0811 [INFO] Time taken to process the file: 13.08 seconds. 
+2025-03-03 18:39:25.0811 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-03 18:39:25.0998 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250303_183925.csv 
+2025-03-03 18:39:25.0998 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-03 18:39:25.0998 [INFO] Application Completed Successfully 

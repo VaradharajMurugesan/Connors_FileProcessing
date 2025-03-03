@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
-using ProcessFiles_Demo.DataModel;
-using ProcessFiles_Demo.Logging;
+using FileTransform.DataModel;
+using FileTransform.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     internal class ExtractEmployeeEntityData
     {

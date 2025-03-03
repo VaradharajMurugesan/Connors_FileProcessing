@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ProcessFiles_Demo.Logging;
+using FileTransform.Logging;
 using OfficeOpenXml;
-using ProcessFiles_Demo.SFTPExtract;
-using ProcessFiles_Demo.DataModel;
+using FileTransform.SFTPExtract;
+using FileTransform.DataModel;
 using Newtonsoft.Json.Linq;
 
-namespace ProcessFiles_Demo.FileProcessing
+namespace FileTransform.FileProcessing
 {
     public class PunchExportProcessor : ICsvFileProcessorStrategy
     {

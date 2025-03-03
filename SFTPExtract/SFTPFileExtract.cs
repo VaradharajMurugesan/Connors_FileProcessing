@@ -4,10 +4,10 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using ProcessFiles_Demo.Logging;
+using FileTransform.Logging;
 using Renci.SshNet;
 
-namespace ProcessFiles_Demo.SFTPExtract
+namespace FileTransform.SFTPExtract
 {
     public class SFTPFileExtract
     {

@@ -3,7 +3,7 @@ using NLog.Config;
 using NLog.Targets;
 using System;
 
-namespace ProcessFiles_Demo.Logging
+namespace FileTransform.Logging
 {
     public class LoggerObserver
     {

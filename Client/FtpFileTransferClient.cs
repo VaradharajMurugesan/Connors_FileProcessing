@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using ProcessFiles_Demo.Logging;
+using FileTransform.Logging;
 using Renci.SshNet;
 using Renci.SshNet.Common;
 
-namespace ProcessFiles_Demo.Client
+namespace FileTransform.Client
 {
     // FTP Client
     public class FtpFileTransferClient : IFileTransferClient

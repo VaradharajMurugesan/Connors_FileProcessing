@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace ProcessFiles_Demo.Helpers
+namespace FileTransform.Helpers
 {
     public class RetryHelper
     {

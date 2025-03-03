@@ -1,0 +1,593 @@
+<tXML>
+  <Header>
+    <Source>Host</Source>
+    <Batch_ID>BT23095</Batch_ID>
+    <Message_Type>TAS</Message_Type>
+    <Company_ID>01</Company_ID>
+    <Msg_Locale>English (United States)</Msg_Locale>
+  </Header>
+  <Message>
+    <TimeAndAttendance>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000001</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>620118</EmployeeUserId>
+          <StartDateForMerge>11/18/2024 15:00:00</StartDateForMerge>
+          <EndDateForMerge>11/19/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/18/2024 17:00:00</EmpClockIn>
+            <EmpClockOut>11/18/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000002</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>620118</EmployeeUserId>
+          <StartDateForMerge>11/19/2024 14:00:00</StartDateForMerge>
+          <EndDateForMerge>11/20/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/19/2024 16:00:00</EmpClockIn>
+            <EmpClockOut>11/19/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000003</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>620118</EmployeeUserId>
+          <StartDateForMerge>11/20/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/20/2024 23:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/20/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/20/2024 21:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000004</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>620118</EmployeeUserId>
+          <StartDateForMerge>11/21/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/22/2024 00:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/21/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/21/2024 22:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000005</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>620118</EmployeeUserId>
+          <StartDateForMerge>11/22/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/22/2024 22:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/22/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/22/2024 20:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000006</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>666462</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 09:36:54</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 13:36:54</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 11:36:54</EmpClockIn>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000007</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/04/2024 07:00:00</StartDateForMerge>
+          <EndDateForMerge>11/04/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/04/2024 09:00:00</EmpClockIn>
+            <EmpClockOut>11/04/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000008</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/05/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/05/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/05/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/05/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000009</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/08/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/08/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/08/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/08/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000010</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/11/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/11/2024 18:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/11/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/11/2024 16:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000011</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/18/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/18/2024 16:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/18/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/18/2024 14:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000012</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/19/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/19/2024 15:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/19/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/19/2024 13:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000013</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/20/2024 08:00:00</StartDateForMerge>
+          <EndDateForMerge>11/20/2024 18:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/20/2024 10:00:00</EmpClockIn>
+            <EmpClockOut>11/20/2024 16:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000014</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/21/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/21/2024 18:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/21/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/21/2024 16:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000015</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>670682</EmployeeUserId>
+          <StartDateForMerge>11/22/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/22/2024 18:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/22/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/22/2024 16:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000016</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>690888</EmployeeUserId>
+          <StartDateForMerge>11/11/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/11/2024 17:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/11/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/11/2024 15:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000017</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>690888</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 17:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 15:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000018</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>690888</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 20:00:00</StartDateForMerge>
+          <EndDateForMerge>11/13/2024 00:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockOut>11/12/2024 22:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000019</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>728548</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 09:46:22</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 13:46:22</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 11:46:22</EmpClockIn>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000020</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>771202</EmployeeUserId>
+          <StartDateForMerge>11/18/2024 12:00:00</StartDateForMerge>
+          <EndDateForMerge>11/19/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/18/2024 14:00:00</EmpClockIn>
+            <EmpClockOut>11/18/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000021</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>771202</EmployeeUserId>
+          <StartDateForMerge>11/19/2024 15:00:00</StartDateForMerge>
+          <EndDateForMerge>11/20/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/19/2024 17:00:00</EmpClockIn>
+            <EmpClockOut>11/19/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000022</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>771202</EmployeeUserId>
+          <StartDateForMerge>11/20/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/21/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/20/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/20/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000023</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>771202</EmployeeUserId>
+          <StartDateForMerge>11/21/2024 12:00:00</StartDateForMerge>
+          <EndDateForMerge>11/22/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/21/2024 14:00:00</EmpClockIn>
+            <EmpClockOut>11/21/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000024</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>771202</EmployeeUserId>
+          <StartDateForMerge>11/22/2024 14:00:00</StartDateForMerge>
+          <EndDateForMerge>11/23/2024 01:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/22/2024 16:00:00</EmpClockIn>
+            <EmpClockOut>11/22/2024 23:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000025</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>772223</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 16:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 14:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000026</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>796332</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 10:10:28</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 19:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 12:10:28</EmpClockIn>
+            <EmpClockOut>11/12/2024 17:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000027</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>796332</EmployeeUserId>
+          <StartDateForMerge>11/14/2024 08:00:00</StartDateForMerge>
+          <EndDateForMerge>11/14/2024 16:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/14/2024 10:00:00</EmpClockIn>
+            <EmpClockOut>11/14/2024 14:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000028</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>818102</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 13:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 11:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000029</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>818102</EmployeeUserId>
+          <StartDateForMerge>11/13/2024 10:00:00</StartDateForMerge>
+          <EndDateForMerge>11/13/2024 19:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/13/2024 12:00:00</EmpClockIn>
+            <EmpClockOut>11/13/2024 17:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000030</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>818102</EmployeeUserId>
+          <StartDateForMerge>11/14/2024 11:00:00</StartDateForMerge>
+          <EndDateForMerge>11/14/2024 19:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/14/2024 13:00:00</EmpClockIn>
+            <EmpClockOut>11/14/2024 17:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000031</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/03/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/03/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/03/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/03/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000032</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/04/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/04/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/04/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/04/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000033</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/05/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/05/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/05/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/05/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000034</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/06/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/06/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/06/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/06/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000035</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/07/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/07/2024 18:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/07/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/07/2024 16:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000036</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/10/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/10/2024 17:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/10/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/10/2024 15:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000037</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823515</EmployeeUserId>
+          <StartDateForMerge>11/11/2024 05:00:00</StartDateForMerge>
+          <EndDateForMerge>11/11/2024 17:30:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/11/2024 07:00:00</EmpClockIn>
+            <EmpClockOut>11/11/2024 15:30:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000038</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>823529</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 05:33:49</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 09:33:49</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 07:33:49</EmpClockIn>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000039</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>837353</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 06:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 10:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 08:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 08:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000040</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>843487</EmployeeUserId>
+          <StartDateForMerge>11/11/2024 15:00:00</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 01:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/11/2024 17:00:00</EmpClockIn>
+            <EmpClockOut>11/11/2024 23:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000041</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>843487</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 15:00:00</StartDateForMerge>
+          <EndDateForMerge>11/13/2024 01:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 17:00:00</EmpClockIn>
+            <EmpClockOut>11/12/2024 23:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000042</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>843487</EmployeeUserId>
+          <StartDateForMerge>11/13/2024 14:00:00</StartDateForMerge>
+          <EndDateForMerge>11/14/2024 01:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/13/2024 16:00:00</EmpClockIn>
+            <EmpClockOut>11/13/2024 23:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000043</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>843487</EmployeeUserId>
+          <StartDateForMerge>11/14/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/14/2024 23:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/14/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/14/2024 21:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000044</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>843487</EmployeeUserId>
+          <StartDateForMerge>11/15/2024 13:00:00</StartDateForMerge>
+          <EndDateForMerge>11/15/2024 22:00:00</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/15/2024 15:00:00</EmpClockIn>
+            <EmpClockOut>11/15/2024 20:00:00</EmpClockOut>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000045</TranNumber>
+          <Warehouse>006</Warehouse>
+          <EmployeeUserId>845732</EmployeeUserId>
+          <StartDateForMerge>11/12/2024 10:21:06</StartDateForMerge>
+          <EndDateForMerge>11/12/2024 14:21:06</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/12/2024 12:21:06</EmpClockIn>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+    </TimeAndAttendance>
+  </Message>
+</tXML>
